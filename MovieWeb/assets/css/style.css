@@ -378,8 +378,7 @@ only screen and (min-width: 992px) and (max-width: 1200px) {
 
 .search-wrap-2 form {
     position: relative;
-    overflow: hidden;
-    /* visibility: hidden; */
+    /* overflow: hidden; */
 }
 
 .search-wrap-2 form input {
@@ -403,26 +402,7 @@ only screen and (min-width: 992px) and (max-width: 1200px) {
     opacity: 1;
 }
 
-.search-wrap-2 form button.button-search {
-    position: absolute;
-    right: 0;
-    top: 50%;
-    -webkit-transform: translateY(-50%);
-    transform: translateY(-50%);
-    padding: 0;
-    border: none;
-    background-color: transparent;
-    height: 100%;
-    font-size: 18px;
-    border-left: 1px solid #E2DCDC;
-    padding: 0 15px;
-    color: #000000;
-    line-height: 45px;
-}
 
-.search-wrap-2 form button.button-search:hover {
-    color: #f4181c;
-}
 
 .search-wrap-2.search-open {
     opacity: 1;
@@ -455,9 +435,6 @@ only screen and (min-width: 992px) and (max-width: 1200px) {
     line-height: 45px;
 }
 
-.search-wrap-2 form button.button-search:hover {
-    color: #f4181c;
-}
 
 .img-search {
     width: 20px;
@@ -927,7 +904,8 @@ only screen and (min-width: 992px) and (max-width: 1200px) {
 
 .container-fluid {
     margin-top: 16px;
-    margin-inline-start: 16px;
+    margin-inline-start: 36px;
+    margin-right: 36px;
 }
 
 .movie-slider-active {
@@ -977,46 +955,6 @@ only screen and (min-width: 992px) and (max-width: 1200px) {
     padding: 0 15px;
 }
 
-.nav-style-1 button {
-    position: absolute;
-    left: 0;
-    top: 50%;
-    -webkit-transform: translateY(-50%);
-    transform: translateY(-50%);
-    z-index: 9;
-    background-color: transparent;
-    border: none;
-    font-size: 70px;
-    color: #f4181c;
-    opacity: 0;
-    visibility: hidden;
-}
-
-.nav-style-1 button.slick-next {
-    left: auto;
-    right: 0;
-}
-
-@media only screen and (max-width: 767px) {
-    .nav-style-1 button {
-        font-size: 50px;
-    }
-}
-
-.nav-style-1 button:hover {
-    color: #ffffff;
-}
-
-.nav-style-1:hover button {
-    opacity: 1;
-    visibility: visible;
-    left: 15px;
-}
-
-.nav-style-1:hover button.slick-next {
-    left: auto;
-    right: 15px;
-}
 
 .slider-button {
     background: var(--primary);
@@ -1284,4 +1222,90 @@ only screen and (min-width: 992px) and (max-width: 1200px) {
     .slider-content-hm4 .sub-title-time-wrap .time {
         font-size: 18px;
     }
+}
+
+
+/* slider */
+/* Slideshow container */
+.slideshow-container {
+    max-width: 100%;
+    position: relative;
+    width: 100%;
+    margin: auto;
+}
+
+/* Hide the images by default */
+.mySlides {
+    width: 100%;
+    display: none;
+}
+
+/* Next & previous buttons */
+.prev,
+.next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: var(--primary-variant);
+    font-weight: bold;
+    font-size: 28px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+}
+
+.slideshow-container:hover prev {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Position the "next button" to the right */
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover,
+.next:hover {
+    color: var(--white);
+}
+
+/* Fading animation */
+.fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+
+
+
+@keyframes fade {
+    from {
+        opacity: .4
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+.prevMovie,
+.nextMovie {
+    display: inline-flex;
+    width: 30px;
+    height: 30px;
+    background: #444;
+    border-radius: var(--radius-4);
+    justify-content: center;
+    align-items: center;
+}
+
+.prevMovie:hover,
+.nextMovie:hover {
+    color: var(--primary);
+    background: var(--white);
 }
