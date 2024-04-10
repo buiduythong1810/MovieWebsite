@@ -117,20 +117,12 @@
         </div>
         <form action="#" method="post">
             <div class="form-group">
-                <label for="first-name">First Name</label>
-                <input type="text" id="first-name" name="first-name" required>
-            </div>
-            <div class="form-group">
-                <label for="last-name">Last Name</label>
-                <input type="text" id="last-name" name="last-name" required>
+                <label for="email">Email</label>
+                <input type="text" id="Email" name="Email" required>
             </div>
             <div class="form-group">
                 <label for="display-name">Display Name</label>
                 <input type="text" id="display-name" name="display-name" required>
-            </div>
-            <div class="form-group">
-                <label for="current-password">Current Password</label>
-                <input type="password" id="current-password" name="current-password" required>
             </div>
             <div class="form-group">
                 <label for="new-password">New Password</label>
@@ -145,6 +137,80 @@
             </div>
         </form>
     </div>
+
+    <script>
+        var account_info = {};
+        var user_id = 1;
+        var newPassword;
+
+        // 
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelector('button[type="submit"]').addEventListener('click', function (event) {
+                newPassword = document.getElementById('new-password').value;
+                var confirmPassword = document.getElementById('confirm-password').value;
+
+                if (newPassword !== confirmPassword) {
+                    event.preventDefault(); // Ngăn chặn hành động mặc định của nút submit
+                    alert('New Password and Confirm New Password do not match. Please try again.');
+                }
+
+                try {
+
+                    const xhr = new XMLHttpRequest();
+                    xhr.open("PUT", "http://localhost:3000/account/"+ user_id, true);
+                    xhr.setRequestHeader("Content-Type", "application/json");
+
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState === XMLHttpRequest.DONE) {
+                            if (xhr.status === 200) {
+                                console.log('Password updated successfully');
+                            } else if (xhr.status === 404) {
+                                console.log('User not found or password not updated');
+                            } else {
+                                console.error('Internal Server Error');
+                            }
+                        }
+                    };
+
+                    xhr.send(JSON.stringify({ newPassword: newPassword }));
+                } catch (error) {
+                    console.error('Error occurred:', error);
+                }
+
+            });
+        });
+        // Hàm để điền thông tin vào các trường nhập liệu trong form
+        function fillForm() {
+            document.getElementById('Email').value = account_info.email;
+            document.getElementById('display-name').value = account_info.username;
+        }
+
+        // Gọi hàm fillForm() khi trang đã được tải
+        document.addEventListener('DOMContentLoaded', function () {
+            fetchData();
+        });
+
+        // Hàm để lấy dữ liệu từ server bằng XHR
+        function fetchData() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'http://localhost:3000/user/' + user_id); // Thay thế '/user/1' bằng endpoint tương ứng của bạn
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    account_info = JSON.parse(xhr.responseText); // Lưu trữ dữ liệu từ server vào biến account_info
+                    fillForm(); // Gọi hàm fillForm để điền dữ liệu vào form
+                } else {
+                    console.error('Failed to fetch account info');
+                }
+            };
+            xhr.onerror = function () {
+                console.error('Request failed');
+            };
+            xhr.send();
+        }
+
+
+    </script>
+
 </body>
 
 </html>
