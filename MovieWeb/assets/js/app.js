@@ -1,8 +1,13 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
+const bodyParser = require('body-parser');
+const bcrypt = require('bcryptjs');
+
 app.use(cors());
 app.use(express.json());
+app.use(bodyParser.json());
+
 
 const { MongoClient } = require('mongodb');
 
@@ -30,7 +35,7 @@ async function getWatchlistInfoByUserId(userId) {
         const watchlist = user.watchlist;
 
         // Find titles, thumbnail paths, years, and plots from watchlist
-        const watchlistInfo = await movieCollection.find({ id: { $in: watchlist } }).project({ _id: 0, thumbnail_path: 1, title: 1, year: 1, plot: 1 }).toArray();
+        const watchlistInfo = await movieCollection.find({ id: { $in: watchlist } }).project({ _id: 0, id: 1, thumbnail_path: 1, title: 1, year: 1, plot: 1 }).toArray();
 
         return watchlistInfo;
     } catch (error) {
@@ -50,7 +55,7 @@ async function removeAllFromWatchlist(userId) {
         // Update user's watchlist by setting it to an empty array
         const result = await userCollection.updateOne(
             { id: userId },
-            { $set: { watchlist: [] } }
+            { $pull: { watchlist: [] } }
         );
 
         if (result.modifiedCount === 0) {
@@ -73,7 +78,6 @@ async function removeFromWatchlist(userId, movieId) {
         await client.connect();
         const database = client.db('movieweb');
         const userCollection = database.collection('user');
-
         // Update user's watchlist by removing movieId from it
         const result = await userCollection.updateOne(
             { id: userId },
@@ -124,17 +128,19 @@ async function getUserInfoById(userId) {
         await client.close();
     }
 }
-
 async function updatePassword(userId, newPassword) {
     try {
         await client.connect();
         const database = client.db('movieweb');
         const userCollection = database.collection('user');
 
-        // Update user's password
+        // Hash mật khẩu mới
+        const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+        // Cập nhật mật khẩu đã băm vào MongoDB
         const result = await userCollection.updateOne(
             { id: userId },
-            { $set: { password: newPassword } }
+            { $set: { password: hashedPassword } }
         );
 
         if (result.modifiedCount === 0) {
@@ -152,7 +158,27 @@ async function updatePassword(userId, newPassword) {
     }
 }
 
+async function getMoviePath(id) {
+    try {
+        await client.connect();
+        const database = client.db('movieweb');
+        const movieCollection = database.collection('movies');
 
+        // Tìm movie bằng id
+        const movie = await movieCollection.findOne({ id: id });
+
+        if (!movie) {
+            console.log('Movie not found');
+            return [];
+        }
+        return movie.path;
+    } catch (error) {
+        console.error('Error occurred:', error);
+        return [];
+    } finally {
+        await client.close();
+    }
+}
 
 
 // Endpoint to get watchlist info by user ID
@@ -185,7 +211,7 @@ app.delete('/watchlist/:userId', async (req, res) => {
 // Endpoint to remove a specific movie from user's watchlist
 app.delete('/watchlist/:userId/:movieId', async (req, res) => {
     const userId = parseInt(req.params.userId);
-    const movieId = req.params.movieId;
+    const movieId = parseInt(req.params.movieId);
     try {
         const success = await removeFromWatchlist(userId, movieId);
         if (success) {
@@ -218,7 +244,7 @@ app.get('/user/:userId', async (req, res) => {
 // Endpoint to update user password
 app.put('/account/:userId', async (req, res) => {
     const userId = parseInt(req.params.userId);
-    const newPassword = req.body.newPassword; // assuming you're passing newPassword in request body
+    const newPassword = req.body.newPassword; // Nhận newPassword từ body của yêu cầu
 
     try {
         const passwordUpdated = await updatePassword(userId, newPassword);
@@ -229,6 +255,20 @@ app.put('/account/:userId', async (req, res) => {
         }
     } catch (error) {
         res.status(500).json({ error: 'Internal Server Error' });
+    }
+});app.get('/watchmovie/:id', async (req, res) => {
+    const id = parseInt(req.params.id);
+
+    try {
+        const path = await getMoviePath(id);
+        if (path.length === 0) {
+            res.status(404).send('Movie not found');
+            return;
+        }
+        res.send(path);
+    } catch (err) {
+        console.error('Error retrieving movie path:', err);
+        res.status(500).send('Internal Server Error');
     }
 });
 
