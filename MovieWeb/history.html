@@ -129,7 +129,7 @@
                     <script>
                         var xhr = new XMLHttpRequest();
                         var movieData;
-                        var user_id = 2;
+                        var user_id = 1;
 
                         xhr.open("GET", "http://localhost:3000/watchlist/" + user_id, true);
                         xhr.onload = function () {
@@ -149,18 +149,26 @@
 
                                     var movielistImg = document.createElement("div");
                                     movielistImg.className = "movielist-img";
-                                    movielistImg.innerHTML = '<a href="movie-details.html"><img src="' + movie.thumbnail_path + '" alt=""><i class="zmdi zmdi-play play-btn-style"></i></a>';
+                                    // movielistImg.innerHTML = '<a href="movie-details.html"><img src="' + movie.thumbnail_path + '" alt=""><i class="zmdi zmdi-play play-btn-style"></i></a>';
+                                    movielistImg.innerHTML = '<a href="watch_movie.html?movie_id='+movie.id+'">"><img src="' + movie.thumbnail_path + '" alt=""><i class="zmdi zmdi-play play-btn-style"></i></a>';
+
 
                                     var movielistContent = document.createElement("div");
                                     movielistContent.className = "movielist-content";
-                                    movielistContent.innerHTML = '<h3 class="title"><a href="movie-details.html">' + movie.title + '</a></h3><p>' + movie.plot + '</p>';
+                                    // movielistContent.innerHTML = '<h3 class="title"><a href="movie-details.html">' + movie.title + '</a></h3><p>' + movie.plot + '</p>';
+                                    //movielistContent.innerHTML = '<h3 class="title"><a href="watch_movie.html">' + movie.title + '</a></h3><p>' + movie.plot + '</p>';
+                                    movielistContent.innerHTML = '<h3 class="title"><a href="watch_movie.html?movie_id=' + movie.id + '">' + movie.title + '</a></h3><p>' + movie.plot + '</p>';
 
                                     movielistImgContent.appendChild(movielistImg);
                                     movielistImgContent.appendChild(movielistContent);
 
                                     var movielistClose = document.createElement("div");
                                     movielistClose.className = "movielist-close";
-                                    movielistClose.innerHTML = '<p>' + movie.year + '</p><button class="red-x-button">X</button>';
+                                    movielistClose.innerHTML = '<p>' + movie.year + '</p><button class="red-x-button" id="' + movie.id + '">X</button>';
+                                    // Thêm sự kiện click vào nút "X"
+                                    movielistClose.querySelector(".red-x-button").addEventListener("click", function () {
+                                        deleteMovie(movie.id); // Gọi hàm deleteMovie với id của bộ phim
+                                    });
 
                                     singleMovielist.appendChild(movielistImgContent);
                                     singleMovielist.appendChild(movielistClose);
@@ -175,6 +183,36 @@
                             console.error('Request failed');
                         };
                         xhr.send();
+
+                        function deleteMovie(movieId) {
+                            // Tạo một đối tượng XMLHttpRequest
+                            const xhr = new XMLHttpRequest();
+
+                            // Xác định phương thức và URL của yêu cầu
+                            const method = 'DELETE';
+                            const url = `http://localhost:3000/watchlist/${user_id}/${movieId}`; // Đảm bảo biến userId đã được khai báo và gán giá trị
+
+                            // Mở kết nối
+                            xhr.open(method, url, true);
+
+                            // Xử lý sự kiện khi nhận được phản hồi từ server
+                            xhr.onreadystatechange = function () {
+                                if (xhr.readyState === XMLHttpRequest.DONE) {
+                                    if (xhr.status === 200) {
+                                        console.log('Movie removed from watchlist successfully');
+                                        location.reload();
+                                    } else if (xhr.status === 404) {
+                                        console.log('Movie not found in watchlist');
+                                    } else {
+                                        console.error('Error occurred:', xhr.status);
+                                    }
+                                }
+                            };
+
+                            // Gửi yêu cầu
+                            xhr.send();
+                        }
+
 
                         // 
                         // Khai báo sự kiện click cho nút "Clear History"
