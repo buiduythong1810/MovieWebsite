@@ -1,7 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    /* background-image: url(images/backgrd.webp); */
-    background: hsla(220, 17%, 7%, 1);
+    
     background-size: cover;
     margin: 0;
     padding: 0;
@@ -12,16 +11,17 @@ body {
     justify-content: center;
     align-items: flex-start;
     height: 100vh;
-    background-color: hsla(220, 17%, 7%, 1);
+    background-color: rgb(41, 40, 40);
     ;
 }
 
 header {
     background-color: #000000;
     color: #ff0000;
-    padding: 20px 0;
+    padding: 30px 0;
     text-align: center;
     justify-content: space-between;
+  
 }
 
 h1 {
@@ -36,8 +36,34 @@ h1 {
 .register-title {
     color: red;
 }
-
-#login-form,
+.text{
+    color: green;
+}
+.corner-icon {
+    position: fixed; /* Đặt vị trí cố định */
+    top: 20px; /* Khoảng cách từ trên xuống */
+    left: 20px; /* Khoảng cách từ trái sang phải */
+    width: 50px; /* Chiều rộng của phần tử */
+    height: 50px; /* Chiều cao của phần tử */
+    background-image: url(''); /* Đường dẫn đến hình ảnh icon */
+    background-size: cover; /* Phủ toàn bộ phần tử */
+}
+#login-form
+{
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin: 0 10px;
+    margin-bottom: 140px;
+    width: 450px;
+    text-align: center;
+    color: aliceblue;
+    position: absolute;
+    left: 50%;
+    right: 50%;
+    transform: translateX(-50%);
+    bottom: 20px;
+    border-radius: 10px;
+}
 #register-form {
     border: 1px solid #ccc;
     padding: 20px;
@@ -51,8 +77,9 @@ h1 {
     right: 50%;
     transform: translateX(-50%);
     bottom: 20px;
-}
+    border-radius: 10px;
 
+}
 input[type="text"],
 input[type="password"] {
     width: 100%;
@@ -83,26 +110,13 @@ button {
     cursor: pointer;
 }
 
-.nav-button {
-    color: #ff0000;
-    /* Màu chữ */
-    text-decoration: none;
-    /* Xóa gạch chân mặc định của liên kết */
-    padding: 10px 20px;
-    /* Kích thước nút */
-    background-color: #000000;
-    /* Màu nền */
-    border-radius: 5px;
-    /* Bo tròn viền */
-    margin-left: 500px;
-    /* Khoảng cách giữa các nút */
-}
+
 
 .forgot-password {
     display: block;
     margin-top: 10px;
     /* Khoảng cách giữa nút đăng nhập và liên kết quên mật khẩu */
-    color: #4CAF50;
+    color: #ffffff;
     /* Màu chữ */
     text-decoration: none;
     /* Xóa gạch chân mặc định của liên kết */
