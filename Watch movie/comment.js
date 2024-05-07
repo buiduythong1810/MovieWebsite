@@ -125,8 +125,7 @@ app.post("/comment/:movieId", async (req, res) => {
     //create comment format
     var movie_id = parseInt(req.params.movieId);
     var user_id = 122;
-    const { content } = req.body;
-    var rating = 4; //sua sau
+    var { content, rating } = req.body;
     var created_at = new Date();
 
     const comment = new Comment({

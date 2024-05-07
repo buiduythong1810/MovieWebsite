@@ -1526,7 +1526,7 @@ only screen and (min-width: 992px) and (max-width: 1200px) {
     font-weight: bold;
 }
 
-.comment-inf .badge{
+.comment-inf .rating-star{
     background-color: #35b69f;
     color: white;
     height: 20px;
@@ -1538,7 +1538,10 @@ only screen and (min-width: 992px) and (max-width: 1200px) {
     align-items: center;
     margin-top: 2px;
 }
-
+.rating-star::after{
+    content: "\2605";
+    margin-left: 5px;
+}
 .comment-inf .time{
     margin: 0px 10px;
     color: gray;
@@ -1577,3 +1580,39 @@ only screen and (min-width: 992px) and (max-width: 1200px) {
     padding: 0 0 20px;
     margin: 0 0 20px;
 }
+
+/*Rating function*/
+.rating {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+  .rating h6{
+    color: #000000;
+    text-align: justify;
+  }
+  
+  .rating input {
+    display: none;
+  }
+  
+  .rating label {
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+    font-size:0;
+  }
+  
+  .rating label:before {
+    content: '\2605';
+    font-size: 24px;
+    color: #777;
+    line-height: 30px;
+  }
+  
+  .rating label:hover:before,
+  .rating label:hover ~ label:before,
+  .rating input:checked ~ label:before {
+    color: #ffcc00;
+  }
+  
