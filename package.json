@@ -1,0 +1,21 @@
+{
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "mongodb": "^6.6.1",
+    "mongoose": "^8.3.4",
+    "path": "^0.12.7"
+  },
+  "name": "moviewebsite",
+  "description": "![image](https://github.com/buiduythong1810/MovieWebsite/assets/162859217/2ba9b3f1-5640-4282-b1e2-ccf871406499)\r <br />\r <br />\r MovieWebsite\r <br />\r Nhóm thực hiện: nhóm 10\r <br />\r Tên đề tài: web xem phim giống netflix\r <br />\r chức năng:\r <br />\r +Đăng nhập/đăng kí bằng email hoặc tài khoản facebook/google\r <br />\r +Tìm kiếm theo từ khóa hoặc theo nhãn,vote\r <br />\r +Bình luận, đánh giá phim\r <br />\r +Dán nhãn dựa theo thể loại phim\r <br />\r +Phân loại người dùng bao gồm miễn phi và trả phí\r <br />\r +Thanh toán thông qua app ngân hàng, ví điện tử\r <br />\r +Cập nhật phim(admin)\r <br />\r +chạy quảng cáo(admin)\r <br />\r Công cụ:\r <br />\r +Front-end: html-css\r <br />\r +Back-end: expressjs\r <br />\r +Database: MongoDB\r <br />",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
