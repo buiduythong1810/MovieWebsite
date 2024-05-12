@@ -174,6 +174,16 @@
         </div>
     </div>
     </div>
+    <script>
+        // Lấy thông tin từ query parameter trong URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const paymentStatus = urlParams.get('paymentStatus');
+        const invoiceId = urlParams.get('invoiceId');
+
+        if (paymentStatus === 'success') {
+            alert('Payment successful! Invoice ID: ' + invoiceId);
+        }
+    </script>
 
 
 </body>

@@ -59,12 +59,15 @@ app.post('/pay', async (req, res) => {
 })
 
 app.get('/complete-order', async (req, res) => {
-    try {
-        await paypal.capturePayment(req.query.token)
 
-        res.send('Course purchased successfully')
+    try {
+        const captureResponse = await paypal.capturePayment(req.query.token);
+        const invoiceId = captureResponse.id; // Assume the invoice id is in the response
+
+        res.redirect('/pricing-plan-2.html?paymentStatus=success&invoiceId=' + invoiceId);
     } catch (error) {
-        res.send('Error: ' + error)
+        // Trường hợp có lỗi, chuyển hướng về trang cũ với thông báo lỗi
+        res.redirect('/pricing-plan-2.html?error=true&errorMessage=' + encodeURIComponent(error.message));
     }
 })
 
