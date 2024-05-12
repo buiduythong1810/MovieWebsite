@@ -44,9 +44,13 @@ app.use(bodyParser.json());
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
+
+app.use(bodyParser.urlencoded({ extended: true }));
 app.post('/pay', async (req, res) => {
     try {
-        const url = await paypal.createOrder()
+        const amount = req.body.amount || '20'; // Mặc định là $100 nếu không có giá trị
+        console.log(amount);
+        const url = await paypal.createOrder(amount);
 
         res.redirect(url)
     } catch (error) {

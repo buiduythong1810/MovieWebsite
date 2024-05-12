@@ -15,7 +15,7 @@ async function generateAccessToken() {
     return response.data.access_token
 }
 
-exports.createOrder = async () => {
+exports.createOrder = async (amount) => {
     const accessToken = await generateAccessToken()
 
     const response = await axios({
@@ -36,18 +36,18 @@ exports.createOrder = async () => {
                             quantity: 1,
                             unit_amount: {
                                 currency_code: 'USD',
-                                value: '100.00'
+                                value: amount + '.00'
                             }
                         }
                     ],
 
                     amount: {
                         currency_code: 'USD',
-                        value: '100.00',
+                        value: amount + '.00',
                         breakdown: {
                             item_total: {
                                 currency_code: 'USD',
-                                value: '100.00'
+                                value: amount + '.00'
                             }
                         }
                     }
@@ -59,7 +59,7 @@ exports.createOrder = async () => {
                 cancel_url: process.env.BASE_URL + '/cancel-order',
                 shipping_preference: 'NO_SHIPPING',
                 user_action: 'PAY_NOW',
-                brand_name: 'manfra.io'
+                brand_name: 'DuyThong'
             }
         })
     })

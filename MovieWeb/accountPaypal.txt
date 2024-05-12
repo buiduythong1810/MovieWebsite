@@ -1,0 +1,12 @@
+App name: MovieWeb
+ClientID: AfsYrlOB0kLE6AHmQncbi4WpLRBYycDkozi9rt6squEw6kxsw8aOzCV17bUaVuU0cYVVCSmHTcQEZS22
+Serect: EGsZy--rf2N6J_9LEyWdLbwKj7Y0clZB0KuTdtdfIuYY_2YAsJVdc0RZkc4BbzFAA-4_nr-J6GPA24Ak
+
+Sandbox Account:
+Acc personl:
+email: sb-q5dd230785340@personal.example.com
+password: Sp%8vLHz
+
+Acc businees:
+email: sb-1myer30794888@business.example.com
+password: 7TI%9)/k

@@ -118,9 +118,9 @@
                 </div>
                 <div class="pricing-footer">
                     <form class="plan-btn" action="/pay" method="post">
+                        <input type="hidden" name="amount" value="100">
                         <input type="submit" value="Choose a Plan">
                     </form>
-                    <!-- <a href="./payment.html" class="plan-btn">Choose A Plan</a> -->
                 </div>
             </div>
             <div class="pricing-panel modify-pricing-panel active text-center">
@@ -141,7 +141,10 @@
                     </ul>
                 </div>
                 <div class="pricing-footer">
-                    <a href="#" class="plan-btn">Choose A Plan</a>
+                    <form class="plan-btn" action="/pay" method="post">
+                        <input type="hidden" name="amount" value="200">
+                        <input type="submit" value="Choose a Plan">
+                    </form>
                 </div>
             </div>
             <div class="pricing-panel modify-pricing-panel text-center">
@@ -162,7 +165,10 @@
                     </ul>
                 </div>
                 <div class="pricing-footer">
-                    <a href="#" class="plan-btn">Choose A Plan</a>
+                    <form class="plan-btn" action="/pay" method="post">
+                        <input type="hidden" name="amount" value="300">
+                        <input type="submit" value="Choose a Plan">
+                    </form>
                 </div>
             </div>
         </div>
