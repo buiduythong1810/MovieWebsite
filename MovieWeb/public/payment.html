@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VNPAY Payment</title>
+</head>
+
+<body>
+    <h1>VNPAY Payment</h1>
+    <!-- Form thanh toán -->
+<form id="paymentForm" action="/payment" method="POST">
+    <!-- Các trường thông tin thanh toán -->
+    <input type="text" name="cardNumber" placeholder="Card Number">
+    <input type="text" name="expiryDate" placeholder="Expiry Date">
+    <input type="text" name="cvv" placeholder="CVV">
+
+    <!-- Nút thanh toán -->
+    <button type="submit">Thanh toán</button>
+</form>
+
+
+    
+</body>
+
+</html>
