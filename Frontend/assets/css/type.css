@@ -1,0 +1,235 @@
+body {
+    background-color: #000000;
+    
+}
+h3{
+    color:#f5f6f8;
+}
+.Film_things{
+    color:#f5f6f8;
+    font-size:medium;
+}
+
+.image-container{
+    width:725px;
+    height:225px;
+}
+.image-item-movie{
+    width:100%;
+    height:100%;
+    --tw-shadow: 0 0 #0000;
+    --tw-ring-inset: var(--tw-empty, /*!*/ /*!*/);
+    --tw-ring-offset-width: 0px;
+    --tw-ring-offset-color: #fff;
+    --tw-ring-color: rgba(83, 96, 117, 0.5);
+    --tw-ring-offset-shadow: 0 0 #0000;
+    --tw-ring-shadow: 0 0 #0000;
+    transform: translateZ(0);
+    border: 2px #f5595c solid;
+    box-shadow: 0 0 0.8em #f5595c;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+    touch-action: pan-y;
+}
+
+.dropdown{
+    min-width: 5em;
+    position: relative;
+    margin-right: 0.1em;
+   
+}
+.dropdown * {
+    box-sizing: border-box;
+    
+}
+.dropdown .menu {
+    border-radius:0.5em;
+}
+.dropdown .menu li{
+    border-radius: 0;
+}
+.select{
+    
+   background: #f5f6f8;
+   color: #0c0a0a; 
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   border: 2px #2a2f3b solid;
+   border-radius: 0.3em;
+   padding: 0.2em;
+   cursor:pointer;
+   transition: background 0.3s;
+
+}
+.trending__product{
+    margin : 2em 18em 10em 18em; 
+    
+}
+/*Clicked styles
+    (added later in Javascript)
+*/
+#searchQueryInput{
+    border-radius: 0.3em;
+}
+#searchQuerySubmit{
+    border-radius: 0.3em;
+}
+.select-clicked{
+    border: 2px #9a2626 solid;
+    box-shadow: 0 0 0.8em #9a2626;
+    
+}
+.select:hover{
+    background: #c2c7ce;
+    
+}
+.caret{
+   width: 0;
+   height: 0; 
+   border-left: 5px solid transparent;
+   border-right: 5px solid transparent;
+   border-top: 6px solid #141111;
+   transition: 0.3s;
+   user-select: none;
+}
+/*
+   Rotate styles
+   (added later in Javascript)
+*/
+.caret-rotate{
+    transform: rotate(180deg);
+}
+.menu{
+    list-style: none;
+    padding: 0;
+    background: #f4f6fa;
+    position: absolute;
+    border: 1px #d36c6c solid;
+    box-shadow: 0 0.5em 1em rgba(138, 62, 62, 0.2);
+    border-radius: 0.5em;
+    color: #181c27;
+    top: 3em;
+    left: 50%;
+    width: 100%;
+    transform: translateX(-50%);
+    opacity: 0;
+    display: none;
+    transition: 0.2s;
+    z-index: 2;
+}
+.movies_table tr td{
+    padding: 0em 0.4em;
+}
+.menu li{
+    border-radius: 0.5em;
+    cursor: pointer; 
+    justify-content: center;
+}
+.menu li p{
+    padding: 0em 0.7em;
+}
+.menu li:hover{
+    background: #acadb4;
+}
+
+.menu .menu_begin:hover{
+    border-top-right-radius:0.5em;
+    border-top-left-radius: 0.5em;
+}
+.menu .menu_last:hover{
+    border-bottom-right-radius:0.5em;
+    border-bottom-left-radius: 0.5em;
+}
+
+.menu-open{
+    
+    display: block;
+    opacity: 1;
+    border-radius: 0.5em;
+    position: absolute;
+    z-index: 2;
+    
+}
+.movie-wrap-plr{
+    margin-top: 0.4em;
+    margin-bottom: 0.4em;
+    
+}
+
+.movies_table{
+    position:absolute;
+    z-index: 1;
+    position: relative;
+}
+.movie-wrap-text-center1:hover{
+    border: 2px #f5595c solid;
+    box-shadow: 0 0 0.8em #f5595c;
+    
+    transition: all 0.1s ease-in-out;
+}
+
+.movie-things{
+    color: #fff;
+}
+
+*
+{
+    user-select: none;
+}
+
+.Film_things_Sort {
+    color:#f5f6f8;
+    font-size:medium;
+    
+}
+.dropdown1{
+    min-width: 2.8em;
+    position: relative;
+    margin-right: 0.1em;
+   
+}
+.dropdown1 * {
+    box-sizing: border-box;
+    
+}
+
+.select1{
+    
+   background: #f5f6f8;
+   color: #0c0a0a; 
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   border: 2px #2a2f3b solid;
+   border-radius: 0.3em;
+   padding: 0.2em;
+   cursor:pointer;
+  
+
+}
+
+
+.select2{
+    min-width: 2.8em;
+    background: #f5f6f8;
+    color: #0c0a0a; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px #2a2f3b solid;
+    border-radius: 0.3em;
+    padding: 0.2em;
+    cursor:pointer;
+   
+ 
+ }
+
+.select2 span{
+    align-items: center;
+    font-weight: bolder ;
+    
+}
+
+
