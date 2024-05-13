@@ -17,6 +17,12 @@ app.use(express.static(publicDirectoryPath));
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'MovieWeb', 'index.html'));
 });
+app.get('/login', (req, res) => {
+    res.sendFile(path.join(__dirname, 'MovieWeb', 'login.html'));
+});
+app.get('/register', (req, res) => {
+    res.sendFile(path.join(__dirname, 'MovieWeb', 'register.html'));
+});
 // Connection URI
 const { MongoClient } = require('mongodb');
 const uri = 'mongodb://localhost:27017/web';
@@ -28,7 +34,7 @@ client.connect(async (err) => {
         return;
     }
     console.log('Connected successfully to MongoDB');
-
+});
     const db = client.db('web');
     const usersCollection = db.collection('users');
 
@@ -37,35 +43,104 @@ client.connect(async (err) => {
         res.sendFile(__dirname + '/register.html');
     });
 
-    app.post('/register', async (req, res) => {
-        const { username, password } = req.body;
-        const hashedPassword = await bcrypt.hash(password, 10);
+    // Route handler cho endpoint "/register"
+app.post('/register', async (req, res) => {
+    const { username, password, confirm_password } = req.body;
 
-        const newUser = {
-            username: username,
-            password: hashedPassword
-        };
+    // Kiểm tra xem mật khẩu và mật khẩu xác nhận có khớp nhau không
+    if (password !== confirm_password) {
+        return res.status(400).send("Mật khẩu và mật khẩu xác nhận không khớp.");
+    }
 
-        await usersCollection.insertOne(newUser);
-        res.redirect('/login');
+    // Kiểm tra xem người dùng đã tồn tại trong cơ sở dữ liệu chưa
+    const existingUser = await User.findOne({ username: username });
+    if (existingUser) {
+        return res.status(400).send("Tên người dùng đã được sử dụng. Vui lòng chọn một tên người dùng khác.");
+    }
+
+    // Mã hóa mật khẩu trước khi lưu vào cơ sở dữ liệu
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Tạo một bản ghi người dùng mới và lưu vào cơ sở dữ liệu
+    const newUser = new User({
+        username: username,
+        password: hashedPassword
+    });
+    await newUser.save();
+
+    // Phản hồi với mã trạng thái 200 và chuyển hướng người dùng đến trang "/login"
+    res.redirect('/login');
+});
+    document.getElementById("registerButton").addEventListener("click", async function() {
+        const username = document.querySelector('input[name="username"]').value;
+        const password = document.querySelector('input[name="password"]').value;
+        const confirmPassword = document.querySelector('input[name="confirm_password"]').value;
+    
+        if (password !== confirmPassword) {
+            alert("Mật khẩu và mật khẩu xác nhận không khớp.");
+            return;
+        }
+    
+        const response = await fetch("/register", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                username: username,
+                password: password,
+                confirm_password: confirmPassword
+            })
+        });
+    
+        if (response.ok) {
+            window.location.href = "/login";
+        } else {
+            const errorMessage = await response.text();
+            alert(errorMessage);
+        }
     });
 
     // Đăng nhập
     app.get('/login', (req, res) => {
         res.sendFile(__dirname + '/login.html');
     });
-
     app.post('/login', async (req, res) => {
         const { username, password } = req.body;
-        const user = await usersCollection.findOne({ username: username });
-
-        if (user && await bcrypt.compare(password, user.password)) {
-            // Đăng nhập thành công
-            res.redirect('/home');
-        } else {
-            // Đăng nhập thất bại
-            res.send('Đăng nhập thất bại!');
+    
+        // Tìm kiếm người dùng trong cơ sở dữ liệu
+        const user = await User.findOne({ username: username });
+    
+        // Nếu không tìm thấy người dùng hoặc mật khẩu không khớp, phản hồi với thông báo lỗi
+        if (!user || !await bcrypt.compare(password, user.password)) {
+            return res.status(401).send('Đăng nhập thất bại! Vui lòng kiểm tra lại thông tin đăng nhập.');
         }
+    
+        // Nếu thông tin đăng nhập đúng, chuyển hướng người dùng đến trang "/home"
+        res.redirect('/home');
+    });
+    document.getElementById("loginButton").addEventListener("click", async function() {
+        const username = document.querySelector('input[name="username"]').value;
+        const password = document.querySelector('input[name="password"]').value;
+    
+        const response = await fetch("/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                username: username,
+                password: password
+            })
+        });
+    
+        if (response.ok) {
+            window.location.href = "/home"; // Chuyển hướng sau khi đăng nhập thành công
+        } else {
+            const errorMessage = await response.text();
+            alert(errorMessage); // Hiển thị thông báo lỗi nếu đăng nhập không thành công
+        }
+
     });
 
     // Khởi động máy chủ
@@ -73,7 +148,7 @@ client.connect(async (err) => {
     app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
     });
-});
+
     
 
 // Function to get titles, thumbnail paths, years, and plots from watchlist of a specific user by user id

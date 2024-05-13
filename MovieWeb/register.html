@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login and Register</title>
     <link rel="stylesheet" href="./assets/css/style_login.css">
-    
+    <script src="assets/js/app.js"></script>
 </head>
 
 <body>
@@ -17,12 +17,12 @@
     <div class="container">
         <div id="register-form">
             <h2>Register</h2>
-            <form action="register.php" method="post">
+            <form id="registerForm" action="/register" method="post">
                 <input type="text" name="username" placeholder="Username" required>
                 <input type="password" name="password" placeholder="Password" required>
                 <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm Password"
                     required>
-                <button type="submit">Register</button>
+                <button type="button" id="registerButton">Register</button>
                 <p>Đã tạo tài khoản. <a href="login.html" class="text"> Đăng nhập</a></p>
             </form>
         </div>  
