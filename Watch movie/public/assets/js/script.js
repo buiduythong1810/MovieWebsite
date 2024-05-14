@@ -1,10 +1,11 @@
+//Id variable
 var movieId = 1;
-var userId = 122;
+var userName = "Thành";
 
-//Rating script
+//Rating variables
 const ratingInputs = document.querySelectorAll('input[name="rating"]');
 const ratingLabels = document.querySelectorAll(".rating label");
-var ratingValue = 0;
+var ratingValue = 0;  //Rating value
 
 
 //comment script
@@ -27,6 +28,10 @@ document.addEventListener("DOMContentLoaded", function () {
   commentForm.addEventListener("submit", function (event) {
     event.preventDefault();
     const content = commentInput.value;
+    ratingInputs.forEach(input => {
+      if(input.checked)
+        ratingValue += 1;
+    })
     if (!content.trim()) return; // Kiểm tra nội dung comment không được để trống
     // Gửi yêu cầu POST để lưu comment mới vào MongoDB
     fetch("/comment/" + movieId, {
@@ -41,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log(data);
         // Gọi endpoint để lấy thông tin người dùng dựa trên user_id
         //fetch(`/user/${data.user_id}`)
-        fetch("/user/" + userId)
+        fetch("/user/" + userName)
           .then((response) => response.json())
           .then((userData) => {
             const comment = {
@@ -53,6 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
             };
             //Xóa hover của các ngôi sao
             ratingLabels.forEach((label) => {
+              //label.classList.remove("hovered");
               label.style.color = "#777";
             });
             ratingInputs.forEach((input) => {

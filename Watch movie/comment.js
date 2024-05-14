@@ -52,8 +52,8 @@ async function getComments(movieID) {
         {
           $lookup: {
             from: "users", // Collection to join
-            localField: "user_id", // Field from the comments collection
-            foreignField: "user_id", // Field from the users collection
+            localField: "user_name", // Field from the comments collection
+            foreignField: "user_name", // Field from the users collection
             as: "user", // Alias for the joined field
           },
         },
@@ -96,13 +96,12 @@ app.get("/:movieId", async function (req, res) {
 });
 
 //endpoint to take user information
-app.get("/user/:userId", async function (req, res) {
+app.get("/user/:userName", async function (req, res) {
   try {
     await connectToMongoDB();
     var db = await client.db("movie-web");
     var users = db.collection("users");
-
-    var user = await users.findOne({ user_id: parseInt(req.params.userId) });
+    var user = await users.findOne({ user_name: req.params.userName });
     res.json(user);
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -124,13 +123,13 @@ app.post("/comment/:movieId", async (req, res) => {
   try {
     //create comment format
     var movie_id = parseInt(req.params.movieId);
-    var user_id = 122;
+    var user_name = "Thành";
     var { content, rating } = req.body;
     var created_at = new Date();
 
     const comment = new Comment({
       movie_id: movie_id,
-      user_id: user_id,
+      user_name: user_name,
       content: content,
       rating: rating,
       created_at: created_at,
