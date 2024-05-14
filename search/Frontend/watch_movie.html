@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watch Movie</title>
+    <link rel="stylesheet" href="./assets/css/watch_movie_style.css">
+    <style>
+        /* Phần tử overlay */
+        .ad-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            /* Màu nền lớp phủ với độ mờ */
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            /* Đảm bảo lớp phủ nằm trên tất cả các phần tử khác trên trang */
+        }
+
+        /* Phần tử chứa hình ảnh quảng cáo */
+        .ad-container {
+            position: relative;
+            max-width: 80%;
+            /* Điều chỉnh kích thước hình ảnh quảng cáo nếu cần */
+        }
+
+        /* Nút tắt */
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            color: #fff;
+            background-color: #333;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Main Wrapper Start -->
+    <div class="main-wrapper">
+        <!-- header area start -->
+        <header class="header-area">
+            <div class="container-fluid1">
+                <div class="header-wrap header-netflix-style">
+                    <div class="logo-menu-wrap">
+                        <!-- Logo -->
+                        <div class="logo">
+                            <a href="index-4.html"><img src="assets/images/logo.png" alt=""></a>
+                        </div>
+                        <!-- Logo -->
+                        <div class="main-menu main-theme-color-four">
+                            <nav class="main-navigation">
+                                <ul>
+                                    <li><a href="index.html">Home</a></li>
+                                    <li><a href="#">Pages</a>
+                                        <ul class="sub-menu">
+                                            <li><a href="aboutus.html">About Us</a></li>
+                                            <li><a href="pricing-plan-2.html">Pricing</a></li>
+                                            <!-- <li><a href="watchlist.html">Watchlist</a></li> -->
+                                            <li><a href="history2.html">History</a></li>
+                                            <!-- <li><a href="movie-details.html">Movie details</a></li> -->
+                                            <!-- <li><a href="series-details.html">Series details</a></li> -->
+                                            <li><a href="faq-2.html">FAQ</a></li>
+                                            <li><a href="account.html">My Account</a></li>
+                                            <!-- <li><a href="landing-page.html">Landing Page</a></li> -->
+                                        </ul>
+                                    </li>
+                                    <li><a href="pricing-plan-2.html">Pricing</a></li>
+                                    <li><a href="contact-2.html">Search</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    <div class="right-side">
+                        <!-- our-profile-area start -->
+                        <div class="our-profile-area ">
+                            <a href="account.html" class="our-profile-pc" data-bs-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                <img class="img-avatar" src="assets/images/default-avatar2.png" alt="">
+                            </a>
+                        </div>
+                        <!-- our-profile-area end -->
+                        <div class="subscribe-btn-wrap">
+                            <button onclick="window.location.href='login.html'" type="button" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal" class="subscribe-btn">Login Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!--Start Show Video-->
+        <!-- <div class="video-container">
+            <video class="video" width="100%" controls id="moviePlayer" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div> -->
+        <div class="video-container">
+            <!-- Video player -->
+            <video class="video" width="100%" controls id="moviePlayer" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <!--End Show Video-->
+
+        <!--Start Infomation about movie-->
+        <div class="inf-movie">
+
+            <!-- Start Logo -->
+            <div class="logo">
+                <img src="./assets/images/logo.png">
+            </div>
+            <!-- End Logo -->
+
+            <h2 class="name-film">The name of love</h2>
+            <div class="about">
+                <h5 class="duration">1h 32</h5>
+                <h5 class="format">HD</h5>
+                <a href="#" class="fa fa-hd"></a>
+            </div>
+            <ul class="tags">
+                <li class="caption">
+                    <span>Tags</span>
+                    <i class="fa fa-caret-right"></i>
+                </li>
+                <li class="tag-item">
+                    <h2><a href="">Romantic</a></h2>
+                </li>
+                <li class="tag-item">
+                    <h3><a href="">Adventure</a></h3>
+                </li>
+            </ul>
+            <div class="content">
+                <p class="summary"> <span class="highlight">"The Name of Love"</span> is a romantic drama film that
+                    tells the story of two individuals, Sarah and John, who come from different backgrounds and meet
+                    unexpectedly.
+                    Sarah is an independent and ambitious artist, while John is a reserved and introspective writer.
+                    Despite their initial differences, they are drawn to each other and embark on a passionate love
+                    affair.
+                </p>
+                <p> <span class="highlight">Director:</span> Olivia Jensen</p>
+                <p> <span class="highlight">Actor:</span> Ethan Thompson, Ava Reynolds, Benjamin Carter, Sophia Morgan,
+                    Noah Ramirez</p>
+            </div>
+
+        </div>
+        <!--End Infomation about movie-->
+
+
+        <!--Start Comment Section-->
+        <div class="comment-section">
+            <!--start Header-->
+            <div class="comment-header">
+                <h6>Comment</h6>
+            </div>
+            <!--end Header-->
+
+            <!--start place to type comment -->
+            <div class="place-typing-comment">
+                <img src="https://danviet.mediacdn.vn/296231569849192448/2024/2/29/swifttaylorap102122-1709208054815543939904.jpg"
+                    alt="">
+                <input class="place" type="text" placeholder="Enter your comment...">
+            </div>
+            <!--end place to type comment -->
+
+            <!--start comment view -->
+            <div class="comment-view">
+                <img src="https://kenh14cdn.com/thumb_w/620/203336854389633024/2020/11/22/photo-1-1606033381173833659639.jpg"
+                    alt="">
+                <div class="after-pic">
+                    <div class="comment-inf">
+                        <span class="user-name">Trấn thành</span>
+                        <small class="badge">Top comment</small>
+                        <small class="time">3h ago</small>
+                    </div>
+
+                    <p class="comment-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        Ut enim ad minim veniam</p>
+
+                    <div class="feed">
+                        <span class="wish"><i class="fa-regular fa-heart"></i>54</span>
+                        <span class="ml-3"><i class="fa fa-comments-o"></i>Reply</span>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="comment-view">
+                <img src="https://afamilycdn.com/150157425591193600/2022/11/5/l-intro-1649393495-1667558014499-1667558016254668124963-1667613046830-16676130477091262410383.jpg"
+                    alt="">
+                <div class="after-pic">
+                    <div class="comment-inf">
+                        <span class="user-name">Lord Voldemort</span>
+                        <small class="badge">Top comment</small>
+                        <small class="time">3 days ago</small>
+                    </div>
+
+                    <p class="comment-content">Tellus in hac habitasse platea dictumst vestibulum.
+                        Lectus nulla at volutpat diam ut venenatis tellus. Aliquam etiam erat velit scelerisque in
+                        dictum non consectetur. Sagittis nisl rhoncus mattis rhoncus urna neque viverra justo nec.
+                        Tellus cras adipiscing enim eu turpis egestas pretium aenean pharetra. Aliquam faucibus purus
+                        in massa.</p>
+
+                    <div class="feed">
+                        <span class="wish"><i class="fa-regular fa-heart"></i>54</span>
+                        <span class="ml-3"><i class="fa fa-comments-o"></i>Reply</span>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="comment-view">
+                <img src="https://variety.com/wp-content/uploads/2021/04/Avatar.jpg?w=800&h=533&crop=1" alt="">
+                <div class="after-pic">
+                    <div class="comment-inf">
+                        <span class="user-name">Alexa Row</span>
+                        <small class="badge">Top comment</small>
+                        <small class="time">12h ago</small>
+                    </div>
+
+                    <p class="comment-content">Tellus in hac habitasse platea dictumst vestibulum.
+                        Lectus nulla at volutpat diam ut venenatis tellus. Aliquam etiam erat velit scelerisque in
+                        dictum non consectetur. Sagittis nisl rhoncus mattis rhoncus urna neque viverra justo nec.
+                        Tellus cras adipiscing enim eu turpis egestas pretium aenean pharetra. Aliquam faucibus purus
+                        in massa.</p>
+
+                    <div class="feed">
+                        <span class="wish"><i class="fa-regular fa-heart"></i>54</span>
+                        <span class="ml-3"><i class="fa fa-comments-o"></i>Reply</span>
+                    </div>
+                </div>
+            </div>
+            <!--end comment view -->
+        </div>
+        <!--End Comment Section-->
+
+        <div id="ad-overlay" class="ad-overlay">
+            <div class="ad-container">
+                <img src="assets/images/product/ad.jpeg" alt="Quảng cáo" style="height: 500px;width: auto;">
+                <div class="close-button" onclick="closeAd()">Close</div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var userType = localStorage.getItem('usertype');
+        var userId = localStorage.getItem('userId');
+        console.log(userType);
+        if (userType != "not") {
+            const xhr = new XMLHttpRequest();
+            var movieId = new URLSearchParams(window.location.search).get('movie_id');
+            const videoPlayer = document.getElementById('moviePlayer');
+
+            xhr.open('GET', `http://localhost:3000/watchmovie/${movieId}`, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        const path = xhr.responseText;
+                        //const videoPlayer = document.getElementById('moviePlayer');
+                        videoPlayer.src = path;
+
+                    } else if (xhr.status === 404) {
+                        console.error('Movie not found');
+                    } else {
+                        console.error('Internal Server Error');
+                    }
+                }
+            };
+
+            xhr.send();
+
+            function showAd() {
+                var adOverlay = document.getElementById('ad-overlay');
+                adOverlay.style.display = 'flex';
+                if (!videoPlayer.paused) {
+                    videoPlayer.pause();
+                }
+            }
+
+            // Hàm để ẩn phần tử overlay khi nhấp vào nút tắt
+            function closeAd() {
+                var adOverlay = document.getElementById('ad-overlay');
+                adOverlay.style.display = 'none';
+                if (videoPlayer.paused) {
+                    videoPlayer.play();
+                }
+            }
+            if (userType == "free")
+                setInterval(showAd, 15000);
+
+            // Tạo một đối tượng XMLHttpRequest
+            var xhr1 = new XMLHttpRequest();
+
+            // Thiết lập phương thức và địa chỉ endpoint mà bạn muốn gửi yêu cầu POST
+            xhr1.open('POST', `http://localhost:3000/watchedmovie/${userId}/${movieId}`, true);
+
+            // Xử lý sự kiện khi yêu cầu hoàn thành
+            xhr1.onload = function () {
+                if (xhr1.status === 200) {
+                    // Nếu yêu cầu thành công, hiển thị thông báo thành công
+                    console.log('Movie added to watchlist successfully');
+                } else {
+                    // Nếu có lỗi xảy ra, hiển thị thông báo lỗi
+                    console.error('Request failed. Status:', xhr1.status);
+                }
+            };
+
+            // Xử lý sự kiện khi có lỗi xảy ra trong quá trình gửi yêu cầu
+            xhr1.onerror = function () {
+                console.error('Request failed. Network error.');
+            };
+
+            // Gửi yêu cầu
+            xhr1.send();
+        } else {
+            var login = confirm("Log in so you can watch this movie");
+            if (login) {
+                window.location.href = "login.html";
+            } else {
+                window.location.href = "index.html";
+            }
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watchlist Information</title>
+</head>
+<body>
+    <h1>Watchlist Information for User 2</h1>
+    <div id="watchlist-info"></div>
+
+    <script>
+        window.onload = async function() {
+            try {
+                const response = await fetch('/watchlist/2'); // Lấy dữ liệu từ endpoint /watchlist/2
+                const data = await response.json(); // Chuyển đổi dữ liệu nhận được thành JSON
+
+                // Hiển thị dữ liệu trên trang web
+                const watchlistInfoElement = document.getElementById('watchlist-info');
+                if (data.length === 0) {
+                    watchlistInfoElement.textContent = 'No watchlist information available.';
+                } else {
+                    const list = document.createElement('ul');
+                    data.forEach(movie => {
+                        const listItem = document.createElement('li');
+                        listItem.textContent = `${movie.title} (${movie.year}) - ${movie.plot}`;
+                        list.appendChild(listItem);
+                    });
+                    watchlistInfoElement.appendChild(list);
+                }
+            } catch (error) {
+                console.error('Error fetching watchlist information:', error);
+                const watchlistInfoElement = document.getElementById('watchlist-info');
+                watchlistInfoElement.textContent = 'Failed to fetch watchlist information.';
+            }
+        };
+    </script>
+</body>
+</html>
