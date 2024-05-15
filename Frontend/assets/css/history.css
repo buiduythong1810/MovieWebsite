@@ -1,0 +1,145 @@
+/* Movie List Area */
+.movie-list-area {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    background-color: #ebd0d0; /* Black background */
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+/* Movie List Top Bar */
+.movie-list-top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-right: 30px;
+}
+
+/* Movie List Title */
+.movie-list-title .title {
+    color: #fff; /* White text */
+}
+
+/* Watch List Clear Button */
+.Watch-list-clear-btn {
+    background-color: #fff; /* White background */
+    color: #000; /* Black text */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Watch List Clear Button Hover */
+.Watch-list-clear-btn:hover {
+    background-color: #ccc; /* Light gray background */
+}
+
+/* Movie List Wrap */
+.movielist-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    padding-bottom: 60px;
+}
+
+/* Single Movie List */
+.single-movielist {
+    width: calc(20% - 20px); /* Adjust the width as needed */
+    margin-right: 20px;
+    margin-bottom: 20px;
+    background-color: #fff; /* White background */
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+/* Movie List Image Content */
+.movielist-img-content {
+    position: relative;
+}
+
+/* Movie List Image */
+.movielist-img img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Play Button Style */
+.play-btn-style {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 30px;
+    color: #fff; /* White play button */
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+/* Play Button Style Hover */
+.play-btn-style:hover {
+    opacity: 1;
+}
+
+/* Movie List Content */
+.movielist-content {
+    padding: 20px;
+    height: 200px;
+}
+
+/* Movie List Title */
+.movielist-content .title {
+    margin-bottom: 10px;
+    color: #000; /* Black text */
+    text-decoration: none;
+}
+
+/* Movie List Description */
+.movielist-content p {
+    color: #666; /* Gray text */
+}
+
+/* Movie List Close */
+.movielist-close {
+    display: flex;
+    padding: 10px 20px;
+    background-color: #f5f5f5; /* Light gray background */
+    justify-content: space-between;
+}
+
+/* Movie List Close Time */
+.movielist-close p {
+    margin: 0;
+    color: #666; /* Gray text */
+}
+
+/* Movie List Close Button */
+.movielist-close-btn {
+    color: #666; /* Gray close button */
+    cursor: pointer;
+}
+
+/* Movie List Close Button Hover */
+.movielist-close-btn:hover {
+    color: #000; /* Black close button */
+}
+
+.red-x-button {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background-color: red;
+    border: none;
+    border-radius: 50%;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 30px;
+    cursor: pointer;
+}
+
+.red-x-button:hover {
+    background-color: darkred;
+}
