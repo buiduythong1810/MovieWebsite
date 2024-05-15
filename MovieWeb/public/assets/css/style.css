@@ -1,6 +1,5 @@
 @charset "UTF-8";
 
-
 :root {
 
     /* color */
@@ -457,7 +456,7 @@ only screen and (min-width: 992px) and (max-width: 1200px) {
 }
 
 .our-profile-area::before {
-    background: #ccc;
+    /* background: #ccc; */
     position: absolute;
     content: "";
     left: 0;

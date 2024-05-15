@@ -4,13 +4,13 @@ const path = require('path');
 require('dotenv').config();
 const bodyParser = require('body-parser');
 const paypal = require('./services/paypal')
-const paymentRoutes = require('./routes/payment');
 const connectDB = require('./dbconnect');
 const Invoice = require('./models/Invoice');
+const cors = require("cors");
 
 const app = express();
 var PORT = process.env.PORT || 8080;
-
+//var PORT = 6000;
 // Khi ứng dụng được khởi động, kết nối đến cơ sở dữ liệu MongoDB
 connectDB();
 
@@ -87,6 +87,7 @@ app.get('/complete-order', async (req, res) => {
         console.error('Error capturing payment:', error);
         res.status(500).send('Error capturing payment');
     }
+    
 });
 
 
@@ -120,4 +121,9 @@ app.get('/cancel-order', (req, res) => {
     res.redirect('//pricing-plan-2.html')
 })
 
-app.use('/payment', paymentRoutes);
+//Code Quoc Anh
+const movieRoutes = require("./routes/movies");
+app.use(express.json());
+app.use(cors({origin:true,credentials:true}));
+
+app.use("/api", movieRoutes);

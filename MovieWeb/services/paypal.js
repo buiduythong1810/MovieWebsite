@@ -62,7 +62,8 @@ exports.createOrder = async (amount) => {
                 brand_name: 'DuyThong'
             }
         })
-    })
+    }) 
+    console.log(response);
 
     return response.data.links.find(link => link.rel === 'approve').href
 }

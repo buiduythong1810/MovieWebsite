@@ -8,6 +8,9 @@
     <!-- Plugins CSS -->
     <link rel="stylesheet" href="./assets/css/style.css">
     <script src="./assets/js/home.js"></script>
+    <style>
+
+    </style>
 </head>
 
 <body>
@@ -20,68 +23,43 @@
                     <div class="logo-menu-wrap">
                         <!-- Logo -->
                         <div class="logo">
-                            <a href="index.html"><img src="assets/images/logo.png" alt=""></a>
+                            <a href="index-4.html"><img src="assets/images/logo.png" alt=""></a>
                         </div>
                         <!-- Logo -->
                         <div class="main-menu main-theme-color-four">
                             <nav class="main-navigation">
                                 <ul>
-                                    <li><a href="index-4.html">Home</a></li>
-                                    <li><a href="series.html">Series </a>
-                                        <ul class="sub-menu">
-                                            <li><a href="horror-series.html">Horror Series</a></li>
-                                            <li><a href="romantic-series.html">Romantic Series</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="movie.html">Movies</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="horror-movie.html">Horror Movies</a></li>
-                                            <li><a href="romantic-movie.html">Romantic Movies</a></li>
-                                        </ul>
-                                    </li>
+                                    <li><a href="index.html">Home</a></li>
                                     <li><a href="#">Pages</a>
                                         <ul class="sub-menu">
-                                            <li><a href="about-2.html">About Us</a></li>
+                                            <li><a href="aboutus.html">About Us</a></li>
                                             <li><a href="pricing-plan-2.html">Pricing</a></li>
-                                            <li><a href="watchlist.html">Watchlist</a></li>
-                                            <li><a href="history.html">History</a></li>
-                                            <li><a href="movie-details.html">Movie details</a></li>
-                                            <li><a href="series-details.html">Series details</a></li>
+                                            <!-- <li><a href="watchlist.html">Watchlist</a></li> -->
+                                            <li><a href="history2.html">History</a></li>
+                                            <!-- <li><a href="movie-details.html">Movie details</a></li> -->
+                                            <!-- <li><a href="series-details.html">Series details</a></li> -->
                                             <li><a href="faq-2.html">FAQ</a></li>
-                                            <li><a href="my-account-2.html">My Account</a></li>
-                                            <li><a href="landing-page.html">Landing Page</a></li>
+                                            <li><a href="account.html">My Account</a></li>
+                                            <!-- <li><a href="landing-page.html">Landing Page</a></li> -->
                                         </ul>
                                     </li>
                                     <li><a href="pricing-plan-2.html">Pricing</a></li>
-                                    <!-- <li><a href="contact-2.html">Contact</a></li> -->
+                                    <li><a href="type.html">Search</a></li>
                                 </ul>
                             </nav>
                         </div>
                     </div>
                     <div class="right-side">
-                        <!-- search-input-box start -->
-                        <div class="header-search-2">
-                            <div class="search-wrap-2">
-                                <form action="#">
-                                    <input placeholder="Search" type="text">
-                                    <button class="button-search">
-                                        <img class="img-search" src="./assets/images/search1.png" alt="">
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-                        <!-- search-input-box end -->
-
                         <!-- our-profile-area start -->
-                        <div class="our-profile-area ">
-                            <a href="history.html" class="our-profile-pc" data-bs-toggle="dropdown" aria-haspopup="true"
+                        <div class="our-profile-area">
+                            <a href="account.html" class="our-profile-pc" data-bs-toggle="dropdown" aria-haspopup="true"
                                 aria-expanded="false">
                                 <img class="img-avatar" src="assets/images/default-avatar2.png" alt="">
                             </a>
                         </div>
                         <!-- our-profile-area end -->
                         <div class="subscribe-btn-wrap">
-                            <button onclick="window.location.href='login.html'" type="button" data-bs-toggle="modal"
+                            <button onclick="window.location.href='login-original.html'" type="button" data-bs-toggle="modal"
                                 data-bs-target="#exampleModal" class="subscribe-btn">Login Now</button>
                         </div>
                     </div>
@@ -89,7 +67,7 @@
             </div>
         </header>
 
-        <div class="slideshow-container">
+        <div class="slideshow-container" id="test">
             <!-- Full-width images -->
             <div style="display: flex;" class="mySlides fade">
                 <div class="slider-wrap" style="background-image:url(assets/images/slider/slider-hm4-1.jpg);">
@@ -129,274 +107,275 @@
 
         <div class="movie-list">
             <div class="container-fluid">
-                <div style="display: flex; " class="section-title-4 st-border-bottom">
+                <div style="display: flex;justify-content: space-between; align-items: center "
+                    class="section-title-4 st-border-bottom">
                     <h2 style="white-space: nowrap;">Latest Movies</h2>
-                    <!-- Next and previous buttons -->
-                    <div style="text-align: end; width:100%;">
-                        <a class="prevMovie" onclick="plusSlides-movie(-1)">&#10094;</a>
-                        <a class="nextMovie" onclick="plusSlides-movie(1)">&#10095;</a>
+                    <!-- <div style="text-align: end; width:100%;"> -->
+                    <div style="display: flex; justify-content: flex-end; width: 100%;">
+                        <a class="prevMovie" onclick="prevlatestMovie()">&#10094;</a>
+                        <a class="nextMovie" onclick="nextlatestMovie()">&#10095;</a>
                     </div>
 
                 </div>
-                <div class="movie-slider-active nav-style-2">
-                    <div class="movie-wrap-plr">
-                        <div class="movie-wrap text-center">
-                            <div class="movie-img">
-                                <a href="movie-details.html"><img src="assets/images/product/movie-17.jpg" alt=""></a>
-
-                            </div>
-                            <div class="movie-content">
-                                <h3 class="title"><a href="movie-details.html">Top Of The World</a></h3>
-                                <span>Quality : HD</span>
-                                <div class="movie-btn">
-                                    <a href="movie-details.html">Watch Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="movie-wrap-plr">
-                        <div class="movie-wrap text-center">
-                            <div class="movie-img">
-                                <a href="movie-details.html"><img src="assets/images/product/movie-02.jpg" alt=""></a>
-                            </div>
-                            <div class="movie-content">
-                                <h3 class="title"><a href="movie-details.html"> Land And Sea</a></h3>
-                                <span>Quality : HD</span>
-                                <div class="movie-btn">
-                                    <a href="movie-details.html" class="btn-style-hm4-2 animated">Watch Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="movie-wrap-plr">
-                        <div class="movie-wrap text-center">
-                            <div class="movie-img">
-                                <a href="movie-details.html"><img src="assets/images/product/movie-03.jpg" alt=""></a>
-
-                            </div>
-                            <div class="movie-content">
-                                <h3 class="title"><a href="movie-details.html">The Walk</a></h3>
-                                <span>Quality : HD</span>
-                                <div class="movie-btn">
-                                    <a href="movie-details.html" class="btn-style-hm4-2 animated">Watch Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="movie-wrap-plr">
-                        <div class="movie-wrap text-center">
-                            <div class="movie-img">
-                                <a href="movie-details.html"><img src="assets/images/product/movie-04.jpg" alt=""></a>
-
-                            </div>
-                            <div class="movie-content">
-                                <h3 class="title"><a href="movie-details.html">Never Stop Looking</a></h3>
-                                <span>Quality : HD</span>
-                                <div class="movie-btn">
-                                    <a href="movie-details.html" class="btn-style-hm4-2 animated">Watch Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="movie-wrap-plr">
-                        <div class="movie-wrap text-center">
-                            <div class="movie-img">
-                                <a href="movie-details.html"><img src="assets/images/product/movie-01.jpg" alt=""></a>
-
-                            </div>
-                            <div class="movie-content">
-                                <h3 class="title"><a href="movie-details.html">The Lost Girl</a></h3>
-                                <span>Quality : HD</span>
-
-                            </div>
-                        </div>
-                    </div>
-
+                <div class="movie-slider-active nav-style-2" id="latest-movies-container">
+                    <!-- script 1 -->
                 </div>
             </div>
         </div>
+
         <div class="series-list">
             <div class="container-fluid">
-                <div style="display: flex" class="section-title-4 st-border-bottom">
-                    <h2 style="white-space: nowrap;">Horror Series</h2>
-                    <div style="text-align: end; width:100%;">
-                        <a class="prevMovie" onclick="plusSlides-movie(-1)">&#10094;</a>
-                        <a class="nextMovie" onclick="plusSlides-movie(1)">&#10095;</a>
+                <div style="display: flex;justify-content: space-between; align-items: center "
+                    class="section-title-4 st-border-bottom">
+                    <h2 style="white-space: nowrap;">Highest rating</h2>
+                    <!-- <div style="text-align: end; width:100%;"> -->
+                    <div style="display: flex; justify-content: flex-end; width: 100%;">
+                        <a class="prevMovie" onclick="prevhighestRatedMovie()">&#10094;</a>
+                        <a class="nextMovie" onclick="nexthighestRatedMovie()">&#10095;</a>
                     </div>
                 </div>
-                <div class="movie-slider-active nav-style-2">
-                    <div class="movie-wrap-plr">
-                        <div class="movie-wrap text-center">
-                            <div class="movie-img">
-                                <a href="movie-details.html"><img src="assets/images/product/horror-1.jpg" alt=""></a>
-
-                            </div>
-                            <div class="movie-content">
-                                <h3 class="title"><a href="movie-details.html">The Spear</a></h3>
-                                <span>Quality : HD</span>
-                                <div class="movie-btn">
-                                    <a href="movie-details.html">Watch Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="movie-wrap-plr">
-                        <div class="movie-wrap text-center">
-                            <div class="movie-img">
-                                <a href="movie-details.html"><img src="assets/images/product/horror-2.jpg" alt=""></a>
-                            </div>
-                            <div class="movie-content">
-                                <h3 class="title"><a href="movie-details.html"> In The Ditch</a></h3>
-                                <span>Quality : HD</span>
-                                <div class="movie-btn">
-                                    <a href="movie-details.html" class="btn-style-hm4-2 animated">Watch Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="movie-wrap-plr">
-                        <div class="movie-wrap text-center">
-                            <div class="movie-img">
-                                <a href="movie-details.html"><img src="assets/images/product/horror-3.jpg" alt=""></a>
-
-                            </div>
-                            <div class="movie-content">
-                                <h3 class="title"><a href="movie-details.html">Revenant Devil</a></h3>
-                                <span>Quality : HD</span>
-                                <div class="movie-btn">
-                                    <a href="movie-details.html" class="btn-style-hm4-2 animated">Watch Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="movie-wrap-plr">
-                        <div class="movie-wrap text-center">
-                            <div class="movie-img">
-                                <a href="movie-details.html"><img src="assets/images/product/horror-4.jpg" alt=""></a>
-
-                            </div>
-                            <div class="movie-content">
-                                <h3 class="title"><a href="movie-details.html">Headless</a></h3>
-                                <span>Quality : HD</span>
-                                <div class="movie-btn">
-                                    <a href="movie-details.html" class="btn-style-hm4-2 animated">Watch Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="movie-wrap-plr">
-                        <div class="movie-wrap text-center">
-                            <div class="movie-img">
-                                <a href="movie-details.html"><img src="assets/images/product/horror-5.jpg" alt=""></a>
-
-                            </div>
-                            <div class="movie-content">
-                                <h3 class="title"><a href="movie-details.html">Murder Noob</a></h3>
-                                <span>Quality : HD</span>
-                                <div class="movie-btn">
-                                    <a href="movie-details.html" class="btn-style-hm4-2 animated">Watch Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+                <div class="movie-slider-active nav-style-2" id="highestRated-movies-container">
+                    <!-- script 2 -->
                 </div>
             </div>
         </div>
         <div class="movie-list">
             <div class="container-fluid">
-                <div style="display: flex" class="section-title-4 st-border-bottom">
-                    <h2 style="white-space: nowrap;">Olds Movies</h2>
-                    <div style="text-align: end; width:100%;">
-                        <a class="prevMovie" onclick="plusSlides-movie(-1)">&#10094;</a>
-                        <a class="nextMovie" onclick="plusSlides-movie(1)">&#10095;</a>
+                <div style="display: flex;justify-content: space-between; align-items: center "
+                    class="section-title-4 st-border-bottom">
+                    <h2 style="white-space: nowrap;">Action Movies</h2>
+                    <!-- <div style="text-align: end; width:100%;"> -->
+                    <div style="display: flex; justify-content: flex-end; width: 100%;">
+                        <a class="prevMovie" onclick="prevhorrorMovie()">&#10094;</a>
+                        <a class="nextMovie" onclick="nexthorrorMovie()">&#10095;</a>
                     </div>
                 </div>
-                <div class="movie-slider-active nav-style-2">
-                    <div class="movie-wrap-plr">
-                        <div class="movie-wrap text-center">
-                            <div class="movie-img">
-                                <a href="movie-details.html"><img src="assets/images/product/movie-07.jpg" alt=""></a>
-
-                            </div>
-                            <div class="movie-content">
-                                <h3 class="title"><a href="movie-details.html">Love, Africa</a></h3>
-                                <span>Quality : HD</span>
-                                <div class="movie-btn">
-                                    <a href="movie-details.html">Watch Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="movie-wrap-plr">
-                        <div class="movie-wrap text-center">
-                            <div class="movie-img">
-                                <a href="movie-details.html"><img src="assets/images/product/movie-08.jpg" alt=""></a>
-                            </div>
-                            <div class="movie-content">
-                                <h3 class="title"><a href="movie-details.html"> Charging To Victory</a></h3>
-                                <span>Quality : HD</span>
-                                <div class="movie-btn">
-                                    <a href="movie-details.html" class="btn-style-hm4-2 animated">Watch Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="movie-wrap-plr">
-                        <div class="movie-wrap text-center">
-                            <div class="movie-img">
-                                <a href="movie-details.html"><img src="assets/images/product/movie-09.jpg" alt=""></a>
-
-                            </div>
-                            <div class="movie-content">
-                                <h3 class="title"><a href="movie-details.html">Train To Hell</a></h3>
-                                <span>Quality : HD</span>
-                                <div class="movie-btn">
-                                    <a href="movie-details.html" class="btn-style-hm4-2 animated">Watch Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="movie-wrap-plr">
-                        <div class="movie-wrap text-center">
-                            <div class="movie-img">
-                                <a href="movie-details.html"><img src="assets/images/product/movie-10.jpg" alt=""></a>
-
-                            </div>
-                            <div class="movie-content">
-                                <h3 class="title"><a href="movie-details.html">Into The Darkness</a></h3>
-                                <span>Quality : HD</span>
-                                <div class="movie-btn">
-                                    <a href="movie-details.html" class="btn-style-hm4-2 animated">Watch Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="movie-wrap-plr">
-                        <div class="movie-wrap text-center">
-                            <div class="movie-img">
-                                <a href="movie-details.html"><img src="assets/images/product/movie-11.jpg" alt=""></a>
-
-                            </div>
-                            <div class="movie-content">
-                                <h3 class="title"><a href="movie-details.html">The Way We Get By</a></h3>
-                                <span>Quality : HD</span>
-                                <div class="movie-btn">
-                                    <a href="movie-details.html" class="btn-style-hm4-2 animated">Watch Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+                <div class="movie-slider-active nav-style-2" id="horror-movies-container">
+                    <!-- script 3 -->
                 </div>
             </div>
         </div>
-        <footer class="footer">
-            <div class="container">
-
-            </div>
-        </footer>
     </div>
+
+    <script>
+        // localStorage.setItem('usertype', 'free');
+        // localStorage.setItem('username', 'john_doe');
+        // script 1
+        // Tạo một đối tượng XMLHttpRequest
+        var usertype = localStorage.getItem('usertype');
+        var username = localStorage.getItem('username');
+        console.log('username: ',username);
+        console.log('usert type: ',usertype);
+        var xhr = new XMLHttpRequest();
+        // Thiết lập phương thức và URL của yêu cầu
+        xhr.open('GET', 'http://localhost:7000/index', true);
+
+        var groupSize; // Thay đổi kích thước của mỗi nhóm movie ở đây
+
+        if (window.innerWidth <= 768) groupSize = 1;
+        else groupSize = 7;
+        console.log('Number', groupSize);
+        //latest movie
+        var latestMovie;
+        var latestMovieGroups = [];
+        var latestgroupindex = 0;
+        function showlatestmovie(latestgroupindex) {
+            // Xóa tất cả các phần tử hiện tại trong container trước khi hiển thị movie mới
+            document.getElementById('latest-movies-container').innerHTML = '';
+
+            // Lặp qua mảng latestMovieGroups để tạo các thành phần movie và thêm vào trang HTML
+            latestMovieGroups[latestgroupindex].forEach(function (movie) {
+                var movieWrap = document.createElement('div');
+                movieWrap.className = "movie-wrap-plr";
+
+                var movieContent = `
+<div class="movie-wrap text-center">
+<div class="movie-img">
+<a href="watch_movie.html?movie_id=${movie.id}"><img src="${movie.thumbnail_path}" alt="" style="width: auto; height: 344px;"></a>
+</div>
+<div class="movie-content">
+<h3 class="title"><a href="watch_movie.html?movie_id=${movie.id}">${movie.title}</a></h3>
+<span>Rating : ${movie.rating}</span>
+<div class="movie-btn">
+<a href="review.html?movie_id=${movie.id}">See details</a>
+</div>
+</div>
+</div>
+`;
+                movieWrap.innerHTML = movieContent;
+
+                // Thêm movieWrap vào container
+                document.getElementById('latest-movies-container').appendChild(movieWrap);
+            });
+        }
+        function prevlatestMovie() {
+            if (latestgroupindex > 0 && latestMovie.length > 0) {
+                latestgroupindex--;
+                showlatestmovie(latestgroupindex);
+            }
+
+        }
+
+        function nextlatestMovie() {
+            if ((latestgroupindex < latestMovieGroups.length - 1) && latestMovie.length > 0) {
+                latestgroupindex++;
+                showlatestmovie(latestgroupindex);
+            }
+        }
+
+        //rate movie
+        var highestRatedMovie;
+        var highestRatedMovieGroups = [];
+        var highestRatedgroupindex = 0;
+        function showhighestRatedmovie(highestRatedgroupindex) {
+            // Xóa tất cả các phần tử hiện tại trong container trước khi hiển thị movie mới
+            document.getElementById('highestRated-movies-container').innerHTML = '';
+
+            // Lặp qua mảng highestRatedMovieGroups để tạo các thành phần movie và thêm vào trang HTML
+            highestRatedMovieGroups[highestRatedgroupindex].forEach(function (movie) {
+                var movieWrap = document.createElement('div');
+                movieWrap.className = "movie-wrap-plr";
+
+                var movieContent = `
+<div class="movie-wrap text-center">
+<div class="movie-img">
+<a href="watch_movie.html?movie_id=${movie.id}"><img src="${movie.thumbnail_path}" alt="" style="width: auto; height: 344px;"></a>
+</div>
+<div class="movie-content">
+<h3 class="title"><a href="watch_movie.html?movie_id=${movie.id}">${movie.title}</a></h3>
+<span>Rating : ${movie.rating}</span>
+<div class="movie-btn">
+<a href="review.html?movie_id=${movie.id}">See details</a>
+</div>
+</div>
+</div>
+`;
+                movieWrap.innerHTML = movieContent;
+
+                // Thêm movieWrap vào container
+                document.getElementById('highestRated-movies-container').appendChild(movieWrap);
+            });
+        }
+        function prevhighestRatedMovie() {
+            if (highestRatedgroupindex > 0 && highestRatedMovie.length > 0) {
+                highestRatedgroupindex--;
+                showhighestRatedmovie(highestRatedgroupindex);
+            }
+
+        }
+
+        function nexthighestRatedMovie() {
+            if ((highestRatedgroupindex < highestRatedMovieGroups.length - 1) && highestRatedMovie.length > 0) {
+                highestRatedgroupindex++;
+                showhighestRatedmovie(highestRatedgroupindex);
+            }
+        }
+
+        //horror
+        var horrorMovie;
+        var horrorMovieGroups = [];
+        var horrorgroupindex = 0;
+        function showhorrormovie(horrorgroupindex) {
+            // Xóa tất cả các phần tử hiện tại trong container trước khi hiển thị movie mới
+            document.getElementById('horror-movies-container').innerHTML = '';
+
+            // Lặp qua mảng horrorMovieGroups để tạo các thành phần movie và thêm vào trang HTML
+            horrorMovieGroups[horrorgroupindex].forEach(function (movie) {
+                var movieWrap = document.createElement('div');
+                movieWrap.className = "movie-wrap-plr";
+
+                var movieContent = `
+<div class="movie-wrap text-center">
+<div class="movie-img">
+<a href="watch_movie.html?movie_id=${movie.id}"><img src="${movie.thumbnail_path}" alt="" style="width: auto; height: 344px;"></a>
+</div>
+<div class="movie-content">
+<h3 class="title"><a href="watch_movie.html?movie_id=${movie.id}">${movie.title}</a></h3>
+<span>Rating : ${movie.rating}</span>
+<div class="movie-btn">
+<a href="review.html?movie_id=${movie.id}">See details</a>
+</div>
+</div>
+</div>
+`;
+                movieWrap.innerHTML = movieContent;
+
+                // Thêm movieWrap vào container
+                document.getElementById('horror-movies-container').appendChild(movieWrap);
+            });
+        }
+        function prevhorrorMovie() {
+            if (horrorgroupindex > 0 && horrorMovie.length > 0) {
+                horrorgroupindex--;
+                showhorrormovie(horrorgroupindex);
+            }
+        }
+
+        function nexthorrorMovie() {
+            if ((horrorgroupindex < horrorMovieGroups.length - 1) && (horrorMovie.length > 0)) {
+                horrorgroupindex++;
+                showhorrormovie(horrorgroupindex);
+            }
+        }
+
+
+        // Định nghĩa hàm xử lý khi yêu cầu hoàn thành
+        xhr.onload = function () {
+            // Kiểm tra mã trạng thái của phản hồi
+            if (xhr.status >= 200 && xhr.status < 300) {
+                // Phản hồi thành công, xử lý dữ liệu
+                var response = JSON.parse(xhr.responseText);
+
+                console.log('response', response);
+                //var latestMovie = response.latestMovies;
+                latestMovie = response.latestMovies;
+                horrorMovie = response.horrorMovies;
+                highestRatedMovie = response.highestRatedMovies;
+
+                // Sử dụng các biến latestMovie, horrorMovie và highestRatedMovie ở đây
+                console.log('Latest Movie:', latestMovie);
+                console.log('Horror Movie:', horrorMovie);
+                console.log('Highest Rated Movie:', highestRatedMovie);
+
+                if (latestMovie.length > 0) {
+                    for (var i = 0; i < latestMovie.length; i += groupSize) {
+                        var group = latestMovie.slice(i, i + groupSize);
+                        latestMovieGroups.push(group);
+                    }
+                    showlatestmovie(latestgroupindex);
+                }
+                //horrorMovie = response.horrorMovies;
+                if (horrorMovie.length > 0) {
+                    for (var i = 0; i < horrorMovie.length; i += groupSize) {
+                        var group = horrorMovie.slice(i, i + groupSize);
+                        horrorMovieGroups.push(group);
+                    }
+                    showhorrormovie(horrorgroupindex);
+                }
+                //highestRatedMovie = response.highestRatedMovies;
+                if (highestRatedMovie.length > 0) {
+                    for (var i = 0; i < highestRatedMovie.length; i += groupSize) {
+                        var group = highestRatedMovie.slice(i, i + groupSize);
+                        highestRatedMovieGroups.push(group);
+                    }
+                    showhighestRatedmovie(highestRatedgroupindex);
+                }
+
+            } else {
+                // Xử lý lỗi nếu yêu cầu không thành công
+                console.error('Error retrieving movies data:', xhr.statusText);
+            }
+        };
+
+        // Định nghĩa hàm xử lý khi có lỗi trong quá trình gửi yêu cầu
+        xhr.onerror = function () {
+            console.error('Request failed');
+        };
+
+        // Gửi yêu cầu
+        xhr.send();
+        //script 1 end
+    </script>
 
 </body>
 

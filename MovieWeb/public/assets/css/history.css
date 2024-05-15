@@ -53,7 +53,8 @@
     width: calc(20% - 20px);
     /* Adjust the width as needed */
     margin-right: 20px;
-    margin-bottom: 20px;
+    margin-top: 30px;
+    margin-bottom: 30px;
     background-color: #fff;
     /* White background */
     border-radius: 5px;
@@ -67,8 +68,8 @@
 
 /* Movie List Image */
 .movielist-img img {
-    width: 100%;
-    height: auto;
+    width: 310px;
+    height: 310px;
     display: block;
 }
 
@@ -93,7 +94,7 @@
 /* Movie List Content */
 .movielist-content {
     padding: 20px;
-    height: 200px;
+    height: 300px;
 }
 
 /* Movie List Title */

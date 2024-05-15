@@ -208,6 +208,7 @@
     </div>
     </div>
     <script>
+        var username = localStorage.getItem('username');
         // Lấy thông tin từ query parameter trong URL
         const urlParams = new URLSearchParams(window.location.search);
         const paymentStatus = urlParams.get('paymentStatus');

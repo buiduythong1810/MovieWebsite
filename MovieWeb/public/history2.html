@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NetFlix</title>
+    <!-- Bootstrap CSS -->
+    <!-- <link rel="stylesheet" href="./assets/css/bootstrap.min.css"> -->
+
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/history.css">
+    <script src="./assets/js/main.js"></script>
+    <!-- movie list css -->
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <!-- Main Wrapper Start -->
+    <div class="main-wrapper">
+        <!-- header area start -->
+        <header class="header-area">
+            <div class="container-fluid1">
+                <div class="header-wrap header-netflix-style">
+                    <div class="logo-menu-wrap">
+                        <!-- Logo -->
+                        <div class="logo">
+                            <a href="index-4.html"><img src="assets/images/logo.png" alt=""></a>
+                        </div>
+                        <!-- Logo -->
+                        <div class="main-menu main-theme-color-four">
+                            <nav class="main-navigation">
+                                <ul>
+                                    <li><a href="index.html">Home</a></li>
+                                    <li><a href="#">Pages</a>
+                                        <ul class="sub-menu">
+                                            <li><a href="aboutus.html">About Us</a></li>
+                                            <li><a href="pricing-plan-2.html">Pricing</a></li>
+                                            <!-- <li><a href="watchlist.html">Watchlist</a></li> -->
+                                            <li><a href="history2.html">History</a></li>
+                                            <!-- <li><a href="movie-details.html">Movie details</a></li> -->
+                                            <!-- <li><a href="series-details.html">Series details</a></li> -->
+                                            <li><a href="faq-2.html">FAQ</a></li>
+                                            <li><a href="account.html">My Account</a></li>
+                                            <!-- <li><a href="landing-page.html">Landing Page</a></li> -->
+                                        </ul>
+                                    </li>
+                                    <li><a href="pricing-plan-2.html">Pricing</a></li>
+                                    <li><a href="type.html">Search</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    <div class="right-side">
+                        <!-- our-profile-area start -->
+                        <div class="our-profile-area ">
+                            <a href="account.html" class="our-profile-pc" data-bs-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                <img class="img-avatar" src="assets/images/default-avatar2.png" alt="">
+                            </a>
+                        </div>
+                        <!-- our-profile-area end -->
+                        <div class="subscribe-btn-wrap">
+                            <button onclick="window.location.href='login.html'" type="button" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal" class="subscribe-btn">Login Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </div>
+
+    <!-- movie list-->
+    <div class="movie-list-area section-ptb-50 bg-black-2">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-9 col-lg-12 me-auto ms-auto">
+                    <div class="movie-list-top-bar">
+                        <div class="movie-list-title">
+                            <h2 class="title">History</h2>
+                        </div>
+                        <div class="movie-list-clear">
+                            <button class="Watch-list-clear-btn" type="button">Clear History</button>
+                        </div>
+                    </div>
+                    <div class="movielist-wrap" id="movielist-wrap">
+                    </div>
+
+                    <script>
+                        var xhr = new XMLHttpRequest();
+                        var movieData;
+                        var username = localStorage.getItem('username');
+
+                        xhr.open("GET", "http://localhost:7000/watchlist/" + username, true);
+                        xhr.onload = function () {
+                            if (xhr.status === 200) {
+                                movieData = JSON.parse(xhr.responseText); // Gán nội dung phản hồi vào biến movieData
+
+                                // Chọn phần tử cha để thêm các phần tử con vào
+                                var movielistWrap = document.getElementById("movielist-wrap");
+
+                                // Lặp qua dữ liệu phim và tạo các phần tử HTML tương ứng
+                                movieData.forEach(function (movie) {
+                                    var singleMovielist = document.createElement("div");
+                                    singleMovielist.className = "single-movielist";
+
+                                    var movielistImgContent = document.createElement("div");
+                                    movielistImgContent.className = "movielist-img-content";
+
+                                    var movielistImg = document.createElement("div");
+                                    movielistImg.className = "movielist-img";
+                                    // movielistImg.innerHTML = '<a href="movie-details.html"><img src="' + movie.thumbnail_path + '" alt=""><i class="zmdi zmdi-play play-btn-style"></i></a>';
+                                    movielistImg.innerHTML = '<a href="watch_movie.html?movie_id=' + movie.id + '">"><img src="' + movie.thumbnail_path + '" alt=""><i class="zmdi zmdi-play play-btn-style"></i></a>';
+
+
+                                    var movielistContent = document.createElement("div");
+                                    movielistContent.className = "movielist-content";
+                                    // movielistContent.innerHTML = '<h3 class="title"><a href="movie-details.html">' + movie.title + '</a></h3><p>' + movie.plot + '</p>';
+                                    //movielistContent.innerHTML = '<h3 class="title"><a href="watch_movie.html">' + movie.title + '</a></h3><p>' + movie.plot + '</p>';
+                                    movielistContent.innerHTML = '<h3 class="title"><a href="review.html?movie_id=' + movie.id + '">' + movie.title + '</a></h3><p>' + movie.plot + '</p>';
+
+                                    movielistImgContent.appendChild(movielistImg);
+                                    movielistImgContent.appendChild(movielistContent);
+
+                                    var movielistClose = document.createElement("div");
+                                    movielistClose.className = "movielist-close";
+                                    movielistClose.innerHTML = '<p>' + movie.year + '</p><button class="red-x-button" id="' + movie.id + '">X</button>';
+                                    // Thêm sự kiện click vào nút "X"
+                                    movielistClose.querySelector(".red-x-button").addEventListener("click", function () {
+                                        deleteMovie(movie.id); // Gọi hàm deleteMovie với id của bộ phim
+                                    });
+
+                                    singleMovielist.appendChild(movielistImgContent);
+                                    singleMovielist.appendChild(movielistClose);
+
+                                    movielistWrap.appendChild(singleMovielist);
+                                });
+                            } else {
+                                console.error('Error:', xhr.statusText);
+                            }
+                        };
+                        xhr.onerror = function () {
+                            console.error('Request failed');
+                        };
+                        xhr.send();
+
+                        function deleteMovie(movieId) {
+                            // Tạo một đối tượng XMLHttpRequest
+                            const xhr = new XMLHttpRequest();
+
+                            // Xác định phương thức và URL của yêu cầu
+                            const method = 'DELETE';
+                            const url = `http://localhost:7000/watchlist/${username}/${movieId}`; // Đảm bảo biến username đã được khai báo và gán giá trị
+
+                            // Mở kết nối
+                            xhr.open(method, url, true);
+
+                            // Xử lý sự kiện khi nhận được phản hồi từ server
+                            xhr.onreadystatechange = function () {
+                                if (xhr.readyState === XMLHttpRequest.DONE) {
+                                    if (xhr.status === 200) {
+                                        console.log('Movie removed from watchlist successfully');
+                                        location.reload();
+                                    } else if (xhr.status === 404) {
+                                        console.log('Movie not found in watchlist');
+                                    } else {
+                                        console.error('Error occurred:', xhr.status);
+                                    }
+                                }
+                            };
+
+                            // Gửi yêu cầu
+                            xhr.send();
+                        }
+
+
+                        // 
+                        // Khai báo sự kiện click cho nút "Clear History"
+                        document.addEventListener('DOMContentLoaded', function () {
+                            const clearBtn = document.querySelector('.Watch-list-clear-btn');
+                            clearBtn.addEventListener('click', function () {
+                                // Gửi yêu cầu DELETE đến endpoint /watchlist/:username
+                                xhr.open("DELETE", "http://localhost:7000/watchlist/" + username, true);
+                                xhr.setRequestHeader("Content-Type", "application/json");
+
+                                // Xử lý phản hồi từ server
+                                xhr.onload = function () {
+                                    if (xhr.status === 200) {
+                                        const data = JSON.parse(xhr.responseText);
+                                        console.log(data.message); // Log thông báo từ server
+                                        // Thực hiện các hành động khác sau khi xóa thành công
+                                        location.reload();
+                                    } else {
+                                        console.error('Failed to clear watchlist');
+                                        // Xử lý lỗi nếu cần
+                                    }
+                                };
+                                xhr.onerror = function () {
+                                    console.error('Request failed');
+                                };
+
+                                // Gửi yêu cầu
+                                xhr.send();
+                            });
+                        });
+                    </script>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
