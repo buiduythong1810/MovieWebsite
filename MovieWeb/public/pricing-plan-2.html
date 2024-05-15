@@ -117,10 +117,12 @@
                     </ul>
                 </div>
                 <div class="pricing-footer">
-                    <form class="plan-btn" action="/pay" method="post">
-                        <input type="hidden" name="amount" value="100">
+                    <!-- <form class="plan-btn" action="/pay" method="post">
+                        <input type="hidden" name="amount" value="300">
                         <input type="submit" value="Choose a Plan">
-                    </form>
+                    </form> -->
+                    <!-- <a class="plan-btn" href="./vnpay.html">vnapy</a> -->
+                    <button class="plan-btn payButton">Choose a Plan</button>
                 </div>
             </div>
             <div class="pricing-panel modify-pricing-panel active text-center">
@@ -141,10 +143,12 @@
                     </ul>
                 </div>
                 <div class="pricing-footer">
-                    <form class="plan-btn" action="/pay" method="post">
-                        <input type="hidden" name="amount" value="200">
+                    <!-- <form class="plan-btn" action="/pay" method="post">
+                        <input type="hidden" name="amount" value="300">
                         <input type="submit" value="Choose a Plan">
-                    </form>
+                    </form> -->
+                    <!-- <a class="plan-btn" href="./vnpay.html">vnapy</a> -->
+                    <button class="plan-btn payButton">Choose a Plan</button>
                 </div>
             </div>
             <div class="pricing-panel modify-pricing-panel text-center">
@@ -165,12 +169,41 @@
                     </ul>
                 </div>
                 <div class="pricing-footer">
-                    <form class="plan-btn" action="/pay" method="post">
+                    <!-- <form class="plan-btn" action="/pay" method="post">
                         <input type="hidden" name="amount" value="300">
                         <input type="submit" value="Choose a Plan">
-                    </form>
+                    </form> -->
+                    <!-- <a class="plan-btn" href="./vnpay.html">vnapy</a> -->
+                    <button class="plan-btn payButton">Choose a Plan</button>
+
+
                 </div>
             </div>
+        </div>
+        <!-- The Modal (popup) -->
+        <div id="paymentModal" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Chọn phương thức thanh toán</h2>
+                <!-- <div class="payment-option" onclick="redirectToPayment('vnpay')">VNPay</div> -->
+                <!-- <div class="payment-option" onclick="redirectToPayment('paypal')">PayPal</div> -->
+                <form class="payment-option" action="/pay" method="post">
+                    <input type="hidden" name="amount" value="10">
+                    <input type="submit" value="PayPal">
+                </form>
+                <form class="payment-option" action="payment/create_payment_url" method="post">
+                    <input type="hidden" name="amount" value="100">
+                    <input type="submit" value="VNPay">
+                </form>
+                <form class="payment-option" action="/pay" method="post">
+                    <input type="hidden" name="amount" value="100">
+                    <input type="submit" value="Momo">
+                </form>
+                <!-- <div class="payment-option" onclick="redirectToPayment('momo')">MoMo</div> -->
+            </div>
+
         </div>
     </div>
     </div>
@@ -182,6 +215,45 @@
 
         if (paymentStatus === 'success') {
             alert('Payment successful! Invoice ID: ' + invoiceId);
+        }
+
+        // Get the modal
+        var modal = document.getElementById("paymentModal");
+
+        // Get the buttons that open the modal
+        var btns = document.getElementsByClassName("payButton");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks any of the buttons, open the modal 
+        for (let btn of btns) {
+            btn.onclick = function () {
+                modal.style.display = "block";
+            }
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        // Function to redirect to payment page
+        function redirectToPayment(method) {
+            if (method === 'vnpay') {
+                window.location.href = '/create_payment_url';
+            } else if (method === 'paypal') {
+                window.location.href = '/paypal_payment_url';
+            } else if (method === 'momo') {
+                window.location.href = '/momo_payment_url';
+            }
         }
     </script>
 
