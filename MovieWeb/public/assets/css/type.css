@@ -85,6 +85,12 @@ h3{
     background: #c2c7ce;
     
 }
+.select1:hover{
+    background: #c2c7ce;
+}
+.select2:hover{
+    background: #c2c7ce;;
+}
 .caret{
    width: 0;
    height: 0; 
@@ -104,6 +110,7 @@ h3{
 .menu{
     list-style: none;
     padding: 0;
+    height:30em;
     background: #f4f6fa;
     position: absolute;
     border: 1px #d36c6c solid;
@@ -118,6 +125,45 @@ h3{
     display: none;
     transition: 0.2s;
     z-index: 2;
+    overflow-y:auto;
+}
+::-webkit-scrollbar {
+    width: 0.7em;
+    height: 1.5em;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(#f54f4f,#f33232);
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f7f6f6;
+    border-radius: 6px;
+}
+.menu::-webkit-scrollbar {
+    width: 0.7em;
+    height: 1.5em;
+}
+
+.menu::-webkit-scrollbar-thumb {
+    background: linear-gradient(#ee1c1c,#f33737);
+    border-radius: 6px;
+}
+
+.menu::-webkit-scrollbar-track {
+    background: #f7f6f6;
+    border-radius: 6px;
+}
+
+
+/* Phần rãnh của thanh cuộn */
+
+.menu2{
+    height:19em;
+}
+.menu4{
+    height:23em;
 }
 .movies_table tr td{
     padding: 0em 0.4em;
@@ -153,8 +199,7 @@ h3{
     
 }
 .movie-wrap-plr{
-    margin-top: 0.4em;
-    margin-bottom: 0.4em;
+
     
 }
 
@@ -163,13 +208,15 @@ h3{
     z-index: 1;
     position: relative;
 }
-.movie-wrap-text-center1:hover{
-    border: 2px #f5595c solid;
-    box-shadow: 0 0 0.8em #f5595c;
-    
-    transition: all 0.1s ease-in-out;
-}
 
+
+
+.movie-container{
+
+    position:relative;
+   
+   
+}
 .movie-things{
     color: #fff;
 }
@@ -231,5 +278,60 @@ h3{
     font-weight: bolder ;
     
 }
+.search-area{
+    border-radius: 0em;
+    float: right;
+    padding-top:0.7em;
+}
+.search-movie{
+    border-radius: 0.3em;
+    margin-right: 0.3em;
+}
+.select_1{
+    background: #f5f6f8;
+    color: #0c0a0a; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 2px #2a2f3b solid;
+    border-radius: 0.3em;
+    padding: 0.2em;
+    cursor:pointer;
+}
+.sort-area{
+    padding-top:0.7em;
+}
 
-
+#movie-list{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(178.25px, 1fr));   
+    position:relative;
+    justify-content: center;
+    align-items: center;
+    place-items: center;
+}
+ .movie-area{
+    float: left;
+    box-sizing: border-box;
+    position: relative;
+    transition: box-shadow 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    place-items: center;
+    border-radius: 0.75em;
+    margin: 1em;
+    z-index: 1;
+} 
+.movie-area:hover{
+    box-shadow: 0 0 0 3px #f5595c;
+    transition: 0.1s ease-in-out;
+    opacity: 1;
+}
+.trending__product1{
+    position: relative;
+}  
+.img-movie{
+    width:178.65px;
+    height : 265.25px
+}
