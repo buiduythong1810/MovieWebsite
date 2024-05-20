@@ -160,10 +160,10 @@ h3{
 /* Phần rãnh của thanh cuộn */
 
 .menu2{
-    height:19em;
+    height:13.5em;
 }
 .menu4{
-    height:23em;
+    height: 16.65em;
 }
 .movies_table tr td{
     padding: 0em 0.4em;
@@ -200,9 +200,14 @@ h3{
 }
 .movie-wrap-plr{
 
-    
 }
-
+.menu5{
+    z-index:1;
+    height:3.14em;
+}
+.menu5-open{
+    z-index:1;
+}
 .movies_table{
     position:absolute;
     z-index: 1;
