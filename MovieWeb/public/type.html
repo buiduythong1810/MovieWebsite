@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Movie-Genre || Streamo - Media Streaming App Site Bootstrap 5 Template</title>
+    <title>Movie-Genre</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Favicon -->
@@ -23,8 +23,9 @@
     <link rel="stylesheet" href="assets/css/plugins.css">
     
     <!-- Main Style CSS -->
-    <link rel="stylesheet" href="assets/css/style1.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style1.css">
+    
     
     <!-- Modernizer JS -->
     <script src="assets/js/vendor/modernizr-3.6.0.min.js"></script>
@@ -106,7 +107,7 @@
                 </div>
             </div>
     </div>
-    <div class="trending__product trending__product1" >
+    <div class="movie-body">
         <div class="product__page__title" >
             <div class="row" >
                 <div class="col-lg-8 col-md-8 col-sm-6" >
@@ -188,12 +189,13 @@
                     </div>
                 </td>
                 <td style = "width:25%">
-                    <div class = "Film_things">Release year: </div>
+                    <div class = "Film_things">Year: </div>
                     <div class ="dropdown">
                         <div class = "select">
                             <span class = "selected " id="select-text3">Select</span>
                             <div class ="caret"></div>
                         </div>
+                    
                         <ul class="menu">
                                 <li><p class = "menu-attributes menu-attributes-year menu-attributes-year-all">- All -</p></li>
                                 <li><p class = "menu-attributes menu-attributes-year">2024</p></li>
@@ -403,22 +405,7 @@
 
     <!--// Footer Area -->
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="subscribe-btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="zmdi zmdi-close s-close"></i></button>
-                </div>
-                <div class="modal-body">
-                    <h5 id="exampleModalLabel">Ready to watch? Enter your email to create or restart your membership.</h5>
-                    <div class="create-membership-wrap modify">
-                        <input placeholder="Email Address">
-                        <button class="landing-btn-style" type="button">Get Started</button> 
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
 </div>
         
 
@@ -677,16 +664,17 @@
  
                     <div class = "movie-area" >
                             <div class= "movie-wrap-plr">
-                                <div class="movie-wrap text-center movie-wrap-text-center1 ">
-                                    <div class="movie-img movie-img1">
-                                            <a href="  " style ="width:178.65px"  style = "height : 265.25px"><img src= "${movie.thumbnail_path}"  alt=" "  class="img-movie"></a>
+                                <div class="movie-wrap text-center movie-wrap-text-center1 " class="img-movie" style="width:178.65px; height:250px;" >
+                                    <div class="movie-img movie-img1" >
+                                            <a href="  " ><img src= "${movie.thumbnail_path}"  alt=" "  ></a>
                                             <button title="Watchlist" class="Watch-list-btn" type="button"><i class="zmdi zmdi-plus"></i></button>
                                     </div>
                                     <div class="movie-content">
                                             <h3 class="title"><a href=" ">  ${movie.title} </a></h3>
                                             <span>Rating: ${movie.average_rating}  </span>
                                             <div class="movie-btn"> 
-                                                <a href=""    class="btn-style-hm4-2 animated">Watch Now</a> </div> 
+                                                <a href=""    class="btn-style-hm4-2 animated">See details</a>
+                                            </div> 
                                     </div>
                                     
                                 </div>
@@ -862,18 +850,19 @@
                 moviedata_tmp.forEach(function(movie) {
                 var movieHTML =  `
  
-                    <div class = "movie-area" >
+                <div class = "movie-area" >
                             <div class= "movie-wrap-plr">
-                                <div class="movie-wrap text-center movie-wrap-text-center1 ">
-                                    <div class="movie-img movie-img1">
-                                            <a href="  " style ="width:178.65px"  style = "height : 265.25px"><img src= "${movie.thumbnail_path}"  alt=" "  class="img-movie"></a>
+                                <div class="movie-wrap text-center movie-wrap-text-center1 " class="img-movie" style="width:178.65px; height:250px;" >
+                                    <div class="movie-img movie-img1" >
+                                            <a href="  " ><img src= "${movie.thumbnail_path}"  alt=" "  ></a>
                                             <button title="Watchlist" class="Watch-list-btn" type="button"><i class="zmdi zmdi-plus"></i></button>
                                     </div>
                                     <div class="movie-content">
                                             <h3 class="title"><a href=" ">  ${movie.title} </a></h3>
                                             <span>Rating: ${movie.average_rating}  </span>
                                             <div class="movie-btn"> 
-                                                <a href=""    class="btn-style-hm4-2 animated">Watch Now</a> </div> 
+                                                <a href=""    class="btn-style-hm4-2 animated">See details</a>
+                                            </div> 
                                     </div>
                                     
                                 </div>
@@ -1036,23 +1025,24 @@
                 console.log(movie.name);
                 var movieHTML =  `
  
-                    <div class = "movie-area" >
+                        <div class = "movie-area" >
                             <div class= "movie-wrap-plr">
-                                <div class="movie-wrap text-center movie-wrap-text-center1 ">
-                                    <div class="movie-img movie-img1">
-                                            <a href="  " style ="width:178.65px"  style = "height : 265.25px"><img src= "${movie.thumbnail_path}"  alt=" "  class="img-movie"></a>
+                                <div class="movie-wrap text-center movie-wrap-text-center1 " class="img-movie" style="width:178.65px; height:250px;" >
+                                    <div class="movie-img movie-img1" >
+                                            <a href="  " ><img src= "${movie.thumbnail_path}"  alt=" "  ></a>
                                             <button title="Watchlist" class="Watch-list-btn" type="button"><i class="zmdi zmdi-plus"></i></button>
                                     </div>
                                     <div class="movie-content">
                                             <h3 class="title"><a href=" ">  ${movie.title} </a></h3>
                                             <span>Rating: ${movie.average_rating}  </span>
                                             <div class="movie-btn"> 
-                                                <a href="./review.html"    class="btn-style-hm4-2 animated">See details</a> </div> 
+                                                <a href=""    class="btn-style-hm4-2 animated">See details</a>
+                                            </div> 
                                     </div>
                                     
                                 </div>
                             </div>
-                    </div>
+                        </div>
 
                 `;
                 container.innerHTML += movieHTML;
