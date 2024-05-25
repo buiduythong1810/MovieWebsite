@@ -169,7 +169,7 @@
             var movieId = new URLSearchParams(window.location.search).get('movie_id');
             const videoPlayer = document.getElementById('moviePlayer');
 
-            xhr.open('GET', `http://localhost:7000/watchmovie/${movieId}`, true);
+            xhr.open('GET', `http://localhost:3000/watchmovie/${movieId}`, true);
 
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === XMLHttpRequest.DONE) {
@@ -211,7 +211,7 @@
             var xhr1 = new XMLHttpRequest();
 
             // Thiết lập phương thức và địa chỉ endpoint mà bạn muốn gửi yêu cầu POST
-            xhr1.open('POST', `http://localhost:7000/watchedmovie/${username}/${movieId}`, true);
+            xhr1.open('POST', `http://localhost:3000/watchedmovie/${username}/${movieId}`, true);
 
             // Xử lý sự kiện khi yêu cầu hoàn thành
             xhr1.onload = function () {
