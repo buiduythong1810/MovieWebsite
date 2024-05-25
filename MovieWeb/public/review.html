@@ -94,7 +94,15 @@
                 <div class="in-breadcrumb">
                     <div class="row">
                         <div class="col" id="movie-info">
-
+                            <!-- <div class="breadcrumb-style-2">
+                                <h2>${moviedetail.title}</h2>
+                               
+                                <ul class="breadcrumb-list-2" id="movie-info">
+                                    <li>${moviedetail.genre}</li>
+                                    <li>${moviedetail.year}</li>
+                                </ul>
+                                
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -103,7 +111,24 @@
         <!--// Breadcrumb -->
         <div class="movie-details-wrap section-ptb-50 bg-black">
             <div class="container" id="movie-details">
- 
+                <!-- <div class="video-wrap">
+                    <video controls loop="loop" poster="${movie.thumbnail_path}">
+                        <source src="assets/video/video.mp4">
+                    </video>
+                </div>
+                <div class="movie-details-content">
+                    <div class="movie-details-info">
+                        <ul>
+                            <li><span>Director:</span>${moviedetail.director}</li>
+                            <li><span>Actors:</span>${moviedetail.actors}</li>
+                        </ul>
+                    </div>
+                    <p>${moviedetail.plot}</p>
+
+                </div>
+                <div class="movie-btn"> 
+                    <a href="watchmovie.html"    class="btn-style-hm4-2 animated">Watch now</a> 
+                </div> -->
             </div>
         </div>
 
@@ -138,7 +163,7 @@
                 var moviecontent = `                
 
                     <div class="video-wrap">
-                        <video controls loop="loop" poster="${movie.thumbnail_path}">
+                        <video controls loop="loop" poster="">
                             <source src="${moviedetail.trailer}">
                         </video>
                     </div>
@@ -153,7 +178,7 @@
 
                     </div>
                     <div class="movie-btn"> 
-                        <a href="watchmovie.html"    class="btn-style-hm4-2 animated">Watch now</a> 
+                        <a href="watch_movie.html?movie_id=${movieid}"    class="btn-style-hm4-2 animated">Watch now</a> 
                     </div>
 
  
