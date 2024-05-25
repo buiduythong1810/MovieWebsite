@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Movie-Genre</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta title="description" content="">
+    <meta title="viewport" content="width=device-width, initial-scale=1">
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.ico">
     
@@ -568,20 +568,20 @@
                 console.log(movie_rating + "Inside xhr.onload");
             if (xhr.status == 200) {
             console.log("Xhr status:"+xhr.status);
-            console.log("http://localhost:3000/api/movies?genre=" + movie_genre +"&year=" +movie_year+"&rating=" +movie_rating+"&age_rating="+encodedURL_age_rating+"&page="+movie_page+"&sort="+movie_sort_value+","+movie_sort_type+"&search="+movie_search);
+            console.log("http://localhost:3000/api/movies?genre=" + movie_genre +"&year=" +movie_year+"&rating=" +movie_rating+"&age_rating="+encodedURL_age_rating+"&page="+movie_page+"&sort="+movie_sort_value+","+movie_sort_type+"&search="+encodedURL_search_value);
                 // var container = document.getElementById("movie-list");
                
                 // moviedata = JSON.parse(xhr.responseText); // Gán nội dung phản hồi vào biến movieData
                 var response = JSON.parse(xhr.responseText);
                 moviedata = response.movies;
-              
+                console.log("moviedata : " + moviedata); 
                 console.log("J value: "+ j);
                 moviedata.forEach(function(movie) {
  
 
                 moviedata_tmp[j++]=movie;
-                console.log(moviedata_tmp[j]+"Moved movie");
-                console.log(movie);
+                // console.log(moviedata_tmp[j]+"Moved movie");
+                console.log(movie + "moviedata Movie");
 
 
                 });
@@ -606,7 +606,7 @@
                     if(movie_sort_value=="Rating"){
                         for(let i=0;i<moviedata.length-1;++i){
                             for(let j=i+1;j<moviedata.length;++j){
-                                if(moviedata[i].rating>moviedata[j].rating){
+                                if(moviedata[i].average_rating>moviedata[j].average_rating){
                                     let tmp = moviedata[i];
                                     moviedata[i]=moviedata[j];
                                     moviedata[j]=tmp;
@@ -631,7 +631,7 @@
                     if(movie_sort_value=="Rating"){
                         for(let i=0;i<moviedata.length-1;++i){
                             for(let j=i+1;j<moviedata.length;++j){
-                                if(moviedata[i].rating<moviedata[j].rating){
+                                if(moviedata[i].average_rating<moviedata[j].average_rating){
                                     let tmp = moviedata[i];
                                     moviedata[i]=moviedata[j];
                                     moviedata[j]=tmp;
@@ -657,9 +657,9 @@
                 if(movie_sort_type=="desc"){
                     sortMovieDescending(moviedata_tmp);
                 }
-                if (typeof (moviedata_tmp[0].name) != 'undefined'){
+                if (typeof (moviedata_tmp[0].title) != 'undefined'){
                 moviedata_tmp.forEach(function(movie) {
-                console.log(movie.name);
+                console.log(movie.title);
                 var movieHTML =  `
  
                     <div class = "movie-area" >
@@ -667,13 +667,13 @@
                                 <div class="movie-wrap text-center movie-wrap-text-center1 " class="img-movie" style="width:178.65px; height:250px;" >
                                     <div class="movie-img movie-img1" >
                                             <a href="  " ><img src= "${movie.thumbnail_path}"  alt=" "  ></a>
-                                            <button title="Watchlist" class="Watch-list-btn" type="button"><i class="zmdi zmdi-plus"></i></button>
+ 
                                     </div>
                                     <div class="movie-content">
                                             <h3 class="title"><a href=" ">  ${movie.title} </a></h3>
                                             <span>Rating: ${movie.average_rating}  </span>
                                             <div class="movie-btn"> 
-                                                <a href=""    class="btn-style-hm4-2 animated">See details</a>
+                                                <a href="review.html?movie_id=${movie.id}"    class="btn-style-hm4-2 animated">See details</a>
                                             </div> 
                                     </div>
                                     
@@ -795,7 +795,7 @@
                     if(movie_sort_value=="Rating"){
                         for(let i=0;i<moviedata.length-1;++i){
                             for(let j=i+1;j<moviedata.length;++j){
-                                if(moviedata[i].rating>moviedata[j].rating){
+                                if(moviedata[i].average_rating>moviedata[j].average_rating){
                                     let tmp = moviedata[i];
                                     moviedata[i]=moviedata[j];
                                     moviedata[j]=tmp;
@@ -820,7 +820,7 @@
                     if(movie_sort_value=="Rating"){
                         for(let i=0;i<moviedata.length-1;++i){
                             for(let j=i+1;j<moviedata.length;++j){
-                                if(moviedata[i].rating<moviedata[j].rating){
+                                if(moviedata[i].average_rating<moviedata[j].average_rating){
                                     let tmp = moviedata[i];
                                     moviedata[i]=moviedata[j];
                                     moviedata[j]=tmp;
@@ -846,7 +846,7 @@
                 if(movie_sort_type=="desc"){
                     sortMovieDescending(moviedata_tmp);
                 }
-                if (typeof (moviedata_tmp[0].name) != 'undefined'){
+                if (typeof (moviedata_tmp[0].title) != 'undefined'){
                 moviedata_tmp.forEach(function(movie) {
                 var movieHTML =  `
  
@@ -855,13 +855,13 @@
                                 <div class="movie-wrap text-center movie-wrap-text-center1 " class="img-movie" style="width:178.65px; height:250px;" >
                                     <div class="movie-img movie-img1" >
                                             <a href="  " ><img src= "${movie.thumbnail_path}"  alt=" "  ></a>
-                                            <button title="Watchlist" class="Watch-list-btn" type="button"><i class="zmdi zmdi-plus"></i></button>
+
                                     </div>
                                     <div class="movie-content">
                                             <h3 class="title"><a href=" ">  ${movie.title} </a></h3>
                                             <span>Rating: ${movie.average_rating}  </span>
                                             <div class="movie-btn"> 
-                                                <a href=""    class="btn-style-hm4-2 animated">See details</a>
+                                                <a href="href="review.html?movie_id=${movie.id}"    class="btn-style-hm4-2 animated">See details</a>
                                             </div> 
                                     </div>
                                     
@@ -969,7 +969,7 @@
                     if(movie_sort_value=="Rating"){
                         for(let i=0;i<moviedata.length-1;++i){
                             for(let j=i+1;j<moviedata.length;++j){
-                                if(moviedata[i].rating>moviedata[j].rating){
+                                if(moviedata[i].average_rating>moviedata[j].average_rating){
                                     let tmp = moviedata[i];
                                     moviedata[i]=moviedata[j];
                                     moviedata[j]=tmp;
@@ -994,7 +994,7 @@
                     if(movie_sort_value=="Rating"){
                         for(let i=0;i<moviedata.length-1;++i){
                             for(let j=i+1;j<moviedata.length;++j){
-                                if(moviedata[i].rating<moviedata[j].rating){
+                                if(moviedata[i].average_rating<moviedata[j].average_rating){
                                     let tmp = moviedata[i];
                                     moviedata[i]=moviedata[j];
                                     moviedata[j]=tmp;
@@ -1020,9 +1020,9 @@
                 if(movie_sort_type=="desc"){
                     sortMovieDescending(moviedata_tmp);
                 }
-                if (typeof (moviedata_tmp[0].name) != 'undefined'){
+                if (typeof (moviedata_tmp[0].title) != 'undefined'){
                 moviedata_tmp.forEach(function(movie) {
-                console.log(movie.name);
+                console.log(movie.title);
                 var movieHTML =  `
  
                         <div class = "movie-area" >
@@ -1030,13 +1030,13 @@
                                 <div class="movie-wrap text-center movie-wrap-text-center1 " class="img-movie" style="width:178.65px; height:250px;" >
                                     <div class="movie-img movie-img1" >
                                             <a href="  " ><img src= "${movie.thumbnail_path}"  alt=" "  ></a>
-                                            <button title="Watchlist" class="Watch-list-btn" type="button"><i class="zmdi zmdi-plus"></i></button>
+
                                     </div>
                                     <div class="movie-content">
                                             <h3 class="title"><a href=" ">  ${movie.title} </a></h3>
                                             <span>Rating: ${movie.average_rating}  </span>
                                             <div class="movie-btn"> 
-                                                <a href=""    class="btn-style-hm4-2 animated">See details</a>
+                                                <a href="href="review.html?movie_id=${movie.id}"    class="btn-style-hm4-2 animated">See details</a>
                                             </div> 
                                     </div>
                                     
