@@ -134,7 +134,7 @@
 
             // Xác định phương thức và URL của yêu cầu
             const method = 'PUT';
-            const url = `http://localhost:7000/account/${username}`;
+            const url = `http://localhost:3000/account/${username}`;
 
             // Tạo dữ liệu để gửi trong phần thân của yêu cầu
             const data = JSON.stringify({ newPassword: newPassword });
@@ -176,7 +176,7 @@
         // Hàm để lấy dữ liệu từ server bằng XHR
         function fetchData() {
             var xhr = new XMLHttpRequest();
-            xhr.open('GET', 'http://localhost:7000/user/' + username); // Thay thế '/user/1' bằng endpoint tương ứng của bạn
+            xhr.open('GET', 'http://localhost:3000/user/' + username); // Thay thế '/user/1' bằng endpoint tương ứng của bạn
             xhr.onload = function () {
                 if (xhr.status === 200) {
                     account_info = JSON.parse(xhr.responseText); // Lưu trữ dữ liệu từ server vào biến account_info
