@@ -1,3 +1,4 @@
+const bcrypt = require('bcryptjs');
 const express = require('express');
 const connectToDatabase = require('./dbconnect'); // Import file dbconnect.js
 const path = require('path');
@@ -388,6 +389,8 @@ async function getMovieDetail(id) {
             thumbnail_path: movie.thumbnail_path,
             rating: movie.average_rating,
             plot: movie.plot,
+            actors: movie.actors,
+            trailer: movie.trailer
         };
     } catch (error) {
         console.error('Error occurred:', error);
@@ -441,7 +444,7 @@ async function registernow(username, password) {
         let newUser = {
             username: username,
             password: hashedPassword,
-            type: "pay",
+            type: "free",
         };
 
         const result = await userCollection.insertOne(newUser);
