@@ -181,13 +181,14 @@ const movies = require("../config/movies.json");
 router.get("/movies", async (req, res) => {
     try {
         const page = parseInt(req.query.page) - 1 || 0;
-        const limit = parseInt(req.query.limit) || 5;
+        const limit = parseInt(req.query.limit) || 14;
         const search = req.query.search || "";
+
         let sort = req.query.sort || "rating";
-        let genre = req.query.genre || "All";
-        let year = req.query.year || "All";
-        let rating = req.query.rating || "All";
-        let age_rating = req.query.age_rating || "All";
+        let genre = req.query.genre || "- All -";
+        let year = req.query.year || "- All -";
+        let average_rating = req.query.average_rating || "- All -";
+        let age_rating = req.query.age_rating || "- All -";
 
         // console.log('Year   ',year);
 
@@ -212,17 +213,17 @@ router.get("/movies", async (req, res) => {
 
         const ageRatingOptions = [];
 
-        genre === "All"
+        genre =="- All -"
             ? (genre = [...genreOptions])
             : (genre = req.query.genre.split(","));
         req.query.sort ? (sort = req.query.sort.split(",")) : (sort = [sort]);
 
         let sortBy = {};
-        // if (sort[1]) {
-        // 	sortBy[sort[0]] = sort[1];
-        // } else {
-        // 	sortBy[sort[0]] = "desc";
-        // }
+		// if (sort[1]) {
+		// 	sortBy[sort[0]] = sort[1];
+		// } else {
+		// 	sortBy[sort[0]] = "desc";
+		// }
         // Tạo đối tượng để lọc theo năm, rating và age_rating
         let filterOptions = {
             title: { $regex: search, $options: "i" },
@@ -232,24 +233,24 @@ router.get("/movies", async (req, res) => {
             // age_rating: { $in: age_rating}
         };
         // console.log('Year   ',year);
-        if (year != "All") {
+        if (year != "- All -") {
 
             filterOptions.year = year;
-
+            
         }
-        // console.log('Year   ',year);
-        if (rating != "All") {
-            filterOptions.average_rating = rating;
+  
+        if (average_rating !="- All -") {
+            filterOptions.average_rating = average_rating;
         }
 
-        if (age_rating != "All") {
+        if (age_rating!= "- All -") {
             filterOptions.age_rating = age_rating;
         }
 
 
         const movies = await Movie.find(filterOptions)
             .where("genre")
-            .in([...genre])
+			.in([...genre])
             .sort(sortBy)
             .skip(page * limit)
             .limit(limit);
@@ -263,11 +264,14 @@ router.get("/movies", async (req, res) => {
             limit,
             genres: genreOptions,
             years: yearOptions,
-            rating: ratingOptions,
+            average_rating: ratingOptions,
             age_rating: ageRatingOptions,
             movies,
+            // id
         };
-        console.log('movie data: ', response.movies);
+        console.log("Filter Options:", filterOptions);
+        console.log("Sort By:", sortBy);
+
         res.status(200).json(response);
     } catch (err) {
         console.log(err);
