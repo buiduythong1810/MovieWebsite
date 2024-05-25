@@ -59,7 +59,7 @@
                         </div>
                         <!-- our-profile-area end -->
                         <div class="subscribe-btn-wrap">
-                            <button onclick="window.location.href='login-original.html'" type="button" data-bs-toggle="modal"
+                            <button onclick="window.location.href='login.html'" type="button" data-bs-toggle="modal"
                                 data-bs-target="#exampleModal" class="subscribe-btn">Login Now</button>
                         </div>
                     </div>
@@ -189,19 +189,19 @@
                 movieWrap.className = "movie-wrap-plr";
 
                 var movieContent = `
-<div class="movie-wrap text-center">
-<div class="movie-img">
-<a href="watch_movie.html?movie_id=${movie.id}"><img src="${movie.thumbnail_path}" alt="" style="width: auto; height: 344px;"></a>
-</div>
-<div class="movie-content">
-<h3 class="title"><a href="watch_movie.html?movie_id=${movie.id}">${movie.title}</a></h3>
-<span>Rating : ${movie.rating}</span>
-<div class="movie-btn">
-<a href="review.html?movie_id=${movie.id}">See details</a>
-</div>
-</div>
-</div>
-`;
+                    <div class="movie-wrap text-center">
+                    <div class="movie-img">
+                    <a href="watch_movie.html?movie_id=${movie.id}"><img src="${movie.thumbnail_path}" alt="" style="width: auto; height: 344px;"></a>
+                    </div>
+                    <div class="movie-content">
+                    <h3 class="title"><a href="watch_movie.html?movie_id=${movie.id}">${movie.title}</a></h3>
+                    <span>Rating : ${movie.rating}</span>
+                    <div class="movie-btn">
+                    <a href="review.html?movie_id=${movie.id}">See details</a>
+                    </div>
+                    </div>
+                    </div>
+                    `;
                 movieWrap.innerHTML = movieContent;
 
                 // Thêm movieWrap vào container
