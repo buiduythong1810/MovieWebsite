@@ -121,7 +121,7 @@
         var movieid = new URLSearchParams(window.location.search).get('movie_id');
 
         // Thiết lập phương thức và địa chỉ endpoint mà bạn muốn gửi yêu cầu GET
-        xhr.open('GET', `http://localhost:7000/review/${movieid}`); // Sử dụng template literals để chèn biến movieid vào URL
+        xhr.open('GET', `http://localhost:3000/review/${movieid}`); // Sử dụng template literals để chèn biến movieid vào URL
 
 
         // Xử lý sự kiện khi yêu cầu hoàn thành
