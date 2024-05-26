@@ -187,11 +187,11 @@
             <div class="modal-content">
                 <span class="close">&times;</span>
                 <h2>Chọn phương thức thanh toán</h2>
-                <!-- <div class="payment-option" onclick="redirectToPayment('vnpay')">VNPay</div> -->
-                <!-- <div class="payment-option" onclick="redirectToPayment('paypal')">PayPal</div> -->
                 <form class="payment-option" action="/pay" method="post">
-                    <input type="hidden" name="amount" value="10">
-                    <input type="submit" value="PayPal">
+                    <input type="hidden" name="amount" value="100">
+                    <input type="hidden" id="username" name="username" value="">
+                    <input type="submit" value="Momo">
+                </form>
                 </form>
                 <form class="payment-option" action="payment/create_payment_url" method="post">
                     <input type="hidden" name="amount" value="100">
@@ -201,14 +201,13 @@
                     <input type="hidden" name="amount" value="100">
                     <input type="submit" value="Momo">
                 </form>
-                <!-- <div class="payment-option" onclick="redirectToPayment('momo')">MoMo</div> -->
             </div>
 
         </div>
     </div>
     </div>
     <script>
-        var username = localStorage.getItem('username');
+        // var username = localStorage.getItem('username');
         // Lấy thông tin từ query parameter trong URL
         const urlParams = new URLSearchParams(window.location.search);
         const paymentStatus = urlParams.get('paymentStatus');
@@ -246,16 +245,19 @@
             }
         }
 
-        // Function to redirect to payment page
-        function redirectToPayment(method) {
-            if (method === 'vnpay') {
-                window.location.href = '/create_payment_url';
-            } else if (method === 'paypal') {
-                window.location.href = '/paypal_payment_url';
-            } else if (method === 'momo') {
-                window.location.href = '/momo_payment_url';
+        document.addEventListener("DOMContentLoaded", function () {
+            // Lấy giá trị username từ localStorage
+            var username = localStorage.getItem('username');
+
+            // Thiết lập giá trị cho input ẩn
+            if (username) {
+                document.getElementById('username').value = username;
+            } else {
+                // Nếu không có username trong localStorage, có thể xử lý logic khác (ví dụ: hiển thị cảnh báo)
+                console.warn('Username not found in localStorage');
+                document.getElementById('username').value = "hoa";
             }
-        }
+        });
     </script>
 
 

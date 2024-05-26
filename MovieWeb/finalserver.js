@@ -18,7 +18,7 @@ connectDB();
 app.use(cors());
 const { MongoClient } = require('mongodb');
 const mongoose = require("mongoose");
-const uri = 'mongodb://localhost:27017';
+const uri = process.env.mongoURI;
 const client = new MongoClient(uri);
 
 // Cấu hình đường dẫn tới thư mục chứa các tệp tĩnh như CSS, JS, hình ảnh
@@ -39,10 +39,15 @@ app.listen(PORT, () => {
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.post('/pay', async (req, res) => {
+
+
+    console.log("toi day chua");
     try {
         const amount = req.body.amount || '20'; // Mặc định là $100 nếu không có giá trị
         console.log(amount);
-        const url = await paypal.createOrder(amount);
+        username = req.body.username || "thong";
+        console.log("toi day chua");
+        const url = await paypal.createOrder(amount, username);
 
         res.redirect(url)
     } catch (error) {
@@ -50,20 +55,67 @@ app.post('/pay', async (req, res) => {
     }
 })
 
-// app.get('/complete-order', async (req, res) => {
 
-//     try {
-//         const captureResponse = await paypal.capturePayment(req.query.token);
-//         const invoiceId = captureResponse.id; // Assume the invoice id is in the response
+async function updateTypeUser(username) {
+    try {
+        await client.connect();
+        const database = client.db('movieweb');
+        const userCollection = database.collection('user');
 
-//         res.redirect('/pricing-plan-2.html?paymentStatus=success&invoiceId=' + invoiceId);
-//     } catch (error) {
-//         // Trường hợp có lỗi, chuyển hướng về trang cũ với thông báo lỗi
-//         res.redirect('/pricing-plan-2.html?error=true&errorMessage=' + encodeURIComponent(error.message));
-//     }
-// })
+        // Tìm người dùng theo tên người dùng
+        const user = await userCollection.findOne({ username: username });
+
+        if (!user) {
+            console.log('User not found');
+            return;
+        }
+
+        // Cập nhật thuộc tính type của người dùng thành "pay"
+        const result = await userCollection.updateOne(
+            { username: username }, // Điều kiện tìm kiếm người dùng
+            { $set: { usertype: 'pay' } } // Dữ liệu cập nhật
+        );
+
+        if (result.modifiedCount === 0) {
+            console.log('User type was already "pay" or no modification was needed');
+        } else {
+            console.log(`User type updated successfully for username: ${username}`);
+        }
+
+    } catch (error) {
+        console.error('Error occurred:', error);
+    } finally {
+        await client.close();
+    }
+}
+
+async function getOrder(orderId) {
+    try {
+        await client.connect();
+        const database = client.db('movieweb');
+        const ordersCollection = database.collection('orders');
+
+        const order = await ordersCollection.findOne({ orderId });
+        return order;
+    } catch (error) {
+        console.error('Error occurred while retrieving order:', error);
+    } finally {
+        await client.close();
+    }
+}
 
 app.get('/complete-order', async (req, res) => {
+    //code mới
+    const orderId = req.query.token; // Lấy orderId từ query params
+
+    const order = await getOrder(orderId);
+    if (!order) {
+        return res.status(404).send('Order not found');
+    }
+
+    const username = order.username;
+    console.log(`Payment completed for user: ${username}`);
+    //
     const { token } = req.query;
     try {
         const payment = await paypal.capturePayment(token);
@@ -89,12 +141,17 @@ app.get('/complete-order', async (req, res) => {
         });
 
         await newInvoice.save();
-        res.send('Payment completed successfully');
+        res.send(`Payment completed successfully for user: ${username}`);
+
+
     } catch (error) {
         console.error('Error capturing payment:', error);
         res.status(500).send('Error capturing payment');
     }
-    
+
+
+    updateTypeUser(username);
+
 });
 
 
@@ -125,13 +182,13 @@ app.get('/test-save', async (req, res) => {
 
 
 app.get('/cancel-order', (req, res) => {
-    res.redirect('//pricing-plan-2.html')
+    res.redirect('/pricing-plan-2.html')
 })
 
 //Code Quoc Anh
 const movieRoutes = require("./routes/movies");
 app.use(express.json());
-app.use(cors({origin:true,credentials:true}));
+app.use(cors({ origin: true, credentials: true }));
 
 app.use("/api", movieRoutes);
 
