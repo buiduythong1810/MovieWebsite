@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Watch Movie</title>
+  <link rel="stylesheet" href="./assets/css/watch_movie_style.css" />
+</head>
+
+<body>
+  <!-- Main Wrapper Start -->
+  <div class="main-wrapper">
+    <!-- header area start -->
+    <header class="header-area">
+      <div class="container-fluid1">
+        <div class="header-wrap header-netflix-style">
+          <div class="logo-menu-wrap">
+            <!-- Logo -->
+            <div class="logo">
+              <a href="index-4.html"><img src="assets/images/logo.png" alt="" /></a>
+            </div>
+            <!-- Logo -->
+            <div class="main-menu main-theme-color-four">
+              <nav class="main-navigation">
+                <ul>
+                  <li><a href="index.html">Home</a></li>
+                  <li>
+                    <a href="series.html">Series </a>
+                    <ul class="sub-menu">
+                      <li><a href="horror-series.html">Horror Series</a></li>
+                      <li>
+                        <a href="romantic-series.html">Romantic Series</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a href="movie.html">Movies</a>
+                    <ul class="sub-menu">
+                      <li><a href="horror-movie.html">Horror Movies</a></li>
+                      <li>
+                        <a href="romantic-movie.html">Romantic Movies</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a href="#">Pages</a>
+                    <ul class="sub-menu">
+                      <li><a href="about-2.html">About Us</a></li>
+                      <li><a href="pricing-plan-2.html">Pricing</a></li>
+                      <li><a href="watchlist.html">Watchlist</a></li>
+                      <li><a href="history.html">History</a></li>
+                      <li><a href="movie-details.html">Movie details</a></li>
+                      <li>
+                        <a href="series-details.html">Series details</a>
+                      </li>
+                      <li><a href="faq-2.html">FAQ</a></li>
+                      <li><a href="my-account-2.html">My Account</a></li>
+                      <li><a href="landing-page.html">Landing Page</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="pricing-plan-2.html">Pricing</a></li>
+                  <!-- <li><a href="contact-2.html">Contact</a></li> -->
+                </ul>
+              </nav>
+            </div>
+          </div>
+          <div class="right-side">
+            <!-- search-input-box start -->
+            <div class="header-search-2">
+              <div class="search-wrap-2">
+                <form action="#">
+                  <input placeholder="Search" type="text" />
+                  <button class="button-search">
+                    <img class="img-search" src="./assets/images/search1.png" alt="" />
+                  </button>
+                </form>
+              </div>
+            </div>
+            <!-- search-input-box end -->
+
+            <!-- our-profile-area start -->
+            <div class="our-profile-area">
+              <a href="history.html" class="our-profile-pc" data-bs-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+                <img class="img-avatar" src="assets/images/default-avatar2.png" alt="" />
+              </a>
+            </div>
+            <!-- our-profile-area end -->
+            <div class="subscribe-btn-wrap">
+              <button onclick="window.location.href='login.html'" type="button" data-bs-toggle="modal"
+                data-bs-target="#exampleModal" class="subscribe-btn">
+                Login Now
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!--Start Show Video-->
+    <div class="video-container">
+      <!--img class="video-img" src="./assets/images/bg/bg-3.png" alt="This is image of the film"-->
+      <video class="video" width="100%" controls src="./assets/video/video.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <!--End Show Video-->
+
+    <!--Start Infomation about movie-->
+    <div id="abstract">
+      <div class="inf-movie">
+        <!-- Start Logo -->
+        <div class="logo">
+          <img src="./assets/images/logo.png" />
+        </div>
+        <!-- End Logo -->
+
+        <h2 class="name-film">The name of love</h2>
+        <div class="about">
+          <h5 class="duration">1h 32</h5>
+          <h5 class="format">HD</h5>
+          <a href="#" class="fa fa-hd"></a>
+        </div>
+        <ul class="tags">
+          <li class="caption">
+            <span>Tags</span>
+            <i class="fa fa-caret-right"></i>
+          </li>
+          <li class="tag-item">
+            <h2><a href="">Romantic</a></h2>
+          </li>
+          <li class="tag-item">
+            <h3><a href="">Adventure</a></h3>
+          </li>
+        </ul>
+        <div class="content">
+          <p class="summary">
+            <span class="highlight">"The Name of Love"</span> is a romantic
+            drama film that tells the story of two individuals, Sarah and John,
+            who come from different backgrounds and meet unexpectedly. Sarah is
+            an independent and ambitious artist, while John is a reserved and
+            introspective writer. Despite their initial differences, they are
+            drawn to each other and embark on a passionate love affair.
+          </p>
+          <p><span class="highlight">Director:</span> Olivia Jensen</p>
+          <p>
+            <span class="highlight">Actor:</span> Ethan Thompson, Ava Reynolds,
+            Benjamin Carter, Sophia Morgan, Noah Ramirez
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--End Infomation about movie-->
+
+    <!--Start Comment Section-->
+    <div id="comment-section">
+      <div class="comment-header">
+        <h6>Comment</h6>
+      </div>
+
+      <!--start place to type comment -->
+      <div class="place-typing-comment">
+        <form method="POST" id="comment-form">
+          <textarea id="comment-input" class="place" name="comment" placeholder="Enter your comment..."
+            rows="2"></textarea>
+
+          <div class="rating">
+            <input type="radio" id="star5" name="rating" value="5"><label for="star5">5 stars</label>
+            <input type="radio" id="star4" name="rating" value="4"><label for="star4">4 stars</label>
+            <input type="radio" id="star3" name="rating" value="3"><label for="star3">3 stars</label>
+            <input type="radio" id="star2" name="rating" value="2"><label for="star2">2 stars</label>
+            <input type="radio" id="star1" name="rating" value="1"><label for="star1">1 star</label>
+          </div>
+
+          <button id="comment-button" type="submit">Send</button>
+        </form>
+      </div>
+      <!--end place to type comment -->
+
+    </div>
+
+    <!--End Comment Section-->
+  </div>
+
+  <script>
+    //Id variable
+    var movieId = 1;
+    var userName = "bhin94";
+    // var movieId = new URLSearchParams(window.location.search).get('movie_id');
+    // var userName = localStorage.getItem('username');
+
+    //Rating variables
+    const ratingInputs = document.querySelectorAll('input[name="rating"]');
+    const ratingLabels = document.querySelectorAll(".rating label");
+    var ratingValue = 0;  //Rating value
+
+
+    //comment script
+    document.addEventListener("DOMContentLoaded", function () {
+      const commentForm = document.getElementById("comment-form");
+      const commentInput = document.getElementById("comment-input");
+      const commentSection = document.getElementById("comment-section");
+
+      //Load và hiển thị danh sách các comment khi trang được tải
+      fetch("http://localhost:3000/getcomments/" + movieId)
+        .then((response) => response.json())
+        .then((comments) => {
+          comments.forEach((comment) => {
+            renderComment(comment);
+          });
+        })
+        .catch((error) => console.error(error));
+
+      // Xử lý sự kiện submit form để gửi comment mới
+      commentForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+        const content = commentInput.value;
+        ratingInputs.forEach(input => {
+          if (input.checked)
+            ratingValue = parseInt(input.value);
+        })
+        if (!content.trim()) return; // Kiểm tra nội dung comment không được để trống
+        // Gửi yêu cầu POST để lưu comment mới vào MongoDB
+        fetch("http://localhost:3000/postcomment/" + movieId + "/" + userName, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ content: content, rating: ratingValue }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+            // Gọi endpoint để lấy thông tin người dùng dựa trên user_id
+            //fetch(`/user/${data.user_id}`)
+            fetch("http://localhost:3000/user/" + userName)
+              .then((response) => response.json())
+              .then((userData) => {
+                const comment = {
+                  content: content,
+                  user_name: userName,
+                  thumbnail_path: userData.thumbnail_path,
+                  rating: ratingValue,
+                  created_at: new Date(),
+                };
+                //Xóa hover của các ngôi sao
+                ratingLabels.forEach((label) => {
+                  //label.classList.remove("hovered");
+                  label.style.color = "#777";
+                });
+                ratingInputs.forEach((input) => {
+                  input.checked = false;
+                });
+                console.log('comment la : ',comment);
+                renderComment(comment); // Hiển thị comment mới ngay lập tức
+              })
+              .catch((error) => console.error(error));
+          })
+          .catch((error) => console.error(error));
+        commentInput.value = ""; // Xóa nội dung trong textarea sau khi gửi comment
+      });
+
+      // Hàm hiển thị một comment
+      function renderComment(comment) {
+        //comment view
+        var commentView = document.createElement("div");
+        commentView.classList.add("comment-view");
+        commentSection.appendChild(commentView);
+
+        var userAvatar = document.createElement("img");
+        if (comment.thumbnail_path == undefined) userAvatar.src = comment.user.thumbnail_path;
+        else userAvatar.src = comment.thumbnail_path;
+        userAvatar.alt = "User Avatar";
+        commentView.appendChild(userAvatar);
+
+        var afterPic = document.createElement("div");
+        afterPic.classList.add("after-pic");
+        commentView.appendChild(afterPic);
+
+        var commentInf = document.createElement("div");
+        commentInf.setAttribute("class", "comment-inf");
+        afterPic.appendChild(commentInf);
+
+        //user name
+        var userName = document.createElement("span");
+        userName.setAttribute("class", "user-name");
+        if (comment.username == undefined)
+          userName.innerHTML = comment.user.username;
+        else userName.innerHTML = comment.username;
+        //userName.content = comment.user_name;
+        commentInf.appendChild(userName);
+
+        //rating
+        var ratingStar = document.createElement("small");
+        ratingStar.setAttribute("class", "rating-star");
+        ratingStar.innerHTML = comment.rating + "/5";
+        commentInf.appendChild(ratingStar);
+
+        //time
+        var date = formatDate(comment.created_at);
+        //var date_string = date.format("DD/MM/YYYY");
+        var time = document.createElement("small");
+        time.setAttribute("class", "time");
+        time.innerHTML = date;
+        commentInf.appendChild(time);
+
+        //comment content
+        var commentContent = document.createElement("p");
+        commentContent.setAttribute("class", "comment-content");
+        //commentContent.innerHTML = comment.content;
+        commentContent.innerHTML = comment.content;
+        afterPic.appendChild(commentContent);
+      }
+    });
+
+    const formatDate = (dateString) => {
+      const date = new Date(dateString);
+      const day = `0${date.getDate()}`.slice(-2);
+      const month = `0${date.getMonth() + 1}`.slice(-2);
+      const year = date.getFullYear();
+      return `${day}/${month}/${year}`;
+    };
+
+  </script>
+
+</body>
+
+</html>

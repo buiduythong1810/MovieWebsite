@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login and Register</title>
+    <link rel="stylesheet" href="./assets/css/style_login.css">
+
+</head>
+
+<body>
+
+    <header>
+        <h1>Login & Register</h1>
+    </header>
+    <div class="container">
+        <div id="register-form">
+            <h2>Register</h2>
+            <form id="registerForm" action="/register" method="post">
+                <input type="text" name="username" placeholder="Username" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm Password"
+                    required>
+                <button type="button" id="registerButton">Register</button>
+                <p>Account created ? <a href="login.html" class="text"> Log in</a></p>
+            </form>
+        </div>
+    </div>
+    <script>
+        document.getElementById("registerButton").addEventListener("click", async function () {
+            const username = document.querySelector('input[name="username"]').value;
+            const password = document.querySelector('input[name="password"]').value;
+            const confirmPassword = document.querySelector('input[name="confirm_password"]').value;
+
+            if (password !== confirmPassword) {
+                alert("Reconfirm your password");
+                return;
+            } else {
+
+                const response = await fetch("http://localhost:7000/register", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        username: username,
+                        password: password,
+                    })
+                });
+
+                if (response.ok) {
+                    window.location.href = "login.html";
+                } else {
+                    const errorMessage = await response.text();
+                    alert(errorMessage);
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
