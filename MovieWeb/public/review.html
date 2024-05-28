@@ -8,6 +8,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <link rel="stylesheet" href="./assets/css/style_review.css">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     
     <!-- Fonts CSS -->
@@ -27,11 +28,8 @@
         body{
             background-color: black;
         }
-        #remember_me{
-            margin-right: 10em;
-        }
-        #forgot_pw{
-            margin-right:0em;
+        .container1{
+            background-color: black;
         }
     </style>
     
@@ -88,100 +86,134 @@
         </div>
     </header>
     <div class="main-wrapper">
-        <div class="breadcrumb-area breadcrumb-modify-padding bg-black-3">
-            <div class="container">
+   
+        
+        <!-- Breadcrumb -->
+        <div class="breadcrumb-area breadcrumb-modify-padding bg-black-3  container1">
+            <div class="container " >
                 <div class="in-breadcrumb">
                     <div class="row">
-                        <div class="col">
-                            <div class="breadcrumb-style-2 center">
-                                <h2>Register</h2>
-                                <ul class="breadcrumb-list-2 black">
-                                    <li>Home</li>
-                                    <li>Register</li>
+                        <div class="col" id="movie-info">
+                            <!-- <div class="breadcrumb-style-2">
+                                <h2>${moviedetail.title}</h2>
+                               
+                                <ul class="breadcrumb-list-2" id="movie-info">
+                                    <li>${moviedetail.genre}</li>
+                                    <li>${moviedetail.year}</li>
                                 </ul>
-                            </div>
+                                
+                            </div> -->
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- login-register  -->
-        <div class="register-page bg-black section-pt-90 section-pb-90">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-7 col-md-12 m-auto">
-                        <div class="login-register-wrapper">
-                            <!-- login-register-tab-list start -->
-                            <div class="login-register-tab-list white nav">
-                                <a class="active" >
-                                    <h4> Register </h4>
-                                </a>
-                            </div>
-                            <!-- login-register-tab-list end -->
-                            <div class="tab-content">
-                                <div id="lg1" class="tab-pane active">
-                                    <div class="login-form-container border-black">
-                                        <div class="login-register-form black-style">
-                                            <form id="registerForm" action="/register" method="post">
-                                                <div class="login-input-box">
-                                                    <input type="text" name="username" placeholder="Username" required>
-                                                    <input type="password" name="password" placeholder="Password"  required>
-                                                    <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm password"  required>
-                                                </div>
-                                                <div class="button-box">
-                                                    <div class="login-toggle-btn">
-                                                    </div>
-                                                    <div class="button-box">
-                                                        <button class="login-btn btn" id="registerButton" type="button"><span>Register</span></button>
-                                                    </div>
-                                                    <div class="breadcrumb-style-2 center">
-                                                        <ul class="breadcrumb-list-2 black">
-                                                            <li>Account created ? <a href="login.html" class="text"> Log in</a></li>
-                                                            
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        <!--// Breadcrumb -->
+        <div class="movie-details-wrap section-ptb-50 bg-black">
+            <div class="container" id="movie-details">
+                <!-- <div class="video-wrap">
+                    <video controls loop="loop" poster="${movie.thumbnail_path}">
+                        <source src="assets/video/video.mp4">
+                    </video>
                 </div>
+                <div class="movie-details-content">
+                    <div class="movie-details-info">
+                        <ul>
+                            <li><span>Director:</span>${moviedetail.director}</li>
+                            <li><span>Actors:</span>${moviedetail.actors}</li>
+                        </ul>
+                    </div>
+                    <p>${moviedetail.plot}</p>
+
+                </div>
+                <div class="movie-btn"> 
+                    <a href="watchmovie.html"    class="btn-style-hm4-2 animated">Watch now</a> 
+                </div> -->
             </div>
         </div>
+
+        <!-- Footer Area -->
+
+        <!--// Footer Area -->
+        <!-- Modal -->
     </div>
     <script>
-        document.getElementById("registerButton").addEventListener("click", async function () {
-            const username = document.querySelector('input[name="username"]').value;
-            const password = document.querySelector('input[name="password"]').value;
-            const confirmPassword = document.querySelector('input[name="confirm_password"]').value;
+        
+        // Tạo một đối tượng XMLHttpRequest
 
-            if (password !== confirmPassword) {
-                alert("Reconfirm your password");
-                return;
+        var xhr = new XMLHttpRequest();
+        
+        var movieid = new URLSearchParams(window.location.search).get('movie_id');
+
+        // Thiết lập phương thức và địa chỉ endpoint mà bạn muốn gửi yêu cầu GET
+        xhr.open('GET', `http://localhost:3000/review/${movieid}`); // Sử dụng template literals để chèn biến movieid vào URL
+
+
+        // Xử lý sự kiện khi yêu cầu hoàn thành
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                // Nếu yêu cầu thành công, lấy dữ liệu từ phản hồi và lưu vào biến moviedetail
+                var moviedetail = JSON.parse(xhr.responseText);
+                console.log('Movie Detail:', moviedetail);
+
+                // Lấy ra phần tử có id là "movie-details" để thêm nội dung vào đó
+                var movieContainer = document.getElementById('movie-details');
+
+                // Tạo một chuỗi HTML dựa trên thông tin phim
+                var moviecontent = `                
+
+                    <div class="video-wrap">
+                        <video controls loop="loop" poster="">
+                            <source src="${moviedetail.trailer}">
+                        </video>
+                    </div>
+                    <div class="movie-details-content">
+                        <div class="movie-details-info">
+                            <ul>
+                                <li><span>Director:</span>${moviedetail.director}</li>
+                                <li><span>Actors:</span>${moviedetail.actors}</li>
+                            </ul>
+                        </div>
+                        <p>${moviedetail.plot}</p>
+
+                    </div>
+                    <div class="movie-btn"> 
+                        <a href="watch_movie.html?movie_id=${movieid}"    class="btn-style-hm4-2 animated">Watch now</a> 
+                    </div>
+
+ 
+                `;
+                // Thêm nội dung vào phần tử "movie-details"
+                movieContainer.innerHTML = moviecontent;
+                var movieinfoContainer = document.getElementById('movie-info');
+                var moviecontent1 = `
+                    <div class="breadcrumb-style-2">
+                                    <h2>${moviedetail.title}</h2>
+                                    <!-- breadcrumb-list start -->
+                                    <ul class="breadcrumb-list-2" id="movie-info">
+                                        <li>${moviedetail.genre}</li>
+                                        <li>${moviedetail.year}</li>
+                                    </ul>
+                                    <!-- breadcrumb-list end -->
+                    </div>
+                `
+                movieinfoContainer.innerHTML = moviecontent1;
             } else {
-
-                const response = await fetch("http://localhost:3000/register", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        username: username,
-                        password: password,
-                    })
-                });
-
-                if (response.ok) {
-                    window.location.href = "login.html";
-                } else {
-                    const errorMessage = await response.text();
-                    alert(errorMessage);
-                }
+                // Nếu có lỗi xảy ra, hiển thị thông báo lỗi
+                console.error('Request failed. Status:', xhr.status);
             }
-        });
+        };
+
+        // Xử lý sự kiện khi có lỗi xảy ra trong quá trình gửi yêu cầu
+        xhr.onerror = function () {
+            console.error('Request failed. Network error.');
+        };
+
+        // Gửi yêu cầu
+        xhr.send();
+
+
+
     </script>
 </body>
 

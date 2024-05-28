@@ -9,7 +9,7 @@
       "id": 1,
       "title": "The Shawshank Redemption",
       "average_rating": 9.2,
-      "thumbnail_path": "https://m.media-amazon.com/images/M/MV5BMDFkYTc0MGEtZmNhMC00ZDIzLWFmNTEtODM1ZmRlYWMwMWFmXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_FMjpg_UX674_.jpg",
+      "thumbnail_path": "assets/images/product/TheShawshankRedemption.jpg",
       "director": "Frank Darabont",
       "actors": "Tim Robbins, Morgan Freeman, Bob Gunton",
       "trailer": "assets/video/The Shawshank Redemption.mp4"
@@ -24,7 +24,7 @@
       "id": 2,
       "title": "The Godfather",
       "average_rating": 9.2,
-      "thumbnail_path": "https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_FMjpg_UX674_.jpg",
+      "thumbnail_path": "assets/images/product/TheGodfather.jpg",
       "director": "Francis Ford Coppola",
       "actors": "Marlon Brando, Al Pacino, James Caan",
       "trailer": "assets/video/TheGodfather.mp4"
@@ -39,7 +39,7 @@
       "id": 3,
       "title": "The Dark Knight",
       "average_rating": 9,
-      "thumbnail_path": "https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_FMjpg_UX674_.jpg",
+      "thumbnail_path": "assets/images/product/TheDarkKnight.jpg",
       "director": "Christopher Nolan",
       "actors": "Christian Bale, Heath Ledger, Aaron Eckhart",
       "trailer": "assets/video/TheDarkKnight.mp4"
@@ -54,7 +54,7 @@
       "id": 4,
       "title": "Pulp Fiction",
       "average_rating": 8.9,
-      "thumbnail_path": "https://m.media-amazon.com/images/M/MV5BNGNhMDIzZTUtNTBlZi00MTRlLWFjM2ItYzViMjE3YzI5MjljXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_FMjpg_UX674_.jpg",
+      "thumbnail_path": "assets/images/product/PulpFiction.jpg",
       "director": "Quentin Tarantino",
       "actors": "John Travolta, Uma Thurman, Samuel L. Jackson",
       "trailer": "assets/video/PulpFiction.mp4"
@@ -69,7 +69,7 @@
       "id": 5,
       "title": "Forrest Gump",
       "average_rating": 8.8,
-      "thumbnail_path": "https://m.media-amazon.com/images/M/MV5BNWIwODRlZTUtY2U3ZS00Yzg1LWJhNzYtMmZiYmEyNmU1NjMzXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_FMjpg_UX674_.jpg",
+      "thumbnail_path": "assets/images/product/ForrestGump.jpg",
       "director": "Robert Zemeckis",
       "actors": "Tom Hanks, Robin Wright, Gary Sinise",
       "trailer": "assets/video/ForrestGump.mp4"
@@ -84,7 +84,7 @@
       "id": 6,
       "title": "Fight Club",
       "average_rating": 8.8,
-      "thumbnail_path": "https://m.media-amazon.com/images/M/MV5BNDIzNDU0YzEtYzE5Ni00ZjlkLTk5ZjgtNjM3NWE4YzA3Nzk3XkEyXkFqcGdeQXVyMjUzOTY1NTc@._V1_FMjpg_UX674_.jpg",
+      "thumbnail_path": "assets/images/product/FightClub.jpg",
       "director": "David Fincher",
       "actors": "Brad Pitt, Edward Norton, Meat Loaf",
       "trailer": "assets/video/FightClub.mp4"
@@ -99,7 +99,7 @@
     "id": 7,
     "title": "The Matrix",
     "average_rating": 8.7,
-    "thumbnail_path": "https://m.media-amazon.com/images/M/MV5BNzQzOTk3OTAtNmNhMC00N2FlLTkyODctNWQ5Zjk2ZDNjYzAxXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_FMjpg_UX674_.jpg",
+    "thumbnail_path": "assets/images/product/TheMatrix.jpg",
     "director": "Lana Wachowski, Lilly Wachowski",
     "actors": "Keanu Reeves, Laurence Fishburne, Carrie-Anne Moss",
     "trailer": "assets/video/TheMatrix.mp4"
@@ -114,7 +114,7 @@
       "id": 8,
       "title": "Tokyo Twilight",
       "average_rating": 8.7,
-      "thumbnail_path": "https://m.media-amazon.com/images/M/MV5BZjhjNzY5NTQtYWM5Zi00MjE0LTllN2EtODgwNmNkOTBkMjQxXkEyXkFqcGdeQXVyMTEyMzQ2NTE1._V1_FMjpg_UX500_.jpg",
+      "thumbnail_path": "assets/images/product/TokyoTwilight.jpg",
       "director": "Yasujirō Ozu",
       "actors": "Setsuko Hara, Ineko Arima, Chishū Ryū",
       "trailer": "assets/video/TokyoTwilight.mp4"
@@ -129,7 +129,7 @@
       "id": 9,
       "title": "Interstellar",
       "average_rating": 8.6,
-      "thumbnail_path": "https://m.media-amazon.com/images/M/MV5BZjdkOTU3MDktN2IxOS00OGEyLWFmMjktY2FiMmZkNWIyODZiXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_FMjpg_UX674_.jpg",
+      "thumbnail_path": "assets/images/product/Interstellar.jpg",
       "director": "Christopher Nolan",
       "actors": "Matthew McConaughey, Anne Hathaway, Jessica Chastain",
       "trailer": "assets/video/Interstellar.mp4"
@@ -144,7 +144,7 @@
       "id": 10,
       "title": "Whiplash",
       "average_rating": 8.5,
-      "thumbnail_path": "https://m.media-amazon.com/images/M/MV5BOTA5NDZlZGUtMjAxOS00YTRkLTkwYmMtYWQ0NWEwZDZiNjEzXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_FMjpg_UX674_.jpg",
+      "thumbnail_path": "assets/images/product/Whiplash.jpg",
       "director": "Damien Chazelle",
       "actors": "Miles Teller, J.K. Simmons, Melissa Benoist",
       "trailer": "assets/video/Whiplash.mp4"
@@ -159,7 +159,7 @@
       "id": 11,
       "title": "Parasite",
       "average_rating": 8.5,
-      "thumbnail_path": "https://m.media-amazon.com/images/M/MV5BYWZjMjk3ZTItODQ2ZC00NTY5LWE0ZDYtZTI3MjcwN2Q5NTVkXkEyXkFqcGdeQXVyODk4OTc3MTY@._V1_FMjpg_UX674_.jpg",
+      "thumbnail_path": "assets/images/product/Parasite.jpg",
       "director": "Bong Joon Ho",
       "actors": "Kang-ho Song, Sun-kyun Lee, Yeo-jeong Cho",
       "trailer": "assets/video/Parasite.mp4"
@@ -174,7 +174,7 @@
       "id": 12,
       "title": "Spider-Man: Into the Spider-Verse",
       "average_rating": 8.3,
-      "thumbnail_path": "https://m.media-amazon.com/images/M/MV5BMjMwNDkxMTgzOF5BMl5BanBnXkFtZTgwNTkwNTQ3NjM@._V1_FMjpg_UX674_.jpg",
+      "thumbnail_path": "assets/images/product/Spider-Man-Into-the-Spider-Verse.jpg",
       "director": "Peter Ramsey, Rodney Rothman, Bob Persichetti",
       "actors": "Shameik Moore, Jake Johnson, Hailee Steinfeld",
       "trailer": "assets/video/SpiderManIntotheSpiderVerse.mp4"
@@ -189,7 +189,7 @@
       "id": 13,
       "title": "Coco",
       "average_rating": 8.4,
-      "thumbnail_path": "https://m.media-amazon.com/images/M/MV5BNzE3NjM4MzY3OF5BMl5BanBnXkFtZTgwNjA3NjM4MzI@._V1_FMjpg_UX674_.jpg",
+      "thumbnail_path": "assets/images/product/Coco.jpg",
       "director": "Lee Unkrich, Adrian Molina",
       "actors": "Anthony Gonzalez, Gael García Bernal, Benjamin Bratt",
       "trailer": "assets/video/Coco.mp4"
@@ -204,7 +204,7 @@
       "id": 14,
       "title": "Inception",
       "average_rating": 8.8,
-      "thumbnail_path": "https://m.media-amazon.com/images/M/MV5BMjAxMzY3ODI2Nl5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_FMjpg_UX674_.jpg",
+      "thumbnail_path": "assets/images/product/Inception.jpg",
       "director": "Christopher Nolan",
       "actors": "Leonardo DiCaprio, Joseph Gordon-Levitt, Ellen Page",
       "trailer": "assets/video/Inception.mp4"

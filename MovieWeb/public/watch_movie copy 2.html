@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watch Movie</title>
+    <link rel="stylesheet" href="./assets/css/style.css">    
+    <link rel="stylesheet" href="./assets/css/watch_movie_style.css">
+    <script src="./assets/js/comment_client.js"></script>
+    <style>
+        /* Phần tử overlay */
+        .ad-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            /* Màu nền lớp phủ với độ mờ */
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            /* Đảm bảo lớp phủ nằm trên tất cả các phần tử khác trên trang */
+        }
+
+        /* Phần tử chứa hình ảnh quảng cáo */
+        .ad-container {
+            position: relative;
+            max-width: 80%;
+            /* Điều chỉnh kích thước hình ảnh quảng cáo nếu cần */
+        }
+
+        /* Nút tắt */
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            color: #fff;
+            background-color: #333;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Main Wrapper Start -->
+    <div class="main-wrapper">
+        <!-- header area start -->
+        <header class="header-area">
+            <div class="container-fluid1">
+                <div class="header-wrap header-netflix-style">
+                    <div class="logo-menu-wrap">
+                        <!-- Logo -->
+                        <div class="logo">
+                            <a href="index-4.html"><img src="assets/images/logo.png" alt=""></a>
+                        </div>
+                        <!-- Logo -->
+                        <div class="main-menu main-theme-color-four">
+                            <nav class="main-navigation">
+                                <ul>
+                                    <li><a href="index.html">Home</a></li>
+                                    <li><a href="#">Pages</a>
+                                        <ul class="sub-menu">
+                                            <li><a href="aboutus.html">About Us</a></li>
+                                            <li><a href="pricing-plan-2.html">Pricing</a></li>
+                                            <!-- <li><a href="watchlist.html">Watchlist</a></li> -->
+                                            <li><a href="history2.html">History</a></li>
+                                            <!-- <li><a href="movie-details.html">Movie details</a></li> -->
+                                            <!-- <li><a href="series-details.html">Series details</a></li> -->
+                                            <li><a href="faq-2.html">FAQ</a></li>
+                                            <li><a href="account.html">My Account</a></li>
+                                            <!-- <li><a href="landing-page.html">Landing Page</a></li> -->
+                                        </ul>
+                                    </li>
+                                    <li><a href="pricing-plan-2.html">Pricing</a></li>
+                                    <li><a href="type.html">Search</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    <div class="right-side">
+                        <!-- our-profile-area start -->
+                        <div class="our-profile-area ">
+                            <a href="account.html" class="our-profile-pc" data-bs-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                <img class="img-avatar" src="assets/images/default-avatar2.png" alt="">
+                            </a>
+                        </div>
+                        <!-- our-profile-area end -->
+                        <div class="subscribe-btn-wrap">
+                            <button onclick="window.location.href='login.html'" type="button" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal" class="subscribe-btn">Login Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!--Start Show Video-->
+        <div class="video-container">
+            <video class="video" width="100%" controls id="moviePlayer" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+
+        <!-- <div class="video-container">
+            
+            <video class="video" width="100%" controls id="moviePlayer" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div> -->
+
+
+        <!--End Show Video-->
+
+        <!--Start Infomation about movie-->
+        <div class="inf-movie">
+
+            <!-- Start Logo -->
+            <div class="logo">
+                <img src="./assets/images/logo.png">
+            </div>
+            <!-- End Logo -->
+          
+
+        </div>
+        <!--End Infomation about movie-->
+        <div id="ad-overlay" class="ad-overlay">
+            <div class="ad-container">
+                <img src="assets/images/product/ad.jpeg" alt="Quảng cáo" style="height: 500px;width: auto;">
+                <div class="close-button" onclick="closeAd()">Close</div>
+            </div>
+        </div>
+        <!--Start Comment Section-->
+        <div id="comment-section">
+            <div class="comment-header">
+                <h6>Comment</h6>
+            </div>
+
+            <!--start place to type comment -->
+            <div class="place-typing-comment">
+                <form method="POST" id="comment-form">
+                    <textarea id="comment-input" class="place" name="comment" placeholder="Enter your comment..."
+                        rows="2"></textarea>
+
+                    <div class="rating">
+                        <input type="radio" id="star5" name="rating" value="5"><label for="star5">5 stars</label>
+                        <input type="radio" id="star4" name="rating" value="4"><label for="star4">4 stars</label>
+                        <input type="radio" id="star3" name="rating" value="3"><label for="star3">3 stars</label>
+                        <input type="radio" id="star2" name="rating" value="2"><label for="star2">2 stars</label>
+                        <input type="radio" id="star1" name="rating" value="1"><label for="star1">1 star</label>
+                    </div>
+
+                    <button id="comment-button" type="submit">Send</button>
+                </form>
+            </div>
+            <!--end place to type comment -->
+
+        </div>
+
+        <!--End Comment Section-->
+    </div>
+    <script>
+        var usertype = localStorage.getItem('usertype');
+        var username = localStorage.getItem('username');
+        console.log(usertype);
+        if (usertype != null) {
+            const xhr = new XMLHttpRequest();
+            var movieId = new URLSearchParams(window.location.search).get('movie_id');
+            const videoPlayer = document.getElementById('moviePlayer');
+
+            xhr.open('GET', `http://localhost:3000/watchmovie/${movieId}`, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        const path = xhr.responseText;
+                        //const videoPlayer = document.getElementById('moviePlayer');
+                        videoPlayer.src = path;
+
+                    } else if (xhr.status === 404) {
+                        console.error('Movie not found');
+                    } else {
+                        console.error('Internal Server Error');
+                    }
+                }
+            };
+
+            xhr.send();
+
+            function showAd() {
+                var adOverlay = document.getElementById('ad-overlay');
+                adOverlay.style.display = 'flex';
+                if (!videoPlayer.paused) {
+                    videoPlayer.pause();
+                }
+            }
+
+            // Hàm để ẩn phần tử overlay khi nhấp vào nút tắt
+            function closeAd() {
+                var adOverlay = document.getElementById('ad-overlay');
+                adOverlay.style.display = 'none';
+                if (videoPlayer.paused) {
+                    videoPlayer.play();
+                }
+            }
+            if (usertype == "free")
+                setInterval(showAd, 15000);
+
+            // Tạo một đối tượng XMLHttpRequest
+            var xhr1 = new XMLHttpRequest();
+
+            // Thiết lập phương thức và địa chỉ endpoint mà bạn muốn gửi yêu cầu POST
+            xhr1.open('POST', `http://localhost:3000/watchedmovie/${username}/${movieId}`, true);
+
+            // Xử lý sự kiện khi yêu cầu hoàn thành
+            xhr1.onload = function () {
+                if (xhr1.status === 200) {
+                    // Nếu yêu cầu thành công, hiển thị thông báo thành công
+                    console.log('Movie added to watchlist successfully');
+                } else {
+                    // Nếu có lỗi xảy ra, hiển thị thông báo lỗi
+                    console.error('Request failed. Status:', xhr1.status);
+                }
+            };
+
+            // Xử lý sự kiện khi có lỗi xảy ra trong quá trình gửi yêu cầu
+            xhr1.onerror = function () {
+                console.error('Request failed. Network error.');
+            };
+
+            // Gửi yêu cầu
+            xhr1.send();
+        } else {
+            var login = confirm("Log in so you can watch this movie");
+            if (login) {
+                window.location.href = "login.html";
+            } else {
+                window.location.href = "index.html";
+            }
+        }
+
+    </script>
+</body>
+
+</html>

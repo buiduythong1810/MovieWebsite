@@ -5,6 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Watch Movie</title>
+    <link rel="stylesheet" href="./assets/css/style_review.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    
+    <!-- Fonts CSS -->
+    <link rel="stylesheet" href="assets/css/material-design-iconic-font.min.css">
+    
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="assets/css/plugins.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/style1.css">    
     <link rel="stylesheet" href="./assets/css/watch_movie_style.css">
     <script src="./assets/js/comment_client.js"></script>
     <style>
@@ -99,20 +109,41 @@
             </div>
         </header>
 
-        <!--Start Show Video-->
-        <!-- <div class="video-container">
-            <video class="video" width="100%" controls id="moviePlayer" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-        </div> -->
-        <div class="video-container">
-            <!-- Video player -->
-            <video class="video" width="100%" controls id="moviePlayer" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
+        <div class="movie-details-wrap section-ptb-50 bg-black">
+            <div class="container" id="movie-details">
+                <div class="video-wrap">
+                    <video class="video" controls id="moviePlayer" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+  
+                <div id="comment-section">
+                    <div class="comment-header">
+                        <h6>Comment</h6>
+                    </div>
+        
+                    <!--start place to type comment -->
+                    <div class="place-typing-comment">
+                        <form method="POST" id="comment-form">
+                            <textarea id="comment-input" class="place" name="comment" placeholder="Enter your comment..."
+                                rows="2"></textarea>
+        
+                            <div class="rating">
+                                <input type="radio" id="star5" name="rating" value="5"><label for="star5">5 stars</label>
+                                <input type="radio" id="star4" name="rating" value="4"><label for="star4">4 stars</label>
+                                <input type="radio" id="star3" name="rating" value="3"><label for="star3">3 stars</label>
+                                <input type="radio" id="star2" name="rating" value="2"><label for="star2">2 stars</label>
+                                <input type="radio" id="star1" name="rating" value="1"><label for="star1">1 star</label>
+                            </div>
+        
+                            <button id="comment-button" type="submit">Send</button>
+                        </form>
+                    </div>
+                    <!--end place to type comment -->
+        
+                </div>
+            </div>
         </div>
-        <!--End Show Video-->
-
         <!--Start Infomation about movie-->
         <div class="inf-movie">
 
@@ -132,31 +163,7 @@
             </div>
         </div>
         <!--Start Comment Section-->
-        <div id="comment-section">
-            <div class="comment-header">
-                <h6>Comment</h6>
-            </div>
 
-            <!--start place to type comment -->
-            <div class="place-typing-comment">
-                <form method="POST" id="comment-form">
-                    <textarea id="comment-input" class="place" name="comment" placeholder="Enter your comment..."
-                        rows="2"></textarea>
-
-                    <div class="rating">
-                        <input type="radio" id="star5" name="rating" value="5"><label for="star5">5 stars</label>
-                        <input type="radio" id="star4" name="rating" value="4"><label for="star4">4 stars</label>
-                        <input type="radio" id="star3" name="rating" value="3"><label for="star3">3 stars</label>
-                        <input type="radio" id="star2" name="rating" value="2"><label for="star2">2 stars</label>
-                        <input type="radio" id="star1" name="rating" value="1"><label for="star1">1 star</label>
-                    </div>
-
-                    <button id="comment-button" type="submit">Send</button>
-                </form>
-            </div>
-            <!--end place to type comment -->
-
-        </div>
 
         <!--End Comment Section-->
     </div>

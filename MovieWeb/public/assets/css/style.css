@@ -830,6 +830,13 @@ only screen and (min-width: 992px) and (max-width: 1200px) {
     transform: translateY(30px);
 }
 
+.movie-wrap .movie-content .movie-btn {
+    display: block;
+    -webkit-transition: all 0.8s ease 0s;
+    transition: all 0.8s ease 0s;
+    -webkit-transform: translateY(30px);
+    transform: translateY(30px);
+}
 
 .movie-wrap:hover>.movie-img::before {
     opacity: 1;
@@ -872,6 +879,22 @@ only screen and (min-width: 992px) and (max-width: 1200px) {
 .movie-wrap:hover .movie-content span {
     -webkit-transform: translateY(0px);
     transform: translateY(0px);
+}
+
+.movie-wrap:hover .movie-content .movie-btn {
+    -webkit-transform: translateY(0px);
+    transform: translateY(0px);
+    align-items: center;
+    justify-items: center;
+    background: var(--primary);
+    color: var(--white);
+    border-radius: var(--radius-4);
+
+}
+
+.movie-wrap:hover .movie-content .movie-btn:hover {
+    background: var(--white);
+    color: var(--primary);
 }
 
 .st-border-bottom {

@@ -107,7 +107,7 @@ body {
     color: var(--on-background);
     font-size: var(--fs-body);
     line-height: 1.5;
-    height: 300vh;
+ 
 }
 
 :focus-visible {
@@ -1314,8 +1314,10 @@ only screen and (min-width: 992px) and (max-width: 1200px) {
 /*video*/
 .video-container{ 
 
-    margin-right: 20px;
-    margin-left: 20px;
+    /* margin-right: 20px;
+    margin-left: 20px; */
+    margin-left:15em;
+    margin-right:15em;
 }
 
 /*information of movie*/
@@ -1436,14 +1438,23 @@ only screen and (min-width: 992px) and (max-width: 1200px) {
   }
 
 /*comment*/
+#comment-form{
+    width: 100%;
+}
+#comment-input{
+    /* width:85em; */
+    width: 100%;
+}
 #comment-section{
-    height: 700px;
-    position: relative;
-    margin: 0px 40px 0px;
+ 
+    /* position: relative; */
+    margin-top: 3em;
+    margin-right:10em;
+    width: 100%;
     background-color: whitesmoke;
     border: solid;
     border-radius: 12px;
-    overflow: auto;
+    overflow-y: auto;
 }
 /*comment header*/
 .comment-header{
@@ -1457,67 +1468,50 @@ only screen and (min-width: 992px) and (max-width: 1200px) {
     font-family: 'Segoe UI';
 }
 
-.place-typing-comment {
+/*place to enter comment*/
+#comment-section img{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+.place-typing-comment{
     display: flex;
-    flex-direction: column;
+    margin: 20px 0px;
+    font-size: medium;
+
     align-items: flex-start;
-    width: 100%;
-    margin: 20px 0;
-    box-sizing: border-box;
+  
+    position: relative;
 }
 
-#comment-form {
-    width: 100%;
+.place{
+    display: block;
+    border-radius: 1.5em;
     box-sizing: border-box;
-    padding: 0 10px; 
-}
-
-.place {
-    width: 100%;
-    height: 40px; 
-    margin: 6px 0; 
-    padding: 10px; 
     border: 1px solid #ced4da;
-    border-radius: 25px;
-    box-sizing: border-box; /* Đảm bảo padding không làm thay đổi kích thước tổng thể */
     font-family: 'Segoe UI';
+    padding-block: 1px;
+    padding-inline: 4px;
     color: black;
 }
 
-.place:focus {
+  .place:focus {
     border-color: #007bff;
-}
-
-
-.rating input {
-    display: flex;
-    margin-right: 5px;
-}
-.rating span{
-    color: #000000;
-    text-align: center;
-    margin-right: 10px;
-    font-weight: bold;
-    font-size: 16px;
-    vertical-align: middle;
-}
-
-#comment-button {
+  }
+  
+  #comment-button {
     background-color: #007bff;
     color: #fff;
-    border: none;
-    border-radius: 12px;
+   
     cursor: pointer;
-    height: 30px; 
-    padding: 0 15px; 
-    margin: 6px 0; 
-    text-align: center;
-}
-
-#comment-button:hover {
+    border-radius: 1.4em;
+ 
+  
+  }
+  
+  #comment-button:hover {
     background-color: #0056b3;
-}
-
+  }
   
   
 #comment-section .comment-view{

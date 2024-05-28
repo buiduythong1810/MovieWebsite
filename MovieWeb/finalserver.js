@@ -41,7 +41,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.post('/pay', async (req, res) => {
 
     try {
-        const amount = req.body.amount || '20'; // Mặc định là $100 nếu không có giá trị
+        const amount = req.body.amount || '20';
         var username = req.body.username || "john_doe";
         var plan = req.body.plan || "default";
         const url = await paypal.createOrder(amount, username, plan);
@@ -52,7 +52,6 @@ app.post('/pay', async (req, res) => {
         res.send('Error: ' + error)
     }
 })
-
 
 async function getOrder(orderId) {
     try {
@@ -214,7 +213,6 @@ async function checkAndUpdateUserType(username) {
     }
 }
 
-
 app.get('/complete-order', async (req, res) => {
     const orderId = req.query.token; // Lấy orderId từ query params
 
@@ -239,6 +237,7 @@ app.get('/complete-order', async (req, res) => {
         res.status(500).send('Internal Server Error');
     }
 });
+
 
 app.get('/cancel-order', (req, res) => {
     res.redirect('/pricing-plan-2.html')

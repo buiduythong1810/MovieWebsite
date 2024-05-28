@@ -564,12 +564,7 @@
     /*--
         ScrollUp Active
     ------------------------*/
-    $.scrollUp({
-        scrollText: '<i class="zmdi zmdi-long-arrow-up"></i>',
-        easingType: 'linear',
-        scrollSpeed: 900,
-        animation: 'fade'
-    });   
+
     
     /*-------------------------------
        Header Search Toggle
