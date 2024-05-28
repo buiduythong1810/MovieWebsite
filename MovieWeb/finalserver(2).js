@@ -50,18 +50,6 @@ app.post('/pay', async (req, res) => {
     }
 })
 
-// app.get('/complete-order', async (req, res) => {
-
-//     try {
-//         const captureResponse = await paypal.capturePayment(req.query.token);
-//         const invoiceId = captureResponse.id; // Assume the invoice id is in the response
-
-//         res.redirect('/pricing-plan-2.html?paymentStatus=success&invoiceId=' + invoiceId);
-//     } catch (error) {
-//         // Trường hợp có lỗi, chuyển hướng về trang cũ với thông báo lỗi
-//         res.redirect('/pricing-plan-2.html?error=true&errorMessage=' + encodeURIComponent(error.message));
-//     }
-// })
 
 app.get('/complete-order', async (req, res) => {
     const { token } = req.query;
@@ -94,7 +82,7 @@ app.get('/complete-order', async (req, res) => {
         console.error('Error capturing payment:', error);
         res.status(500).send('Error capturing payment');
     }
-    
+
 });
 
 
@@ -131,7 +119,7 @@ app.get('/cancel-order', (req, res) => {
 //Code Quoc Anh
 const movieRoutes = require("./routes/movies");
 app.use(express.json());
-app.use(cors({origin:true,credentials:true}));
+app.use(cors({ origin: true, credentials: true }));
 
 app.use("/api", movieRoutes);
 

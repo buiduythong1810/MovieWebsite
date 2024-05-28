@@ -347,13 +347,17 @@ async function getUserInfoById(username) {
             console.log('User not found');
             return null;
         }
+        //console.log(user);
 
         // Lấy thông tin username, email, avatar_path
         const userInfo = {
             username: user.username,
             email: user.email,
-            thumbnail_path: user.thumbnail_path
+            thumbnail_path: user.thumbnail_path,
+            vipExpiry: new Date(user.vipExpiry).toISOString().split('T')[0]
         };
+
+        console.log(userInfo.vipExpiry);
 
         return userInfo;
     } catch (error) {

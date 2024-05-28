@@ -80,8 +80,8 @@
         </div>
         <form action="#" method="post">
             <div class="form-group">
-                <label for="email">Email</label>
-                <input type="text" id="Email" name="Email" required>
+                <label for="vip">Vip expiry date</label>
+                <input type="text" id="expirydate" name="expirydate" required>
             </div>
             <div class="form-group">
                 <label for="display-name">Display Name</label>
@@ -105,7 +105,7 @@
     <script>
         var account_info = {};
         var username = localStorage.getItem('username');
-        var newPassword ="";
+        var newPassword = "";
 
         // 
         document.addEventListener('DOMContentLoaded', function () {
@@ -164,7 +164,7 @@
 
         // Hàm để điền thông tin vào các trường nhập liệu trong form
         function fillForm() {
-            document.getElementById('Email').value = account_info.email;
+            document.getElementById('expirydate').value = account_info.vipExpiry;
             document.getElementById('display-name').value = account_info.username;
         }
 
