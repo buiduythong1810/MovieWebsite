@@ -16,7 +16,7 @@ async function generateAccessToken() {
     return response.data.access_token;
 }
 
-async function saveOrder(orderId, username) {
+async function saveOrder(orderId, username, plan, amount) {
     const uri = process.env.mongoURI; // URL kết nối tới MongoDB của bạn
     const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
@@ -25,8 +25,8 @@ async function saveOrder(orderId, username) {
         const database = client.db('movieweb');
         const ordersCollection = database.collection('orders');
 
-        await ordersCollection.insertOne({ orderId, username });
-        console.log(`Order saved with ID: ${orderId}, Username: ${username}`);
+        await ordersCollection.insertOne({ orderId, username, plan, amount });
+        console.log(`Order saved with ID: ${orderId}, Username: ${username}, Plan: ${plan}`);
     } catch (error) {
         console.error('Error occurred while saving order:', error);
     } finally {
@@ -38,6 +38,20 @@ exports.createOrder = async (amount, username1) => {
     const accessToken = await generateAccessToken();
 
     const numericAmount = parseFloat(amount);
+    var plan;
+    switch (amount) {
+        case "10":
+            plan = 'month';
+            break;
+        case "27":
+            plan = 'quarter';
+            break;
+        case "96":
+            plan = 'year';
+            break;
+        default:
+            plan = '';
+    }
 
     try {
         const response = await axios({
@@ -84,12 +98,10 @@ exports.createOrder = async (amount, username1) => {
             }
         });
 
-        // console.log(response.data);
-
         const orderId = response.data.id;
 
         var usernameMovive = username1;
-        await saveOrder(orderId, usernameMovive);
+        await saveOrder(orderId, usernameMovive, plan, amount);
 
         return response.data.links.find(link => link.rel === 'approve').href;
     } catch (error) {

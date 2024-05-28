@@ -40,14 +40,12 @@ app.listen(PORT, () => {
 app.use(bodyParser.urlencoded({ extended: true }));
 app.post('/pay', async (req, res) => {
 
-
-    console.log("toi day chua");
     try {
         const amount = req.body.amount || '20'; // Mặc định là $100 nếu không có giá trị
-        console.log(amount);
-        username = req.body.username || "thong";
-        console.log("toi day chua");
-        const url = await paypal.createOrder(amount, username);
+        var username = req.body.username || "john_doe";
+        var plan = req.body.plan || "default";
+        const url = await paypal.createOrder(amount, username, plan);
+        console.log(plan);
 
         res.redirect(url)
     } catch (error) {
@@ -55,6 +53,21 @@ app.post('/pay', async (req, res) => {
     }
 })
 
+
+async function getOrder(orderId) {
+    try {
+        await client.connect();
+        const database = client.db('movieweb');
+        const ordersCollection = database.collection('orders');
+
+        const order = await ordersCollection.findOne({ orderId });
+        return order;
+    } catch (error) {
+        console.error('Error occurred while retrieving order:', error);
+    } finally {
+        await client.close();
+    }
+}
 
 async function updateTypeUser(username) {
     try {
@@ -89,97 +102,143 @@ async function updateTypeUser(username) {
     }
 }
 
-async function getOrder(orderId) {
+async function updateVipTime(username, plan) {
     try {
         await client.connect();
         const database = client.db('movieweb');
-        const ordersCollection = database.collection('orders');
+        const usersCollection = database.collection('user');
 
-        const order = await ordersCollection.findOne({ orderId });
-        return order;
+        // Lấy thông tin người dùng từ cơ sở dữ liệu
+        const user = await usersCollection.findOne({ username: username });
+
+        let currentDate = new Date();
+        let currentVipExpiry = user ? new Date(user.vipExpiry) : null;
+        let newVipExpiry;
+
+
+        if (!user || !user.vipExpiry || new Date(user.vipExpiry) < currentDate) {
+            // Nếu không có thời gian VIP hoặc thời gian VIP trước ngày hôm nay
+            currentVipExpiry = new Date(currentDate);
+        } else {
+            // Nếu thời gian VIP sau ngày hôm nay
+            currentVipExpiry = new Date(user.vipExpiry);
+        }
+
+        switch (plan) {
+            case 'month':
+                newVipExpiry = new Date(currentVipExpiry.setMonth(currentVipExpiry.getMonth() + 1));
+                break;
+            case 'quarter':
+                newVipExpiry = new Date(currentVipExpiry.setMonth(currentVipExpiry.getMonth() + 3));
+                break;
+            case 'year':
+                newVipExpiry = new Date(currentVipExpiry.setFullYear(currentVipExpiry.getFullYear() + 1));
+                break;
+            default:
+                console.error('Invalid plan');
+                return;
+        }
+
+        // Cập nhật thời gian VIP của người dùng
+        await updateUserVipExpiryInDatabase(username, newVipExpiry);
+        console.log(`Cập nhật thời gian VIP cho user ${username} đến ${newVipExpiry}`);
+        return newVipExpiry; // Trả về thời gian VIP mới
     } catch (error) {
-        console.error('Error occurred while retrieving order:', error);
+        console.error('Error occurred while updating VIP time:', error);
     } finally {
         await client.close();
     }
 }
 
-app.get('/complete-order', async (req, res) => {
-    //code mới
-    const orderId = req.query.token; // Lấy orderId từ query params
-
-    const order = await getOrder(orderId);
-    if (!order) {
-        return res.status(404).send('Order not found');
-    }
-
-    const username = order.username;
-    console.log(`Payment completed for user: ${username}`);
-    //
-    const { token } = req.query;
+async function updateUserVipExpiryInDatabase(username, newVipExpiry) {
     try {
-        const payment = await paypal.capturePayment(token);
+        await client.connect();
+        const database = client.db('movieweb');
+        const usersCollection = database.collection('user');
 
-        // Log chi tiết phản hồi để kiểm tra cấu trúc
-        console.log('Payment response:', payment);
+        // Cập nhật thời gian VIP của người dùng dựa trên username
+        const result = await usersCollection.updateOne(
+            { username: username },
+            { $set: { vipExpiry: newVipExpiry } }
+        );
 
-        // Kiểm tra và truy cập thuộc tính một cách an toàn
-        const payerId = payment.payer && payment.payer.payer_id;
-        const paymentId = payment.id;
+        if (result.matchedCount > 0) {
+            console.log(`Cập nhật thời gian VIP cho user ${username} đến ${newVipExpiry}`);
+        } else {
+            console.warn(`Không tìm thấy user với username: ${username}`);
+        }
+    } catch (error) {
+        console.error('Error occurred while updating VIP expiry:', error);
+    } finally {
+        await client.close();
+    }
+}
 
-        // Nếu bất kỳ thuộc tính nào không tồn tại, trả về lỗi
-        if (!payerId || !paymentId) {
-            throw new Error('Incomplete payment information received from PayPal');
+async function checkAndUpdateUserType(username) {
+    try {
+        await client.connect();
+        const database = client.db('movieweb');
+        const usersCollection = database.collection('user');
+
+        // Lấy thông tin người dùng từ cơ sở dữ liệu
+        const user = await usersCollection.findOne({ username: username });
+
+        if (!user) {
+            console.warn(`Không tìm thấy user với username: ${username}`);
+            return;
         }
 
-        // Lưu hóa đơn vào MongoDB
-        const newInvoice = new Invoice({
-            paymentId: paymentId,
-            token: token,
-            payerId: payerId,
-            method: 'paypal'
-        });
+        const currentDate = new Date();
+        const vipExpiry = new Date(user.vipExpiry);
 
-        await newInvoice.save();
-        res.send(`Payment completed successfully for user: ${username}`);
+        // Kiểm tra nếu thời gian VIP trước ngày hôm nay
+        if (!user.vipExpiry || vipExpiry < currentDate) {
+            // Cập nhật loại người dùng thành 'free'
+            const result = await usersCollection.updateOne(
+                { username: username },
+                { $set: { usertype: 'free' } }
+            );
 
-
+            if (result.matchedCount > 0) {
+                console.log(`Cập nhật loại user ${username} thành free vì thời gian VIP đã hết hạn.`);
+            } else {
+                console.warn(`Không tìm thấy user với username: ${username} để cập nhật loại user.`);
+            }
+        } else {
+            console.log(`User ${username} vẫn còn thời gian VIP.`);
+        }
     } catch (error) {
-        console.error('Error capturing payment:', error);
-        res.status(500).send('Error capturing payment');
+        console.error('Error occurred while checking and updating user type:', error);
+    } finally {
+        await client.close();
     }
+}
 
 
-    updateTypeUser(username);
+app.get('/complete-order', async (req, res) => {
+    const orderId = req.query.token; // Lấy orderId từ query params
 
-});
-
-
-app.get('/test-save', async (req, res) => {
     try {
-        const testInvoice = new Invoice({
-            userId: '60b8d6f7d2a03b0015e7c4c6', // Thay thế bằng ObjectId hợp lệ từ MongoDB của bạn
-            amount: {
-                currency: 'USD',
-                total: '100.00'
-            },
-            package: 'Test Package',
-            paymentMethod: 'PayPal',
-            description: 'Test payment for Test Package',
-            createTime: new Date(),
-            updateTime: new Date(),
-            status: 'COMPLETED'
-        });
+        const order = await getOrder(orderId);
+        if (!order) {
+            return res.status(404).send('Order not found');
+        }
 
-        await testInvoice.save();
-        res.send('Invoice saved successfully');
+        const username = order.username;
+        const plan = order.plan;
+        const amount = order.amount;
+
+        console.log(`Payment completed for user: ${username}`);
+
+        const vipExpiry = await updateVipTime(username, plan);
+        await updateTypeUser(username);
+
+        res.redirect(`/success.html?username=${username}&vipExpiry=${vipExpiry.toISOString().split('T')[0]}&amount=${amount}&plan=${plan}`);
     } catch (error) {
-        console.error('Error saving invoice:', error);
-        res.status(500).send('Error saving invoice');
+        console.error('Error occurred:', error);
+        res.status(500).send('Internal Server Error');
     }
 });
-
-
 
 app.get('/cancel-order', (req, res) => {
     res.redirect('/pricing-plan-2.html')

@@ -101,11 +101,12 @@
         <div class="container">
             <div class="pricing-panel modify-pricing-panel text-center">
                 <div class="pricing-heading">
-                    <h2>$100 <span>/ Month</span></h2>
+                    <h2>$10 <span>/ Month</span></h2>
                     <h3>Basic</h3>
                 </div>
                 <div class="pricing-body">
                     <ul>
+                        <li>No Ads </li>
                         <li>HD available </li>
                         <li>Ultra HD available </li>
                         <li>Watch on your laptop</li>
@@ -113,25 +114,20 @@
                         <li>Watch on your mobile phone</li>
                         <li>Watch on your tablet</li>
                         <li>Unlimited movies, TV shows</li>
-                        <li>Unlimited mobile games</li>
                     </ul>
                 </div>
                 <div class="pricing-footer">
-                    <!-- <form class="plan-btn" action="/pay" method="post">
-                        <input type="hidden" name="amount" value="300">
-                        <input type="submit" value="Choose a Plan">
-                    </form> -->
-                    <!-- <a class="plan-btn" href="./vnpay.html">vnapy</a> -->
-                    <button class="plan-btn payButton">Choose a Plan</button>
+                    <button class="plan-btn payButton" data-amount="10">Choose a Plan</button>
                 </div>
             </div>
             <div class="pricing-panel modify-pricing-panel active text-center">
                 <div class="pricing-heading">
-                    <h2>$200 <span>/ Month</span></h2>
+                    <h2>$27 <span>/ Quarter</span></h2>
                     <h3>Standard</h3>
                 </div>
                 <div class="pricing-body">
                     <ul>
+                        <li>No Ads</li>
                         <li>HD available </li>
                         <li>Ultra HD available </li>
                         <li>Watch on your laptop</li>
@@ -139,25 +135,20 @@
                         <li>Watch on your mobile phone</li>
                         <li>Watch on your tablet</li>
                         <li>Unlimited movies, TV shows</li>
-                        <li>Unlimited mobile games</li>
                     </ul>
                 </div>
                 <div class="pricing-footer">
-                    <!-- <form class="plan-btn" action="/pay" method="post">
-                        <input type="hidden" name="amount" value="300">
-                        <input type="submit" value="Choose a Plan">
-                    </form> -->
-                    <!-- <a class="plan-btn" href="./vnpay.html">vnapy</a> -->
-                    <button class="plan-btn payButton">Choose a Plan</button>
+                    <button class="plan-btn payButton" data-amount="27">Choose a Plan</button>
                 </div>
             </div>
             <div class="pricing-panel modify-pricing-panel text-center">
                 <div class="pricing-heading">
-                    <h2>$300 <span>/ Month</span></h2>
+                    <h2>$96 <span>/ Year</span></h2>
                     <h3>Premium</h3>
                 </div>
                 <div class="pricing-body">
                     <ul>
+                        <li>No Ads</li>
                         <li>HD available </li>
                         <li>Ultra HD available </li>
                         <li>Watch on your laptop</li>
@@ -165,16 +156,10 @@
                         <li>Watch on your mobile phone</li>
                         <li>Watch on your tablet</li>
                         <li>Unlimited movies, TV shows</li>
-                        <li>Unlimited mobile games</li>
                     </ul>
                 </div>
                 <div class="pricing-footer">
-                    <!-- <form class="plan-btn" action="/pay" method="post">
-                        <input type="hidden" name="amount" value="300">
-                        <input type="submit" value="Choose a Plan">
-                    </form> -->
-                    <!-- <a class="plan-btn" href="./vnpay.html">vnapy</a> -->
-                    <button class="plan-btn payButton">Choose a Plan</button>
+                    <button class="plan-btn payButton" data-amount="96">Choose a Plan</button>
 
 
                 </div>
@@ -187,10 +172,10 @@
             <div class="modal-content">
                 <span class="close">&times;</span>
                 <h2>Chọn phương thức thanh toán</h2>
-                <form class="payment-option" action="/pay" method="post">
-                    <input type="hidden" name="amount" value="100">
+                <form class="payment-option" id="paypalfrom" action="/pay" method="post">
+                    <input type="hidden" name="amount" value="">
                     <input type="hidden" id="username" name="username" value="">
-                    <input type="submit" value="Momo">
+                    <input type="submit" value="Paypal">
                 </form>
                 </form>
                 <form class="payment-option" action="payment/create_payment_url" method="post">
@@ -229,6 +214,10 @@
         // When the user clicks any of the buttons, open the modal 
         for (let btn of btns) {
             btn.onclick = function () {
+                var amount = btn.getAttribute("data-amount");
+                var inputs = modal.querySelectorAll("input[name='amount']");
+                inputs.forEach(input => input.value = amount);
+
                 modal.style.display = "block";
             }
         }
@@ -255,9 +244,16 @@
             } else {
                 // Nếu không có username trong localStorage, có thể xử lý logic khác (ví dụ: hiển thị cảnh báo)
                 console.warn('Username not found in localStorage');
-                document.getElementById('username').value = "hoa";
             }
+
+            var buttons = document.querySelectorAll(".payButton");
+            var modal = document.getElementById("paymentModal");
+
         });
+
+
+
+
     </script>
 
 
