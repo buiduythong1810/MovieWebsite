@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Success</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 450px;
+            width: 90%;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        h1 {
+            color: #2ecc71;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        p {
+            margin: 10px 0;
+            font-size: 1.1em;
+            color: #333;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #2ecc71;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .btn:hover {
+            background-color: #27ae60;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Payment Successful!</h1>
+        <p id="username"></p>
+        <p id="vipExpiry"></p>
+        <p id="amount"></p>
+        <p id="plan"></p>
+        <a href="index.html" class="btn">Go to Home</a>
+    </div>
+
+    <script>
+        // Giả sử các thông tin này được chuyển đến trang này qua URL query parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const username = urlParams.get('username');
+        const vipExpiry = urlParams.get('vipExpiry');
+        const amount = urlParams.get('amount');
+        const plan = urlParams.get('plan');
+
+        // Hiển thị thông tin thanh toán
+        document.getElementById('username').textContent = `Username: ${username}`;
+        document.getElementById('vipExpiry').textContent = `VIP Expiry Date: ${vipExpiry}`;
+        document.getElementById('amount').textContent = `Amount: $${amount}`;
+        document.getElementById('plan').textContent = `Plan: ${plan}`;
+    </script>
+</body>
+
+</html>

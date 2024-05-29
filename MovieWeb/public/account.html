@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NetFlix</title>
+    <!-- Bootstrap CSS -->
+    <!-- <link rel="stylesheet" href="./assets/css/bootstrap.min.css"> -->
+
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/style1.css">
+    <link rel="stylesheet" href="./assets/css/account.css">
+    <script src="./assets/js/main.js"></script>
+    <!-- movie list css -->
+    <style>
+        header{
+            background-color: black;           
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class = "wrap">
+    <!-- Main Wrapper Start -->
+    <div class="main-wrapper">
+        <!-- header area start -->
+        <header class="header-area">
+            <div class="container-fluid1">
+                <div class="header-wrap header-netflix-style">
+                    <div class="logo-menu-wrap">
+                        <!-- Logo -->
+                        <div class="logo">
+                            <a href="index-4.html"><img src="assets/images/logo.png" alt=""></a>
+                        </div>
+                        <!-- Logo -->
+                        <div class="main-menu main-theme-color-four">
+                            <nav class="main-navigation">
+                                <ul>
+                                    <li><a href="index.html">Home</a></li>
+                                    <li><a href="#">Pages</a>
+                                        <ul class="sub-menu">
+                                            <li><a href="aboutus.html">About Us</a></li>
+                                            <li><a href="pricing-plan-2.html">Pricing</a></li>
+                                            <!-- <li><a href="watchlist.html">Watchlist</a></li> -->
+                                            <li><a href="history2.html">History</a></li>
+                                            <!-- <li><a href="movie-details.html">Movie details</a></li> -->
+                                            <!-- <li><a href="series-details.html">Series details</a></li> -->
+                                            <li><a href="faq-2.html">FAQ</a></li>
+                                            <li><a href="account.html">My Account</a></li>
+                                            <!-- <li><a href="landing-page.html">Landing Page</a></li> -->
+                                        </ul>
+                                    </li>
+                                    <li><a href="pricing-plan-2.html">Pricing</a></li>
+                                    <li><a href="type.html">Search</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    <div class="right-side">
+                        <!-- our-profile-area start -->
+                        <div class="our-profile-area ">
+                            <a href="account.html" class="our-profile-pc" data-bs-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                <img class="img-avatar" src="assets/images/default-avatar2.png" alt="">
+                            </a>
+                        </div>
+                        <!-- our-profile-area end -->
+                        <div class="subscribe-btn-wrap">
+                            <button onclick="window.location.href='login.html'" type="button" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal" class="subscribe-btn">Login Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </div>
+
+
+    <div class="container">
+        <div class="avatar">
+            <img src="assets/images/product/10.jpg" alt="">
+        </div>
+        <form action="#" method="post">
+            <div class="form-group">
+                <label for="vip" class = "label-customer">Vip expiry date</label>
+                <input type="text" id="expirydate" name="expirydate" required>
+            </div>
+            <div class="form-group">
+                <label for="display-name" class = "label-customer">Display Name</label>
+                <input type="text" id="display-name" name="display-name" required>
+            </div>
+            <div class="form-group">
+                <label for="new-password" class = "label-customer">New Password</label>
+                <input type="password" id="new-password" name="new-password" required>
+            </div>
+            <div class="form-group">
+                <label for="confirm-password" class = "label-customer">Confirm New Password</label>
+                <input type="password" id="confirm-password" name="confirm-password" required>
+            </div>
+            <div class="form-group">
+                <button type="submit">Save Changes</button>
+
+            </div>
+
+        </form>
+    </div>
+    </div>
+    <script>
+        var account_info = {};
+        var username = localStorage.getItem('username');
+        var newPassword = "";
+
+        // 
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelector('button[type="submit"]').addEventListener('click', function (event) {
+                event.preventDefault(); // Ngăn chặn hành động mặc định của nút submit
+                newPassword = document.getElementById('new-password').value;
+                var confirmPassword = document.getElementById('confirm-password').value;
+
+                if (newPassword == confirmPassword) {
+                    try {
+                        updatePassword(username, newPassword);
+                    } catch (error) {
+                        console.error('Error occurred:', error);
+                    }
+                } else {
+
+                    alert('New Password and Confirm New Password do not match. Please try again.');
+                }
+
+            });
+        });
+
+        function updatePassword(username, newPassword) {
+            // Tạo một đối tượng XMLHttpRequest
+            const xhr = new XMLHttpRequest();
+
+            // Xác định phương thức và URL của yêu cầu
+            const method = 'PUT';
+            const url = `http://localhost:3000/account/${username}`;
+
+            // Tạo dữ liệu để gửi trong phần thân của yêu cầu
+            const data = JSON.stringify({ newPassword: newPassword });
+
+            // Mở kết nối
+            xhr.open(method, url, true);
+            xhr.setRequestHeader('Content-Type', 'application/json'); // Thiết lập header 'Content-Type' là 'application/json'
+
+            // Xử lý sự kiện khi nhận được phản hồi từ server
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        console.log('Password updated successfully');
+                        alert('Password updated successfully');
+                        // Xử lý phản hồi ở đây nếu cần
+                    } else if (xhr.status === 404) {
+                        console.log('User not found or password not updated');
+                    } else {
+                        console.error('Error occurred:', xhr.status);
+                    }
+                }
+            };
+
+            // Gửi yêu cầu với dữ liệu được gửi đi
+            xhr.send(data);
+        }
+
+        // Hàm để điền thông tin vào các trường nhập liệu trong form
+        function fillForm() {
+            document.getElementById('expirydate').value = account_info.vipExpiry;
+            document.getElementById('display-name').value = account_info.username;
+        }
+
+        // Gọi hàm fillForm() khi trang đã được tải
+        document.addEventListener('DOMContentLoaded', function () {
+            fetchData();
+        });
+
+        // Hàm để lấy dữ liệu từ server bằng XHR
+        function fetchData() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'http://localhost:3000/user/' + username); // Thay thế '/user/1' bằng endpoint tương ứng của bạn
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    account_info = JSON.parse(xhr.responseText); // Lưu trữ dữ liệu từ server vào biến account_info
+                    fillForm(); // Gọi hàm fillForm để điền dữ liệu vào form
+                } else {
+                    console.error('Failed to fetch account info');
+                }
+            };
+            xhr.onerror = function () {
+                console.error('Request failed');
+            };
+            xhr.send();
+        }
+
+
+    </script>
+
+</body>
+
+</html>
