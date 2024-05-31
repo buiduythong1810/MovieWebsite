@@ -1,0 +1,94 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    /* background-image: url(images/backgrd.webp); */
+
+    background: hsla(220, 17%, 7%, 1);
+    background-size: cover;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    margin: 0;
+}
+
+main {
+    padding: 20px;
+    text-align: center;
+}
+
+.movie-frame {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #333;
+    margin: 20px auto;
+    max-width: 800px;
+    padding: 20px;
+}
+
+.movie-info {
+    text-align: left;
+    margin-right: 20px;
+    color: white;
+}
+
+.movie-name {
+    color: white;
+    font-size: xx-large;
+}
+
+img {
+    left: 0%;
+    max-width: 300px;
+    max-height: 450px;
+}
+
+button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+footer {
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 0;
+}
+
+.comments-section {
+    margin-top: 50px;
+}
+
+#comment {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+#comments-container {
+    border-top: 1px solid #ccc;
+    margin-top: 20px;
+    padding-top: 20px;
+}
+
+.comment-section button:hover {
+    background-color: #0056b3;
+}

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/pricing-plan-2.css">
+</head>
+
+<body style = "height:100%">
+
+    <header>
+        <header class="header-area">
+            <div class="container-fluid1">
+                <div class="header-wrap header-netflix-style">
+                    <div class="logo-menu-wrap">
+                        <!-- Logo -->
+                        <div class="logo">
+                            <a href="index-4.html"><img src="assets/images/logo.png" alt=""></a>
+                        </div>
+                        <!-- Logo -->
+                        <div class="main-menu main-theme-color-four">
+                            <nav class="main-navigation">
+                                <ul>
+                                    <li><a href="index.html">Home</a></li>
+                                    <li><a href="#">Pages</a>
+                                        <ul class="sub-menu">
+                                            <li><a href="aboutus.html">About Us</a></li>
+                                            <li><a href="pricing-plan-2.html">Pricing</a></li>
+                                            <!-- <li><a href="watchlist.html">Watchlist</a></li> -->
+                                            <li><a href="history2.html">History</a></li>
+                                            <!-- <li><a href="movie-details.html">Movie details</a></li> -->
+                                            <!-- <li><a href="series-details.html">Series details</a></li> -->
+                                            <li><a href="account.html">My Account</a></li>
+                                            <!-- <li><a href="landing-page.html">Landing Page</a></li> -->
+                                        </ul>
+                                    </li>
+                                    <li><a href="pricing-plan-2.html">Pricing</a></li>
+                                    <li><a href="type.html">Search</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    <div class="right-side">
+                        <!-- our-profile-area start -->
+                        <div class="our-profile-area">
+                            <a href="account.html" class="our-profile-pc" data-bs-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                <img class="img-avatar" src="assets/images/default-avatar2.png" alt="">
+                            </a>
+                        </div>
+                        <!-- our-profile-area end -->
+                        <div class="subscribe-btn-wrap">
+                            <button onclick="window.location.href='login.html'" type="button" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal" class="subscribe-btn">Login Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </header>
+
+    <div class="pricing-plan">
+        <h2 style="padding-right: 30px;">Pricing Plan</h2>
+        <ul class="">
+            <li><a class="home-a" href="index.html">Home</a></li>
+            <li>|</li>
+            <li>Pricing Plan</li>
+        </ul>
+    </div>
+
+    <div class="pricing-wrap">
+        <div class="container">
+            <div class="pricing-panel modify-pricing-panel text-center">
+                <div class="pricing-heading">
+                    <h2>$10 <span>/ Month</span></h2>
+                    <h3>Basic</h3>
+                </div>
+                <div class="pricing-body">
+                    <ul>
+                        <li>No Ads </li>
+                        <li>HD available </li>
+                        <li>Ultra HD available </li>
+                        <li>Watch on your laptop</li>
+                        <li>Watch on your TV</li>
+                        <li>Watch on your mobile phone</li>
+                        <li>Watch on your tablet</li>
+                        <li>Unlimited movies, TV shows</li>
+                    </ul>
+                </div>
+                <div class="pricing-footer">
+                    <button class="plan-btn payButton" data-amount="10">Choose a Plan</button>
+                </div>
+            </div>
+            <div class="pricing-panel modify-pricing-panel active text-center">
+                <div class="pricing-heading">
+                    <h2>$27 <span>/ Quarter</span></h2>
+                    <h3>Standard</h3>
+                </div>
+                <div class="pricing-body">
+                    <ul>
+                        <li>No Ads</li>
+                        <li>HD available </li>
+                        <li>Ultra HD available </li>
+                        <li>Watch on your laptop</li>
+                        <li>Watch on your TV</li>
+                        <li>Watch on your mobile phone</li>
+                        <li>Watch on your tablet</li>
+                        <li>Unlimited movies, TV shows</li>
+                    </ul>
+                </div>
+                <div class="pricing-footer">
+                    <button class="plan-btn payButton" data-amount="27">Choose a Plan</button>
+                </div>
+            </div>
+            <div class="pricing-panel modify-pricing-panel text-center">
+                <div class="pricing-heading">
+                    <h2>$96 <span>/ Year</span></h2>
+                    <h3>Premium</h3>
+                </div>
+                <div class="pricing-body">
+                    <ul>
+                        <li>No Ads</li>
+                        <li>HD available </li>
+                        <li>Ultra HD available </li>
+                        <li>Watch on your laptop</li>
+                        <li>Watch on your TV</li>
+                        <li>Watch on your mobile phone</li>
+                        <li>Watch on your tablet</li>
+                        <li>Unlimited movies, TV shows</li>
+                    </ul>
+                </div>
+                <div class="pricing-footer">
+                    <button class="plan-btn payButton" data-amount="96">Choose a Plan</button>
+
+
+                </div>
+            </div>
+        </div>
+        <!-- The Modal (popup) -->
+        <div id="paymentModal" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Chọn phương thức thanh toán</h2>
+                <form class="payment-option" id="paypalfrom" action="/pay" method="post">
+                    <input type="hidden" name="amount" value="">
+                    <input type="hidden" id="username" name="username" value="">
+                    <input type="submit" value="Paypal">
+                </form>
+                </form>
+                <form class="payment-option" action="payment/create_payment_url" method="post">
+                    <input type="hidden" name="amount" value="100">
+                    <input type="submit" value="VNPay">
+                </form>
+                <form class="payment-option" action="/pay" method="post">
+                    <input type="hidden" name="amount" value="100">
+                    <input type="submit" value="Momo">
+                </form>
+            </div>
+
+        </div>
+    </div>
+    </div>
+    <script>
+        // var username = localStorage.getItem('username');
+        // Lấy thông tin từ query parameter trong URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const paymentStatus = urlParams.get('paymentStatus');
+        const invoiceId = urlParams.get('invoiceId');
+
+        if (paymentStatus === 'success') {
+            alert('Payment successful! Invoice ID: ' + invoiceId);
+        }
+
+        // Get the modal
+        var modal = document.getElementById("paymentModal");
+
+        // Get the buttons that open the modal
+        var btns = document.getElementsByClassName("payButton");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks any of the buttons, open the modal 
+        for (let btn of btns) {
+            btn.onclick = function () {
+                var amount = btn.getAttribute("data-amount");
+                var inputs = modal.querySelectorAll("input[name='amount']");
+                inputs.forEach(input => input.value = amount);
+
+                modal.style.display = "block";
+            }
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            // Lấy giá trị username từ localStorage
+            var username = localStorage.getItem('username');
+
+            // Thiết lập giá trị cho input ẩn
+            if (username) {
+                document.getElementById('username').value = username;
+            } else {
+                // Nếu không có username trong localStorage, có thể xử lý logic khác (ví dụ: hiển thị cảnh báo)
+                console.warn('Username not found in localStorage');
+            }
+
+            var buttons = document.querySelectorAll(".payButton");
+            var modal = document.getElementById("paymentModal");
+
+        });
+
+    </script>
+
+
+</body>
+
+</html>

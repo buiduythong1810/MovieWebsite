@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Preview</title>
+    <link rel="stylesheet" href="./assets/css/style_review.css">
+</head>
+
+<body>
+    <header>
+        <h1 style="color: red;;">Movie Preview</h1>
+    </header>
+    <main>
+        <div class="movie-frame" id="movie-details">
+            <!-- script -->
+        </div>
+        <!-- <div class="comments-section">
+            <h2 style="color: azure;">Bình luận</h2>
+            <form id="comment-form">
+                <textarea id="comment" name="comment" placeholder="Nhập bình luận của bạn"></textarea>
+                <button type="submit">Gửi</button>
+            </form>
+            <div id="comments-container">
+            </div>
+        </div> -->
+
+    </main>
+    <footer>
+        <p>&copy; 2024 Movie Preview. All rights reserved.</p>
+    </footer>
+
+    <script>
+        
+        // Tạo một đối tượng XMLHttpRequest
+
+        var xhr = new XMLHttpRequest();
+        
+        var movieid = new URLSearchParams(window.location.search).get('movie_id');
+
+        // Thiết lập phương thức và địa chỉ endpoint mà bạn muốn gửi yêu cầu GET
+        xhr.open('GET', `http://localhost:7000/review/${movieid}`); // Sử dụng template literals để chèn biến movieid vào URL
+
+
+        // Xử lý sự kiện khi yêu cầu hoàn thành
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                // Nếu yêu cầu thành công, lấy dữ liệu từ phản hồi và lưu vào biến moviedetail
+                var moviedetail = JSON.parse(xhr.responseText);
+                console.log('Movie Detail:', moviedetail);
+
+                // Lấy ra phần tử có id là "movie-details" để thêm nội dung vào đó
+                var movieContainer = document.getElementById('movie-details');
+
+                // Tạo một chuỗi HTML dựa trên thông tin phim
+                var moviecontent = `
+            <div class="movie-info">
+                <h2 class="movie-name">${moviedetail.title}</h2>
+                <p><strong>Director:</strong> ${moviedetail.director}</p>
+                <p><strong>Genre:</strong> ${moviedetail.genre}</p>
+                <p><strong>Release Date:</strong> July 7, ${moviedetail.year}</p>
+                <p><strong>Rating:</strong> ${moviedetail.rating}/10</p>
+                <p>${moviedetail.plot}</p>
+                <a href="watch_movie.html?movie_id=${movieid}"><button id="watch-button">Watch now</button></a>
+            </div>
+            <img src="${moviedetail.thumbnail_path}" alt="${moviedetail.title} Poster">
+        `;
+
+                // Thêm nội dung vào phần tử "movie-details"
+                movieContainer.innerHTML = moviecontent;
+            } else {
+                // Nếu có lỗi xảy ra, hiển thị thông báo lỗi
+                console.error('Request failed. Status:', xhr.status);
+            }
+        };
+
+        // Xử lý sự kiện khi có lỗi xảy ra trong quá trình gửi yêu cầu
+        xhr.onerror = function () {
+            console.error('Request failed. Network error.');
+        };
+
+        // Gửi yêu cầu
+        xhr.send();
+
+
+
+    </script>
+</body>
+
+</html>
