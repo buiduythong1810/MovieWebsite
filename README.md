@@ -36,6 +36,15 @@
 
 - **Database:** MongoDB
 
+#### Cài đặt:
+- Cài đặt expressjs và các Dependencies.
+- `MovieWeb/finalserver.js` là server xử lí các chức năng của web.
+- `MovieWeb/.env` lưu các biến môi trường của PAYPAL và đường dẫn kết nối đến MongoDB.
+- `MovieWeb/services/paypal.js` xử lí chức năng thanh toán.
+- `MovieWeb/public` chứa các trang HTML.
+- `MovieWeb/public/assets` chứa CSS, script của trang HTML, video và hình ảnh sử dụng trong web.
+- `MovieWeb/config` chứa dữ liệu dùng trong MongoDB dưới dạng JSON.
+
 #### Link video seminar giữa kì
 [Link video](https://www.youtube.com/watch?v=thEt2cocwCQ)
 
