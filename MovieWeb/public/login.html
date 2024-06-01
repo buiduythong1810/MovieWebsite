@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Movie Preview</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    
+    <!-- Fonts CSS -->
+    <link rel="stylesheet" href="assets/css/material-design-iconic-font.min.css">
+    
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="assets/css/plugins.css">
+    
+    <!-- Main Style CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style1.css">
+
+    
+    <!-- Modernizer JS -->
+    <script src="assets/js/vendor/modernizr-3.6.0.min.js"></script>
+    <style>
+        body{
+            background-color: black;
+        }
+        #remember_me{
+            margin-right: 10em;
+        }
+        #forgot_pw{
+            margin-right:0em;
+        }
+    </style>
+    
+</head>
+
+<body>
+    <header class="header-area">
+        <div class="container-fluid1">
+            <div class="header-wrap header-netflix-style">
+                <div class="logo-menu-wrap">
+                    <!-- Logo -->
+                    <div class="logo">
+                        <a href="index-4.html"><img src="assets/images/logo.png" alt=""></a>
+                    </div>
+                    <!-- Logo -->
+                    <div class="main-menu main-theme-color-four">
+                        <nav class="main-navigation">
+                            <ul>
+                                <li><a href="index.html">Home</a></li>
+                                <li><a href="#">Pages</a>
+                                    <ul class="sub-menu">
+                                        <li><a href="aboutus.html">About Us</a></li>
+                                        <li><a href="pricing-plan-2.html">Pricing</a></li>
+                                        <!-- <li><a href="watchlist.html">Watchlist</a></li> -->
+                                        <li><a href="history2.html">History</a></li>
+                                        <!-- <li><a href="movie-details.html">Movie details</a></li> -->
+                                        <!-- <li><a href="series-details.html">Series details</a></li> -->
+                                        <li><a href="account.html">My Account</a></li>
+                                        <!-- <li><a href="landing-page.html">Landing Page</a></li> -->
+                                    </ul>
+                                </li>
+                                <li><a href="pricing-plan-2.html">Pricing</a></li>
+                                <li><a href="type.html">Search</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <div class="right-side">
+                    <!-- our-profile-area start -->
+                    <div class="our-profile-area">
+                        <a href="account.html" class="our-profile-pc" data-bs-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            <img class="img-avatar" src="assets/images/default-avatar2.png" alt="">
+                        </a>
+                    </div>
+                    <!-- our-profile-area end -->
+                    <div class="subscribe-btn-wrap">
+                        <button onclick="window.location.href='login-original.html'" type="button" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal" class="subscribe-btn">Login Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="main-wrapper">
+        <div class="breadcrumb-area breadcrumb-modify-padding bg-black-3">
+            <div class="container">
+                <div class="in-breadcrumb">
+                    <div class="row">
+                        <div class="col">
+                            <div class="breadcrumb-style-2 center">
+                                <h2>Login</h2>
+                                <ul class="breadcrumb-list-2 black">
+                                    <li>Home</li>
+                                    <li>Login</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- login-register  -->
+        <div class="register-page bg-black section-pt-90 section-pb-90">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-7 col-md-12 m-auto">
+                        <div class="login-register-wrapper">
+                            <!-- login-register-tab-list start -->
+                            <div class="login-register-tab-list white nav">
+                                <a class="active" >
+                                    <h4> login </h4>
+                                </a>
+                            </div>
+                            <!-- login-register-tab-list end -->
+                            <div class="tab-content">
+                                <div id="lg1" class="tab-pane active">
+                                    <div class="login-form-container border-black">
+                                        <div class="login-register-form black-style">
+                                            <form action="/login" method="post">
+                                                <div class="login-input-box">
+                                                    <input type="text" name="username" placeholder="Username" required>
+                                                    <input type="password" name="password" placeholder="Password"  required>
+                                                </div>
+                                                <div class="button-box">
+                                                    <div class="login-toggle-btn">
+                                                        <table style="width: 100%">
+                                                            <tr>
+                                                                <td style="width: 20%;"><label>Remember me</label></td>
+                                                                <td style="width:10%"><input type="checkbox" name="remember"></td>
+                                                                <td style="width:70%"><a href="forgot_password.html" class="forgot-password">Forgot Password?</a></td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                    <div class="button-box">
+                                                        <button class="login-btn btn" id="loginButton" type="submit"><span>Login</span></button>
+                                                    </div>
+                                                    <div class="breadcrumb-style-2 center">
+                                                        <ul class="breadcrumb-list-2 black">
+                                                            <li>Dont have a account ? <a href="register.html" class="text">Register</a></li>
+                                                            
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+
+        document.getElementById("loginButton").addEventListener("click", async function () {
+            const username = document.querySelector('input[name="username"]').value;
+            const password = document.querySelector('input[name="password"]').value;
+            try{
+            const response = await fetch("http://localhost:3000/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    username: username,
+                    password: password
+                })
+            });
+            // console.log(response);
+            if (response.status== 404){
+                window.location.href = "login.html";
+            }
+            if (response.ok) {
+                const responseData = await response.json(); // Phân tích phản hồi JSON
+                console.log('type: ',responseData.type);
+                localStorage.setItem('usertype',responseData.type);
+                localStorage.setItem('username',username);
+                window.location.href = "index.html"; // Chuyển hướng sau khi đăng nhập thành công
+            } else {
+                // const errorMessage = await response.text();
+                // alert(errorMessage); // Hiển thị thông báo lỗi nếu đăng nhập không thành công
+                alert('account or password is incorrect');
+                window.location.href = "login.html";
+            }
+            } catch (error) {
+                console.error('Fetch error:', error);
+                // alert('Fetch error: ' + error.message); // Thông báo lỗi mạng hoặc lỗi khác
+                alert('Account or password is incorrect');
+
+            }
+
+        });
+    </script>
+</body>
+
+</html>
