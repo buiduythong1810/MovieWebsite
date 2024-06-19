@@ -63,10 +63,13 @@
 Các cách để truyền tham số trong Express.js bao gồm: tham số trong đường dẫn (route parameters), tham số trong truy vấn (query parameters) và tham số trong thân của yêu cầu (request body).
 
 - **Tham số trong đường dẫn**: Được định nghĩa bằng dấu `:` trong URL và được truy cập thông qua `req.params.{parameter-name}`.
+- ![image](https://github.com/buiduythong1810/MovieWebsite/assets/108381886/080b78bb-911e-44cc-ba8a-dbc67f92e288)
 
 - **Tham số trong truy vấn**: Được truyền trong URL sau dấu `?` và được truy cập thông qua `req.query.{parameter-name}`.
+- ![image](https://github.com/buiduythong1810/MovieWebsite/assets/108381886/3a1527e8-edd6-4734-9c0b-4fc9ab6dbb16)
 
 - **Tham số trong thân yêu cầu**: Thường được sử dụng khi gửi dữ liệu từ form hoặc từ API và cần sử dụng middleware `body-parser` để phân tích thân yêu cầu như `req.body.{parameter-name}`.
+- ![image](https://github.com/buiduythong1810/MovieWebsite/assets/108381886/21d01065-ff09-4a0a-b440-6c1ff1044de9)
 
 ##### Xử lý tuyến đường (routing) trong Express.js
 
@@ -78,6 +81,7 @@ Dưới đây là hàm xử lý tuyến đường để lấy thông tin về m�
 2. **Dùng middleware `getMovieDetail` để lấy thông tin về phim dựa trên tham số lấy được**
 3. **Trả dữ liệu về**
 4. **Xử lí lỗi**
+![image](https://github.com/buiduythong1810/MovieWebsite/assets/108381886/e8f78f7a-d945-42c9-a540-9521fa469c24)
 
 
 #### 1. Làm thế nào để thiết kế một APT RESTFul đơn giản dễ bảo trì bằng Express JS
