@@ -50,3 +50,71 @@
 
 #### Link deploy
 [Link deploy](https://movie-github-io.onrender.com)
+
+#### 1. Tại sao Express lại được sử dụng phổ biến
+-	Sự phổ biến của Javascript. JavaScript là một ngôn ngữ lập trình rất phổ biến và có ảnh hưởng lớn đối với web và phát triển phần mềm. Mà Expressjs lại hỗ trợ Javascript, do đó nếu bạn đã biết đến Javascript thì chắc chắn việc lập trình bằng Express.js là vô cùng đơn giản. Ngay cả những người mới bắt đầu tham gia vào lĩnh vực phát triển web này cũng có thể sử dụng Expressjs. Chính vì tính phổ biến, dễ học và dễ sử dụng này mà Express.js cho phép các tài năng trẻ tham gia và đạt được nhiều thành công trong phát triển ứng dụng web.
+-	Hỗ trợ xây dựng website một cách nhanh chóng. Express.js có thể giúp làm giảm một nửa thời gian viết mã mà vẫn xây dựng lên các ứng dụng web hiệu quả. Không chỉ trợ giúp về mặt thời gian Expressjs còn làm giảm những áp lực cần thiết để xây dựng với sự trợ giúp của các tính năng khác nhau của nó.Express js còn cung cấp một phần mềm trung gian đảm nhận nhiệm vụ đưa ra các quyết định để phản hồi chính xác những yêu cầu của khách hàng.
+-	Express là một công cụ miễn phí. Express.js là một mã nguồn mở hoàn toàn miễn phí. Người dùng có thể tải xuống nguồn mã hóa, sử dụng, chỉnh sửa và phân phối nó theo cách tự động thực hiện các điều khoản của việc mở nguồn mã giấy phép. Điều này cho phép các nhà phát triển xây dựng web và API ứng dụng mà không phải trả bất kỳ khoản phí nào khi sử dụng framework này. Công nghệ mang đến điều kiện thuận lợi cho cả những dự án lớn và nhỏ có nhu cầu sử dụng Express.js mà không cần phải lo lắng về các chi phí phát triển.
+
+#### 1. Làm thế nào để thiết kế một APT RESTFul đơn giản dễ bảo trì bằng Express JS
+Thiết kế một API RESTful đơn giản dễ bảo trì bằng Express.js cần tuân theo các nguyên tắc cơ bản về RESTful và áp dụng các thực hành tốt nhất trong phát triển ứng dụng web. Các bước cơ bản để xây dựng một API RESTful bằng Express.js bao gồm:
+-	Tạo cấu trúc dự án rõ ràng giúp dễ bảo trì.  
+-	Tách biệt các lớp controller, service, và model để code dễ bảo trì và mở rộng.
+-	Sử Dụng Định Dạng Thích Hợp Cho Dữ Liệu Trả Về. Thông thường sử dụng JSON vì nó phổ biến và dễ đọc.
+-	Sử dụng middleware: Tạo middleware cho các tác vụ chung như xác thực, ghi log.
+-	Quản lý lỗi: Tạo một middleware để xử lý lỗi và trả về phản hồi phù hợp.
+-	Tạo các route theo chuẩn:
+-	 
+    o	Sử dụng Danh Từ Số Nhiều để biểu thị tập hợp các tài nguyên. Ví dụ: /users, /products, /orders.
+ 	
+    o	Tránh sử dụng động từ trong tên route vì phương thức HTTP đã biểu thị hành động. Nên sử dụng các phương thức HTTP (GET, POST, PUT, DELETE) để biểu thị hành động cụ thể trên tài nguyên.
+    
+         GET /users - Lấy danh sách người dùng.
+        
+         GET /users/{id} - Lấy thông tin chi tiết về một người dùng cụ thể.
+        
+         POST /users - Tạo một người dùng mới.
+        
+         PUT /users/{id} - Cập nhật thông tin người dùng cụ thể.
+        
+         DELETE /users/{id} - Xóa một người dùng cụ thể.
+ 	
+    o	Sử dụng Danh Từ cho Sub-resources: khi một tài nguyên có các tài nguyên con, hãy sử dụng dạng /resource/{resourceId}/sub-resource.
+ 	
+        	Ví dụ: /users/{userId}/orders - Lấy danh sách đơn hàng của một người dùng cụ thể.
+ 	
+    o	Sử Dụng Tên Route Có Nghĩa: đảm bảo tên route rõ ràng và dễ hiểu, mô tả chính xác tài nguyên hoặc hành động.
+ 	
+        	Ví dụ: /products/{productId}/reviews - Lấy đánh giá của một sản phẩm cụ thể.
+ 	
+    o	Sử Dụng Ký Tự Thường và Dấu Gạch Ngang để phân tách các từ trong tên route.
+ 	
+        	Ví dụ: /user-profiles, /order-items.
+ 	
+    o	Sử Dụng Query Parameters cho Lọc, Sắp Xếp và Phân Trang
+ 	
+        	Ví dụ: /users?status=active, /products?category=electronics&sort=price&order=asc, /users?page=2&limit=20.
+ 	
+  -	Cung Cấp Phản Hồi HTTP Trạng Thái Phù Hợp. Sử dụng các mã trạng thái HTTP để phản ánh kết quả của các request:
+
+        o	200 OK: Yêu cầu thành công.
+   	
+        o	400 Bad Request: Yêu cầu không hợp lệ.
+   	
+        o	401 Unauthorized: Người dùng chưa được xác thực.
+   	
+        o	403 Forbidden: Người dùng không có quyền truy cập tài nguyên.
+   	
+        o	404 Not Found: Không tìm thấy tài nguyên.
+   	
+        o	500 Internal Server Error: Lỗi server.
+-	Bảo Mật API.
+
+        o	Sử Dụng HTTPS để bảo vệ dữ liệu truyền tải
+     	
+        o	Sử dụng token hoặc OAuth cho xác thực và phân quyền.
+     	
+        o	Rate Limiting: Giới hạn số lượng yêu cầu từ một nguồn để tránh tấn công DDoS.
+   	
+-	Cung cấp tài liệu API rõ ràng để người dùng có thể dễ dàng hiểu và sử dụng API.
+
