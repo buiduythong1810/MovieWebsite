@@ -56,6 +56,30 @@
 -	Hỗ trợ xây dựng website một cách nhanh chóng. Express.js có thể giúp làm giảm một nửa thời gian viết mã mà vẫn xây dựng lên các ứng dụng web hiệu quả. Không chỉ trợ giúp về mặt thời gian Expressjs còn làm giảm những áp lực cần thiết để xây dựng với sự trợ giúp của các tính năng khác nhau của nó.Express js còn cung cấp một phần mềm trung gian đảm nhận nhiệm vụ đưa ra các quyết định để phản hồi chính xác những yêu cầu của khách hàng.
 -	Express là một công cụ miễn phí. Express.js là một mã nguồn mở hoàn toàn miễn phí. Người dùng có thể tải xuống nguồn mã hóa, sử dụng, chỉnh sửa và phân phối nó theo cách tự động thực hiện các điều khoản của việc mở nguồn mã giấy phép. Điều này cho phép các nhà phát triển xây dựng web và API ứng dụng mà không phải trả bất kỳ khoản phí nào khi sử dụng framework này. Công nghệ mang đến điều kiện thuận lợi cho cả những dự án lớn và nhỏ có nhu cầu sử dụng Express.js mà không cần phải lo lắng về các chi phí phát triển.
 
+#### 2. Cách để truyền tham số và xử lý tuyến đường trong Express.js
+
+##### Truyền tham số trong Express.js
+
+Các cách để truyền tham số trong Express.js bao gồm: tham số trong đường dẫn (route parameters), tham số trong truy vấn (query parameters) và tham số trong thân của yêu cầu (request body).
+
+- **Tham số trong đường dẫn**: Được định nghĩa bằng dấu `:` trong URL và được truy cập thông qua `req.params.{parameter-name}`.
+
+- **Tham số trong truy vấn**: Được truyền trong URL sau dấu `?` và được truy cập thông qua `req.query.{parameter-name}`.
+
+- **Tham số trong thân yêu cầu**: Thường được sử dụng khi gửi dữ liệu từ form hoặc từ API và cần sử dụng middleware `body-parser` để phân tích thân yêu cầu như `req.body.{parameter-name}`.
+
+##### Xử lý tuyến đường (routing) trong Express.js
+
+Xử lý tuyến đường trong Express.js là quá trình định tuyến các yêu cầu HTTP đến các xử lý cụ thể dựa trên URL, phương thức HTTP và xác định các hàm callback được gọi khi một yêu cầu cụ thể đến với máy chủ.
+
+Dưới đây là hàm xử lý tuyến đường để lấy thông tin về một bộ phim bao gồm các bước:
+
+1. **Xử lí tham số trong đường dẫn**
+2. **Dùng middleware `getMovieDetail` để lấy thông tin về phim dựa trên tham số lấy được**
+3. **Trả dữ liệu về**
+4. **Xử lí lỗi**
+
+
 #### 1. Làm thế nào để thiết kế một APT RESTFul đơn giản dễ bảo trì bằng Express JS
 Thiết kế một API RESTful đơn giản dễ bảo trì bằng Express.js cần tuân theo các nguyên tắc cơ bản về RESTful và áp dụng các thực hành tốt nhất trong phát triển ứng dụng web. Các bước cơ bản để xây dựng một API RESTful bằng Express.js bao gồm:
 -	Tạo cấu trúc dự án rõ ràng giúp dễ bảo trì.  
