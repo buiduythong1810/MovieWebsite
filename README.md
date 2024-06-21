@@ -147,228 +147,90 @@ Dưới đây là hàm xử lý tuyến đường để lấy thông tin về m�
 
 ![image](https://github.com/buiduythong1810/MovieWebsite/assets/108381886/e8f78f7a-d945-42c9-a540-9521fa469c24)
 
-3. Có những gì để hỗ trợ phân quyền
+#### 3. Có những gì để hỗ trợ phân quyền
 Trong ExpressJS, có nhiều cách để hỗ trợ phân quyền và xác thực người dùng :
-1.	Middleware Tự Viết:
-o	Có thể tự viết middleware để kiểm tra quyền hạn người dùng trước khi xử lý các yêu cầu.
-o	Ví dụ:
-function checkRole(role) {
-  return function(req, res, next) {
-    if (req.user && req.user.role === role) {
-      next();
-    } else {
-      res.status(403).send('Forbidden');
-    }
-  }
-}
+1. Middleware Tự Viết:
+- Có thể tự viết middleware để kiểm tra quyền hạn người dùng trước khi xử lý các yêu cầu.
 
-app.get('/admin', checkRole('admin'), function(req, res) {
-  res.send('Welcome Admin!');
-});
-2.	Passport.js:
-o	Passport là một middleware phổ biến để xác thực trong Node.js, hỗ trợ nhiều chiến lược xác thực như username/password, OAuth, JWT, v.v.
-o	Sau khi xác thực, có thể sử dụng thông tin người dùng để kiểm tra quyền hạn.
-o	Ví dụ:
-const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
+  ![image](https://github.com/buiduythong1810/MovieWebsite/assets/163425597/39b9b37a-0396-402f-b668-40848ff4cfa8)
 
-passport.use(new LocalStrategy(
-  function(username, password, done) {
-    // Kiểm tra thông tin đăng nhập
-    User.findOne({ username: username }, function (err, user) {
-      if (err) { return done(err); }
-      if (!user) { return done(null, false); }
-      if (!user.verifyPassword(password)) { return done(null, false); }
-      return done(null, user);
-    });
-  }
-));
+2. Passport.js:
+- Passport là một middleware phổ biến để xác thực trong Node.js, hỗ trợ nhiều chiến lược xác thực như username/password, OAuth, JWT, v.v.
+- Sau khi xác thực, có thể sử dụng thông tin người dùng để kiểm tra quyền hạn.
 
-app.post('/login', passport.authenticate('local', {
-  successRedirect: '/',
-  failureRedirect: '/login'
-}));
+  ![image](https://github.com/buiduythong1810/MovieWebsite/assets/163425597/08d3ed9f-c0d5-42aa-9d80-53c689fa9e7e)
 
-// Middleware kiểm tra quyền
-function checkRole(role) {
-  return function(req, res, next) {
-    if (req.isAuthenticated() && req.user.role === role) {
-      next();
-    } else {
-      res.status(403).send('Forbidden');
-    }
-  }
-}
+3. JSON Web Token (JWT):
+- JWT là một cách phổ biến để xác thực và phân quyền trong các ứng dụng web.
+- Sử dụng thư viện như jsonwebtoken để tạo và xác thực token.
 
-app.get('/admin', checkRole('admin'), function(req, res) {
-  res.send('Welcome Admin!');
-});
-3.	JSON Web Token (JWT):
-o	JWT là một cách phổ biến để xác thực và phân quyền trong các ứng dụng web.
-o	Sử dụng thư viện như jsonwebtoken để tạo và xác thực token.
-o	Ví dụ:
-const jwt = require('jsonwebtoken');
-const secret = 'your_jwt_secret';
+  ![image](https://github.com/buiduythong1810/MovieWebsite/assets/163425597/228d1736-532c-422b-b226-70005fe9e23f)
 
-// Tạo token
-function generateToken(user) {
-  return jwt.sign(user, secret, { expiresIn: '1h' });
-}
+4. RBAC (Role-Based Access Control):
+- Sử dụng thư viện như accesscontrol để triển khai kiểm soát truy cập dựa trên vai trò.
 
-// Middleware kiểm tra token và phân quyền
-function authenticateToken(req, res, next) {
-  const token = req.header('Authorization');
-  if (!token) return res.status(401).send('Access Denied');
+  ![image](https://github.com/buiduythong1810/MovieWebsite/assets/163425597/61e4a850-a5c5-4e25-b2a6-fa88e025fe9e)
 
-  try {
-    const verified = jwt.verify(token, secret);
-    req.user = verified;
-    next();
-  } catch (err) {
-    res.status(400).send('Invalid Token');
-  }
-}
-
-function checkRole(role) {
-  return function(req, res, next) {
-    if (req.user.role === role) {
-      next();
-    } else {
-      res.status(403).send('Forbidden');
-    }
-  }
-}
-
-app.get('/admin', authenticateToken, checkRole('admin'), function(req, res) {
-  res.send('Welcome Admin!');
-});
-
-
-4.	RBAC (Role-Based Access Control):
-o	Sử dụng thư viện như accesscontrol để triển khai kiểm soát truy cập dựa trên vai trò.
-o	Ví dụ:
-const AccessControl = require('accesscontrol');
-const ac = new AccessControl();
-
-ac.grant('user')
-  .readOwn('profile')
-  .updateOwn('profile');
-
-ac.grant('admin')
-  .extend('user')
-  .readAny('profile')
-  .updateAny('profile')
-  .deleteAny('profile');
-
-function checkPermission(action, resource) {
-  return function(req, res, next) {
-    const permission = ac.can(req.user.role)[action](resource);
-    if (permission.granted) {
-      next();
-    } else {
-      res.status(403).send('Forbidden');
-    }
-  }
-}
-
-app.get('/profile', authenticateToken, checkPermission('readOwn', 'profile'), function(req, res) {
-  res.send('Your profile');
-});
-
-app.delete('/profile/:id', authenticateToken, checkPermission('deleteAny', 'profile'), function(req, res) {
-  res.send('Profile deleted');
-});
-
-4. Phương pháp nào tốt nhất để bảo mật trong Express JS
+#### 4. Phương pháp nào tốt nhất để bảo mật trong Express JS
 Không có một phương pháp duy nhất nào có thể coi là an toàn nhất để bảo mật một ứng dụng ExpressJS. Bảo mật là một lĩnh vực phức tạp và yêu cầu phải kết hợp nhiều kỹ thuật và công cụ để bảo vệ ứng dụng khỏi các mối đe dọa khác nhau. Tuy nhiên, có thể tăng cường bảo mật ứng dụng của mình bằng cách tuân thủ các phương pháp sau một cách nghiêm ngặt:
 1.	Sử dụng Helmet:
-o	Helmet giúp bảo vệ ứng dụng bằng cách thiết lập các tiêu đề HTTP bảo mật. Đây là bước đầu tiên và cơ bản nhất để bảo vệ ứng dụng.
-o	Cài đặt và sử dụng:
-const helmet = require('helmet');
-app.use(helmet());
+- Helmet giúp bảo vệ ứng dụng bằng cách thiết lập các tiêu đề HTTP bảo mật. Đây là bước đầu tiên và cơ bản nhất để bảo vệ ứng dụng.
+- Cài đặt và sử dụng:
+  
+  ![image](https://github.com/buiduythong1810/MovieWebsite/assets/163425597/567d41bb-a191-4805-b75b-79d361aa5a0b)
+
 2.	Xác thực và Phân quyền:
-o	Sử dụng Passport.js hoặc JSON Web Token (JWT) để xác thực và phân quyền người dùng. Đây là yếu tố then chốt để đảm bảo chỉ những người dùng hợp lệ mới có thể truy cập vào các tài nguyên quan trọng.
-o	Ví dụ sử dụng JWT:
-const jwt = require('jsonwebtoken');
-const secret = 'your_jwt_secret';
+- Sử dụng Passport.js hoặc JSON Web Token (JWT) để xác thực và phân quyền người dùng. Đây là yếu tố then chốt để đảm bảo chỉ những người dùng hợp lệ mới có thể truy cập vào các tài nguyên quan trọng.
+  
+  ![image](https://github.com/buiduythong1810/MovieWebsite/assets/163425597/c49464aa-f99a-4fd7-8267-4dcfe65f7bcf)
 
-function authenticateToken(req, res, next) {
-  const token = req.header('Authorization');
-  if (!token) return res.status(401).send('Access Denied');
-
-  try {
-    const verified = jwt.verify(token, secret);
-    req.user = verified;
-    next();
-  } catch (err) {
-    res.status(400).send('Invalid Token');
-  }
-}
-
-app.get('/protected', authenticateToken, (req, res) => {
-  res.send('This is a protected route');
-});
 3.	Sử dụng HTTPS:
-o	Đảm bảo rằng ứng dụng luôn sử dụng HTTPS để mã hóa dữ liệu truyền tải. Điều này bảo vệ dữ liệu khỏi bị đánh cắp hoặc thay đổi khi truyền tải qua mạng.
-o	Cài đặt chứng chỉ SSL và cấu hình máy chủ web để sử dụng HTTPS.
+- Đảm bảo rằng ứng dụng luôn sử dụng HTTPS để mã hóa dữ liệu truyền tải. Điều này bảo vệ dữ liệu khỏi bị đánh cắp hoặc thay đổi khi truyền tải qua mạng.
+- Cài đặt chứng chỉ SSL và cấu hình máy chủ web để sử dụng HTTPS.
 4.	Chống tấn công XSS và CSRF:
-o	Sử dụng xss-clean để ngăn chặn các cuộc tấn công Cross-Site Scripting (XSS).
-const xss = require('xss-clean');
-app.use(xss());
-o	Sử dụng csurf middleware để bảo vệ chống lại CSRF.
-const csrf = require('csurf');
-const cookieParser = require('cookie-parser');
+- Sử dụng xss-clean để ngăn chặn các cuộc tấn công Cross-Site Scripting (XSS).
+  
+  ![image](https://github.com/buiduythong1810/MovieWebsite/assets/163425597/6757d13e-43dc-4e82-87fc-28dd4ddbf66e)
+  
+- Sử dụng csurf middleware để bảo vệ chống lại CSRF.
+  
+  ![image](https://github.com/buiduythong1810/MovieWebsite/assets/163425597/7592da41-635b-4219-8956-f3848db5c102)
 
-app.use(cookieParser());
-app.use(csrf({ cookie: true }));
-
-app.get('/form', (req, res) => {
-  res.render('send', { csrfToken: req.csrfToken() });
-});
-
-app.post('/process', (req, res) => {
-  res.send('Data is being processed');
-});
 5.	Hạn chế tốc độ và bảo vệ chống tấn công DDoS:
-o	Sử dụng express-rate-limit để hạn chế số lượng yêu cầu từ một IP trong một khoảng thời gian nhất định.
-const rateLimit = require('express-rate-limit');
+- Sử dụng express-rate-limit để hạn chế số lượng yêu cầu từ một IP trong một khoảng thời gian nhất định.
+  
+  ![image](https://github.com/buiduythong1810/MovieWebsite/assets/163425597/20d8cfd5-7ab4-4172-9cf9-2d37d81d0438)
 
-const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 phút
-  max: 100 // giới hạn mỗi IP là 100 yêu cầu mỗi 15 phút
-});
-
-app.use(limiter);
 6.	Thiết lập CORS đúng cách:
-o	Cấu hình CORS để chỉ cho phép các miền tin cậy truy cập API 
-const cors = require('cors');
-const corsOptions = {
-  origin: 'https://trusted-domain.com',
-  optionsSuccessStatus: 200
-};
-app.use(cors(corsOptions));
-7.	Bảo mật cấu hình và biến môi trường:
-o	Đảm bảo không để lộ thông tin nhạy cảm trong mã nguồn hoặc các file cấu hình.
-o	Sử dụng dotenv để quản lý biến môi trường:
-require('dotenv').config();
+- Cấu hình CORS để chỉ cho phép các miền tin cậy truy cập API
+  
+  ![image](https://github.com/buiduythong1810/MovieWebsite/assets/163425597/190957fa-6df8-4a26-86fc-e3dfad6c7618)
 
-const dbPassword = process.env.DB_PASSWORD;
+7.	Bảo mật cấu hình và biến môi trường:
+- Đảm bảo không để lộ thông tin nhạy cảm trong mã nguồn hoặc các file cấu hình.
+- Sử dụng dotenv để quản lý biến môi trường:
+  
+  ![image](https://github.com/buiduythong1810/MovieWebsite/assets/163425597/d99012cf-8cb1-4f5f-8297-0169595e519c)
+
 8.	Cập nhật thường xuyên các thư viện:
-o	Thường xuyên kiểm tra và cập nhật các thư viện và dependencies để tránh các lỗ hổng bảo mật đã biết.
+- Thường xuyên kiểm tra và cập nhật các thư viện và dependencies để tránh các lỗ hổng bảo mật đã biết.
 9.	Sử dụng các công cụ và dịch vụ bảo mật bên ngoài:
-o	Sử dụng các dịch vụ như Snyk, OWASP ZAP để quét và phát hiện các lỗ hổng bảo mật trong ứng dụng.
+- Sử dụng các dịch vụ như Snyk, OWASP ZAP để quét và phát hiện các lỗ hổng bảo mật trong ứng dụng.
 10.	Kiểm tra và giám sát liên tục:
-o	Triển khai hệ thống giám sát và ghi nhật ký để theo dõi hoạt động của ứng dụng và phát hiện sớm các hành vi bất thường.
+- Triển khai hệ thống giám sát và ghi nhật ký để theo dõi hoạt động của ứng dụng và phát hiện sớm các hành vi bất thường.
 Kết hợp tất cả các phương pháp trên sẽ giúp xây dựng một hệ thống bảo mật mạnh mẽ và toàn diện cho ứng dụng ExpressJS của mình. Không có một phương pháp đơn lẻ nào là "an toàn nhất", mà sự an toàn đạt được qua việc áp dụng đồng thời nhiều biện pháp bảo mật.
 
-5. Express có thích hợp với dự án có ngân sách nhỏ hay không
-Express là một framework nhẹ và linh hoạt cho Node.js, và thường rất thích hợp cho các dự án có ngân sách nhỏ vì:
-1.	Miễn phí và Mã nguồn mở: Express là một phần mềm mã nguồn mở, nghĩa là có thể sử dụng nó mà không phải trả bất kỳ chi phí nào.
-2.	Cộng đồng lớn và tài liệu phong phú: Với một cộng đồng lớn và tài liệu phong phú, có thể dễ dàng tìm thấy hỗ trợ và giải pháp cho các vấn đề gặp phải mà không cần thuê chuyên gia đắt đỏ.
-3.	Cấu hình tối thiểu: Express không yêu cầu cấu hình phức tạp, giúp tiết kiệm thời gian và tiền bạc trong quá trình phát triển.
-4.	Hiệu suất cao: Express rất nhẹ và hiệu quả, giúp xây dựng các ứng dụng web nhanh chóng mà không cần đầu tư nhiều vào tài nguyên phần cứng.
-5.	Thư viện và Module phong phú: Có rất nhiều thư viện và module có sẵn cho Express, giúp dễ dàng mở rộng chức năng mà không cần phải tự phát triển từ đầu.
-6.	Phù hợp với nhiều loại dự án: Từ các ứng dụng nhỏ đến các hệ thống lớn, Express đều có thể được tùy chỉnh để phù hợp với nhu cầu của dự án, giúp tiết kiệm chi phí phát triển ban đầu.
+5. **Express có thích hợp với dự án có ngân sách nhỏ hay không**
+   
+   Express là một framework nhẹ và linh hoạt cho Node.js, và thường rất thích hợp cho các dự án có ngân sách nhỏ vì:
+   
+- Miễn phí và Mã nguồn mở: Express là một phần mềm mã nguồn mở, nghĩa là có thể sử dụng nó mà không phải trả bất kỳ chi phí nào.
+- Cộng đồng lớn và tài liệu phong phú: Với một cộng đồng lớn và tài liệu phong phú, có thể dễ dàng tìm thấy hỗ trợ và giải pháp cho các vấn đề gặp phải mà không cần thuê chuyên gia đắt đỏ.
+- Cấu hình tối thiểu: Express không yêu cầu cấu hình phức tạp, giúp tiết kiệm thời gian và tiền bạc trong quá trình phát triển.
+- Hiệu suất cao: Express rất nhẹ và hiệu quả, giúp xây dựng các ứng dụng web nhanh chóng mà không cần đầu tư nhiều vào tài nguyên phần cứng.
+- Thư viện và Module phong phú: Có rất nhiều thư viện và module có sẵn cho Express, giúp dễ dàng mở rộng chức năng mà không cần phải tự phát triển từ đầu.
+- Phù hợp với nhiều loại dự án: Từ các ứng dụng nhỏ đến các hệ thống lớn, Express đều có thể được tùy chỉnh để phù hợp với nhu cầu của dự án, giúp tiết kiệm chi phí phát triển ban đầu.
+  
 Tóm lại, Express là một lựa chọn lý tưởng cho các dự án có ngân sách nhỏ nhờ vào tính linh hoạt, hiệu quả, và cộng đồng hỗ trợ mạnh mẽ.
 
 
